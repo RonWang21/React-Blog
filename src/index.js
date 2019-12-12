@@ -8,6 +8,4 @@ import 'element-theme-default'
 // 引入根组件
 import App from './App'
 
-// 引入样式文件
-import './asset/css/reset.css'
 ReactDOM.render(<App />, document.getElementById('root'))
