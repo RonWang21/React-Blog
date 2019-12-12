@@ -24,7 +24,7 @@ const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpack
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
 
 const postcssNormalize = require('postcss-normalize')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const appPackageJson = require(paths.appPackageJson)
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -45,7 +45,10 @@ const cssRegex = /\.css$/
 const cssModuleRegex = /\.module\.css$/
 const sassRegex = /\.(scss|sass)$/
 const sassModuleRegex = /\.module\.(scss|sass)$/
-// 配置stylus
+// 添加 less 解析规则
+const lessRegex = /\.less$/
+const lessModuleRegex = /\.module\.less$/
+// 添加 stylus 解析规则
 // const stylusRegex = /\.styl$/
 // const stylusModuleRegex = /\.module\.styl$/
 
@@ -305,7 +308,7 @@ module.exports = function(webpackEnv) {
       },
       plugins: [
         // 缩小打包文件
-        new UglifyJSPlugin(),
+        // new UglifyJSPlugin(),
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
         // guards against forgotten dependencies and such.
         PnpWebpackPlugin,
@@ -374,7 +377,6 @@ module.exports = function(webpackEnv) {
                 customize: require.resolve(
                   'babel-preset-react-app/webpack-overrides'
                 ),
-
                 plugins: [
                   [
                     require.resolve('babel-plugin-named-asset-import'),
@@ -490,15 +492,40 @@ module.exports = function(webpackEnv) {
                 'sass-loader'
               )
             },
-            // stylus 配置文件
+            // Less 解析配置
             {
-              test: /\.styl$/,
-              use: [
-                'style-loader',
-                'css-loader?modules&camelCase&localIdentName=[path]__[name]__[local]--[hash:base64:5]',
-                'stylus-loader'
-              ]
+              test: lessRegex,
+              exclude: lessModuleRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 2,
+                  sourceMap: isEnvProduction && shouldUseSourceMap
+                },
+                'less-loader'
+              ),
+              sideEffects: true
             },
+            {
+              test: lessModuleRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 2,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
+                  modules: true,
+                  getLocalIdent: getCSSModuleLocalIdent
+                },
+                'less-loader'
+              )
+            },
+            // stylus 配置文件
+            // {
+            //   test: /\.styl$/,
+            //   use: [
+            //     'style-loader',
+            //     'css-loader?modules&camelCase&localIdentName=[path]__[name]__[local]--[hash:base64:5]',
+            //     'stylus-loader'
+            //   ]
+            // },
             // {
             //   test: stylusRegex,
             //   exclude: stylusModuleRegex,

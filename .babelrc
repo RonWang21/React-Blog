@@ -1,0 +1,14 @@
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": [
+    [
+      "transform-modules",
+      {
+        "element-ui": {
+          "transform": "element-react/dist/npm/es5/src/${member}",
+          "kebabCase": true
+        }
+      }
+    ]
+  ]
+}
