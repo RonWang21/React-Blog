@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-
+// 引入Home组件
+import Home from './containers/Home/Home.jsx'
 class App extends Component {
   render() {
-    return <div>银河护卫队，出发！</div>
+    return (
+      <div>
+        <Home />
+      </div>
+    )
   }
 }
 export default App
