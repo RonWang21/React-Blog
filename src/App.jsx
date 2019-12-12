@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // 引入Home组件
-import Home from './containers/Home/Home.jsx'
+import Home from './containers/home/Home'
 class App extends Component {
   render() {
     return (
