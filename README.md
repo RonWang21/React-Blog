@@ -1,8 +1,6 @@
 # teamBlog
 由银河护卫队使用React 全家桶+Element UI(React)+stylus+ES6协同开发的一个个人博客SPA
 
-# README
-
 <a name="Y044h"></a>
 ### 项目介绍
 项目地址:[https://github.com/RonWang21/teamBlog](https://github.com/RonWang21/teamBlog)
@@ -52,29 +50,7 @@
 <a name="uP7u2"></a>
 ### 项目结构（待补充）
 
-.
-├── README.md // 项目说明文件
-├── public	
-│   ├── favicon.ico // 网页图标
-│   └── index.html	// 项目模板
-├── src
-│   ├── App.js // 项目
-│   ├── api
-│   │   ├── ajax.js // 封装请求接口
-│   │   ├──	index.js // 配置请求/响应拦截器
-│   ├── asset
-│   ├── components // UI组件
-│   ├── container // 容器组件
-│   ├── config
-│   │   └── routes.js // 路由配置文件
-│   ├── index.js	// 入口文件（all in js）
-│   ├── redux
-│   │   ├── action-creator.js
-│   │   ├── action-types.js
-│   │   ├── reducers.js
-│   │   └── store.js
-│   └── utils // 其他函数/方法/工具
-└── yarn.lock
+.<br />├── README.md // 项目说明文件<br />├── public	<br />│   ├── favicon.ico // 网页图标<br />│   └── index.html	// 项目模板<br />├── src<br />│   ├── App.js // 项目<br />│   ├── api<br />│   │   ├── ajax.js // 封装请求接口<br />│   │   ├──	index.js // 配置请求/响应拦截器<br />│   ├── asset<br />│   ├── components // UI组件<br />│   ├── container // 容器组件<br />│   ├── config<br />│   │   └── routes.js // 路由配置文件<br />│   ├── index.js	// 入口文件（all in js）<br />│   ├── redux<br />│   │   ├── action-creator.js<br />│   │   ├── action-types.js<br />│   │   ├── reducers.js<br />│   │   └── store.js<br />│   └── utils // 其他函数/方法/工具<br />└── yarn.lock
 
 
 
