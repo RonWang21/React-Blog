@@ -1,4 +1,4 @@
-# 基于React框架开发的个人博客
+# 基于React框架开发的个人博客(未完结)
 
 [README in English](README-en.md)
 
@@ -75,6 +75,7 @@
 ├─.babelrc                                    // babel配置文件
 ├─.gitignore 
 ├─README.md                                    // 项目说明文件
+├─doc                                       // 项目使用说明文件
 ├─client                                     // 服务器相关文件
 │ ├─config 
 │ │ └─index.js                        // 服务器/数据库配置文件
