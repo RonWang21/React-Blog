@@ -1,14 +1,5 @@
 import React, { Component } from 'react'
 // 引入Home组件
-<<<<<<< HEAD
-import SideNav from './containers/sideNav/SideNav'
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <SideNav />
-      </div>
-=======
 // import Home from './containers/home/Home'
 //引入路由组件
 import router from './config/routes'
@@ -34,7 +25,6 @@ class App extends Component {
           <Route component={NotMath}></Route>
         </Switch>
       </Router>
->>>>>>> master
     )
   }
 }
