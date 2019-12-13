@@ -1,3 +1,21 @@
-.box1 {
-  background-color: aqua;
+@import (reference) "../../assets//css//mixin.less";
+
+.home-contanier {
+  margin: 0 auto;
+  margin-top: @distanceToTop;
+  display: flex;
+  width: 1000px;
+
+  .home-main-contanier {
+    width: 694px;
+    height: 800px;
+    margin-right: 10px;
+    background: rgba(145, 204, 215, 0.57);
+  }
+
+  .home-sidebar-contanier {
+    flex: 1;
+    height: 800px;
+    background: rgba(215, 141, 141, 0.57);
+  }
 }

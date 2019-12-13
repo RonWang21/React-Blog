@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom'
 import './assets/css/reset.css'
 // 引入组件默认主题
 import 'element-theme-default'
+// 引入iconfont样式
+import './assets/css/iconfont/iconfont.css'
 
 // 引入根组件
 import App from './App'
