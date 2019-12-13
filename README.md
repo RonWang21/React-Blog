@@ -38,7 +38,7 @@
 
 <a name="04HHm"></a>
 ## 项目环境
-**node.js v12.10.0**<br />**webpack 4.41.2**<br />**mongodb**<br />**
+**node.js v12.10.0**<br />**webpack 4.41.2**<br />**mongodb**<br />
 <a name="JrZDi"></a>
 ## 项目运行
 
