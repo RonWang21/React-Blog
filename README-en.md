@@ -9,7 +9,7 @@
 - Jing er
 - [Shijie](https://github.com/LeeJay9701)
 - [Zheng dong](https://github.com/LD382549823)
-- Ron
+- [Ron](https://github.com/RonWang21)
 
 <a name="1TFk7"></a>
 ## Project Introduction
@@ -38,7 +38,7 @@
 
 <a name="04HHm"></a>
 ## Project Environment
-**node.js v12.10.0**<br />**webpack 4.41.2**<br />**mongodb**<br />**
+**node.js v12.10.0**<br />**webpack 4.41.2**<br />**mongodb**<br />
 <a name="JrZDi"></a>
 ## Run Project
 
