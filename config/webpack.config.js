@@ -49,8 +49,8 @@ const sassModuleRegex = /\.module\.(scss|sass)$/
 const lessRegex = /\.less$/
 const lessModuleRegex = /\.module\.less$/
 // 添加 stylus 解析规则
-// const stylusRegex = /\.styl$/
-// const stylusModuleRegex = /\.module\.styl$/
+const stylusRegex = /\.styl$/
+const stylusModuleRegex = /\.module\.styl$/
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -518,39 +518,31 @@ module.exports = function(webpackEnv) {
               )
             },
             // stylus 配置文件
-            // {
-            //   test: /\.styl$/,
-            //   use: [
-            //     'style-loader',
-            //     'css-loader?modules&camelCase&localIdentName=[path]__[name]__[local]--[hash:base64:5]',
-            //     'stylus-loader'
-            //   ]
-            // },
-            // {
-            //   test: stylusRegex,
-            //   exclude: stylusModuleRegex,
-            //   use: getStyleLoaders(
-            //     {
-            //       importLoaders: 2,
-            //       sourceMap: isEnvProduction && shouldUseSourceMap
-            //     },
-            //     'stylus-loader'
-            //   ),
-            //   sideEffects: true
-            // },
-            // {
-            //   test: stylusModuleRegex,
-            //   use: getStyleLoaders(
-            //     {
-            //       importLoaders: 2,
-            //       sourceMap: isEnvProduction && shouldUseSourceMap,
-            //       modules: true
-            //       // options has an unknown property 'getLocalIdent'
-            //       // getLocalIdent: getCSSModuleLocalIdent
-            //     },
-            //     'stylus-loader'
-            //   )
-            // },
+            {
+              test: stylusRegex,
+              exclude: stylusModuleRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 2,
+                  sourceMap: isEnvProduction && shouldUseSourceMap
+                },
+                'stylus-loader'
+              ),
+              sideEffects: true
+            },
+            {
+              test: stylusModuleRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 2,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
+                  modules: {
+                    getLocalIdent: getCSSModuleLocalIdent
+                  }
+                },
+                'stylus-loader'
+              )
+            },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.

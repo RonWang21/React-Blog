@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 // 引入样式重置文件
-import './assets/css/reset.css'
+import './assets/css/reset.styl'
 // 引入组件默认主题
 import 'element-theme-default'
 
