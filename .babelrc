@@ -1,9 +1,8 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react", "stage-1"],
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": [
     [
       "transform-modules",
-      // "@babel/plugin-proposal-class-properties",
       {
         "element-ui": {
           "transform": "element-react/dist/npm/es5/src/${member}",
