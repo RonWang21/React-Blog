@@ -74,8 +74,8 @@
 ├─.DS_Store 
 ├─.babelrc                                    // babel config
 ├─.gitignore 
-├─README.md                                    // 项目说明文件
 ├─README-en.md																// Project description file
+├─doc                                         // Using Project description
 ├─client                                     
 │ ├─config 
 │ │ └─index.js                        // server/data-base config
