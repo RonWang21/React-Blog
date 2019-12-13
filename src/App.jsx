@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 // 引入Home组件
-import Home from './containers/home/Home'
+import SideNav from './containers/sideNav/SideNav'
 class App extends Component {
   render() {
     return (
       <div>
-        <Home />
+        <SideNav />
       </div>
     )
   }
