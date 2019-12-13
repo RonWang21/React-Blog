@@ -1,4 +1,4 @@
-# 基于React框架开发的个人博客(未完结)
+# 基于React框架开发的博客(未完结)
 
 [README in English](README-en.md)
 
