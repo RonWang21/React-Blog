@@ -11,7 +11,9 @@ class Header extends Component {
   // 创建一级菜单的
   createMenus = () => {
     return menus.map(menu => (
-      <Menu.Item index={menu.key}>{menu.title}</Menu.Item>
+      <Menu.Item key={menu.key} index={menu.key}>
+        {menu.title}
+      </Menu.Item>
     ))
   }
   onSelect() {}
