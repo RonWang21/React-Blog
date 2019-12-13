@@ -5,9 +5,9 @@
 <a name="TXwq3"></a>
 ## About US ~
 
-- [Jifa](https://github.com/luckyMuChen)
-- Jing er
-- [Shijie](https://github.com/LeeJay9701)
+- [muChen](https://github.com/luckyMuChen)
+- [Jing er]()
+- [LeeJay](https://github.com/LeeJay9701)
 - [Zheng dong](https://github.com/LD382549823)
 - [Ron](https://github.com/RonWang21)
 
