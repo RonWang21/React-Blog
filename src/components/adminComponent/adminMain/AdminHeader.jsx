@@ -25,8 +25,8 @@ class AdminMain extends Component {
             <Link to="/admin/user">
               <Menu.Item index="/admin/user">读者管理</Menu.Item>
             </Link>
-            <Link to="/admin/essay">
-              <Menu.Item index="4">分类管理</Menu.Item>
+            <Link to="/admin/tags">
+              <Menu.Item index="/admin/tags">分类管理</Menu.Item>
             </Link>
             <Menu.SubMenu
               index="/admin/essay"

@@ -161,5 +161,6 @@
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "uglifyjs-webpack-plugin": "^2.2.0"
-  }
+  },
+  "proxy": "http://localhost:1998"
 }

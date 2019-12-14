@@ -65,6 +65,43 @@ router.post('/api/addTag', async (req, res) => {
     })
   }
 })
+// 修改标签
+router.post('/api/updateTag', async (req, res) => {
+  const { tagname, newname } = req.body
+
+  if (newname && typeof newname === 'string') {
+    try {
+      // 查找传入标签名是否已存在
+      const hasTag = await Tags.findOne({ name: tagname })
+      if (!hasTag) {
+        return res.json({
+          status: 1,
+          msg: '标签名不存在'
+        })
+      }
+      await Tags.update({ name: tagname }, { name: newname })
+      // 获取所有标签
+      const tags = await Tags.find()
+      res.json({
+        status: 0,
+        msg: '修改标签成功',
+        data: {
+          tags
+        }
+      })
+    } catch (error) {
+      res.json({
+        status: 1,
+        msg: `标签名修改错误: ${error}`
+      })
+    }
+  } else {
+    res.json({
+      status: 1,
+      msg: `newname标签名不合法！`
+    })
+  }
+})
 
 // 删除标签
 router.post('/api/delTag', async (req, res) => {
