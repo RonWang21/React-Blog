@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { Table, Button } from 'element-react'
+import { Table, Tag, Button } from 'element-react'
+// 引入connect
+import { connect } from 'react-redux'
+// 引入action-creatar
+import { getUserList } from '../../../redux/action-creator'
+import './adminUser.less'
+
+@connect(null, { getUserList })
 class AdminUser extends Component {
   constructor(props) {
     super(props)
@@ -9,164 +16,87 @@ class AdminUser extends Component {
         {
           label: '日期',
           prop: 'date',
-          width: 150,
-          fixed: 'left'
+          width: 180
         },
         {
           label: '姓名',
           prop: 'name',
-          width: 160
-        },
-        {
-          label: '省份',
-          prop: 'province',
-          width: 160
+          width: 180
         },
         {
           label: '地址',
-          prop: 'address',
-          width: 400
+          prop: 'address'
         },
         {
-          label: '邮编',
-          prop: 'zip',
-          width: 120
+          label: '标签',
+          prop: 'tag',
+          width: 100,
+          filters: [
+            { text: '家', value: '家' },
+            { text: '公司', value: '公司' }
+          ],
+          filterMethod(value, row) {
+            return row.tag === value
+          },
+          render: (data, column) => {
+            if (data['tag'] === '家') {
+              return <Tag type="primary">{data['tag']}</Tag>
+            } else if (data['tag'] === '公司') {
+              return <Tag type="success">{data['tag']}</Tag>
+            }
+          }
         },
         {
           label: '操作',
-          prop: 'zip',
-          fixed: 'right',
-          width: 100,
-          render: () => {
+          prop: 'address',
+          render: function() {
             return (
               <span>
-                <Button type="text" size="small" onClick={() => this.examine}>
-                  查看
-                </Button>
-                <Button type="text" size="small" onClick={this.compile}>
+                <Button plain={true} type="info" size="small">
                   编辑
+                </Button>
+                <Button type="danger" size="small">
+                  删除
                 </Button>
               </span>
             )
           }
         }
       ],
-      data: [
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        },
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }
-      ]
+      data: []
     }
   }
-  // //查看
-  // examine = () => {
-  //   console.log('查看')
-  // }
-  // // 编辑
-  // compile = () => {
-  //   console.log('编辑')
-  // }
+  componentDidMount() {
+    //请求userList
+    this.props.getUserList()
+  }
+  //查看
+  examine = v => {
+    console.log('查看', v, this)
+  }
+  // 编辑
+  compile = v => {
+    console.log('编辑', v)
+  }
   render() {
     return (
-      <Table
-        style={{ width: '100%' }}
-        columns={this.state.columns}
-        data={this.state.data}
-        border={true}
-      />
+      <div className="tagBox">
+        <h2
+          style={{
+            fontSize: '20px',
+            textAlign: 'center',
+            padding: '20px'
+          }}
+        >
+          读者列表
+        </h2>
+        <Table
+          style={{ width: '100%' }}
+          columns={this.state.columns}
+          data={this.state.data}
+          border={true}
+        />
+      </div>
     )
   }
 }
