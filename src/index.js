@@ -12,7 +12,7 @@ import './assets/css/iconfont/iconfont.css'
 import store from './redux/store'
 import { Provider } from 'react-redux'
 // 引入根组件
-import App from './App'
+import App from './App.jsx'
 
 ReactDOM.render(
   <Provider store={store}>

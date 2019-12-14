@@ -2,5 +2,4 @@
 node_modules/
 .DS_Store
 public/.DS_Store
-yarn.lock
-package.json
+yarn-error.log
