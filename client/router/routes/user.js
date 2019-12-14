@@ -1,3 +1,7 @@
+/**
+ * 用户登录、注册路由
+ */
+
 const express = require('express')
 const router = express.Router()
 
@@ -8,7 +12,7 @@ const { PRIVARE_KEY } = require('../../config')
 
 const Users = require('../../models/users')
 
-// 登录路由
+// 用户登录路由
 router.post('/api/login', async (req, res) => {
   // 获取请求体
   const { username, password } = req.body
@@ -53,7 +57,7 @@ const passwordPattern = /^[\w_]{6,16}$/
 // 管理员名单
 const admins = ['小黑0708', '诗杰0708', '政东0708', '张景0708', '老王0708']
 
-// 注册路由
+// 用户注册路由
 router.post('/api/register', async (req, res) => {
   // 获取请求体
   const { username, email, password, rePassword } = req.body
