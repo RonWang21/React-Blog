@@ -4,8 +4,11 @@ import Home from '../containers/home/Home'
 import Admin from '../containers/adminContainers/admin/Admin'
 //登录组件
 import Login from '../containers/login/Login'
+import HomeDetail from '../components/home/homeDetail/HomeDetail'
+import HomeTagesDetail from '../components/home/homeTagesDetail/HomeTagesDetail'
 // 默认暴露路由
-export default [{
+export default [
+  {
     exact: true,
     path: '/',
     component: Home
@@ -19,6 +22,15 @@ export default [{
     exact: true,
     path: '/login',
     component: Login
-  },
-
+  }
+  // {
+  //   exact: true,
+  //   path: '/home/detail',
+  //   component: HomeDetail
+  // }
+  // {
+  //   exact: true,
+  //   path: '/',
+  //   component: HomeTagesDetail
+  // }
 ]

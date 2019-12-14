@@ -6,7 +6,6 @@ import './assets/css/reset.styl'
 import 'element-theme-default'
 // 引入iconfont样式
 import './assets/css/iconfont/iconfont.css'
-
 // 引入根组件
 import App from './App'
 

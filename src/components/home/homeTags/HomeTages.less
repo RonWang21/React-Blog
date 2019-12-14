@@ -1,8 +1,7 @@
 @import (reference) "../../../assets/css/mixin.less";
 
 .homeTages {
-  width: 100%;
-  margin: 0px auto;
+  margin-top: 10px;
   background-color: #fff;
 }
 
@@ -14,5 +13,32 @@
     min-height: 800px;
     margin-right: 10px;
     background: rgba(145, 204, 215, 0.57);
+
+    .detailContent {
+      .detailSpan {
+        color: #2e3135;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .detailp {
+        font-size: 14px;
+        margin: 5px 0px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+    }
+
+    .bottom {
+      display: flex;
+      flex-direction: row;
+      border-top: dashed thin #ddd;
+      padding-top: 5px;
+      justify-content: space-between;
+      align-items: center;
+      color: #cdcdcd;
+    }
   }
 }
