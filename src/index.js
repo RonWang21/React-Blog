@@ -7,6 +7,6 @@ import 'element-theme-default'
 // 引入iconfont样式
 import './assets/css/iconfont/iconfont.css'
 // 引入根组件
-import App from './App'
+import App from './App.jsx'
 
 ReactDOM.render(<App />, document.getElementById('root'))

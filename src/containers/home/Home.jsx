@@ -4,7 +4,6 @@ import './Home.less'
 import HomeTags from '../../components/home/homeTags/HomeTags'
 import HomeSidebar from '../../components/home/homeSidebar/HomeSidebar'
 import { Layout } from 'element-react'
-
 class Home extends Component {
   render() {
     return (

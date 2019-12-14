@@ -1,0 +1,48 @@
+.recomWrapper {
+  padding: 10px;
+  border : 1px solid #6666;
+  width  : 100%;
+
+  .recomTile {
+    height     : 40px;
+    line-height: 40px;
+    text-align : center;
+  }
+
+  .recomContentWrapper {
+    padding   : 0 16px;
+    margin-top: 10px;
+
+    .recomContent {
+      display             : flex;
+      //  background-color: red;
+      width               : 100%;
+      height              : 80px;
+
+      .recomContentImg {
+        flex           : 1;
+        display        : flex;
+        flex-direction : column;
+        align-items    : center;
+        justify-content: center;
+
+        #schoolIcon {
+          width : 30px;
+          height: 30px
+        }
+      }
+
+      .recomContentDetail {
+        flex           : 2;
+        display        : flex;
+        flex-direction : column;
+        justify-content: center;
+        justify-content: space-around;
+
+        span {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
