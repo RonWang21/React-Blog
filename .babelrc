@@ -10,6 +10,12 @@
         }
       }
     ],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
     // 解决箭头函数报错的问题
     ["@babel/plugin-proposal-class-properties"]
   ]

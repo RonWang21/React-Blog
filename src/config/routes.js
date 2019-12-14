@@ -3,7 +3,6 @@ import Home from '../containers/home/Home'
 //引入Admin 组件
 import Admin from '../containers/adminContainers/admin/Admin'
 //登录组件
-import Login from '../components/home/homeSidebar/login/Login'
 import HomeDetail from '../components/home/homeDetail/HomeDetail'
 import HomeTagesDetail from '../components/home/homeTagesDetail/HomeTagesDetail'
 
@@ -19,11 +18,6 @@ export default [
     path: '/admin/:id',
     component: Admin
   },
-  {
-    exact: true,
-    path: '/login',
-    component: Login
-  }
   // {
   //   exact: true,
   //   path: '/home/detail',

@@ -8,18 +8,22 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import routes from '../../../config/admin-routes'
 import Header from '../../../components/adminComponent/adminMain/AdminHeader'
 import NotMath from '../../../components/notMath/NotMath'
+// 引入样式
+import './admin.css'
 class Admin extends Component {
   render() {
     return (
       <Router>
         <Header></Header>
-        <Switch>
-          {routes.map((route, index) => (
-            <Route key={index} {...route}></Route>
-          ))}
+        <div className="adminContent">
+          <Switch>
+            {routes.map((route, index) => (
+              <Route key={index} {...route}></Route>
+            ))}
 
-          <Route component={NotMath}></Route>
-        </Switch>
+            <Route component={NotMath}></Route>
+          </Switch>
+        </div>
       </Router>
     )
   }
