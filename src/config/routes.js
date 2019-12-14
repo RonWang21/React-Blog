@@ -2,8 +2,6 @@
 import Home from '../containers/home/Home'
 //引入Admin 组件
 import Admin from '../containers/adminContainers/admin/Admin'
-//登录组件
-import Login from '../containers/login/Login'
 // 默认暴露路由
 export default [{
     exact: true,
@@ -14,11 +12,5 @@ export default [{
     exact: true,
     path: '/admin/:id',
     component: Admin
-  },
-  {
-    exact: true,
-    path: '/login',
-    component: Login
-  },
-
+  }
 ]
