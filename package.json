@@ -148,6 +148,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/preset-env": "^7.7.6",
+    "antd": "^3.26.2",
     "babel-core": "^6.26.3",
     "react-router-dom": "^5.1.2",
     "stylus": "^0.54.7",
