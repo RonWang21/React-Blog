@@ -1,0 +1,73 @@
+.logiWrapper {
+  padding         : 20px;
+  background-color: #fff;
+
+  .introduce {
+    display       : flex;
+    flex-direction: column;
+
+    span {
+      margin-bottom: 6px;
+      font-size    : 14px;
+      color        : #2e3135;
+      font-weight  : 600;
+    }
+  }
+
+  .el-tabs {
+    .el-tabs__header {
+      .el-tabs__nav-wrap {
+        .el-tabs__nav-scroll {
+          .el-tabs__nav {
+            display: flex;
+            width  : 100%;
+
+            .el-tabs__item {
+              flex      : 1;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+    .el-tabs__content {
+      .el-tab-pane {
+        .el-form {
+          .el-form-item {
+            .el-form-item__content {
+              .inputStyle {
+                input {
+                  width           : 100%;
+                  background-color: #fbfbfb;
+                  border          : 1px solid #f4f4f4;
+                  border-radius   : 2px;
+                  outline         : none;
+                  box-sizing      : border-box;
+                }
+              }
+
+              .el-button {
+                -webkit-appearance: none;
+                background-color  : #007FF5;
+                color             : #fff;
+                border-radius     : 2px;
+                border            : none;
+                outline           : none;
+                transition        : background-color .3s, color .3s;
+                cursor            : pointer;
+                padding           : 12px 0;
+                width             : 100%;
+
+                &:hover {
+                  background-color: #0371df;
+                  color           : #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
