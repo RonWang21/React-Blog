@@ -1,20 +1,54 @@
 import React, { Component } from 'react'
-// 使用layout布局、Tabs标签页方法
-import { Layout, Tabs } from 'element-react'
-// 引入homeDetail组件
-import HomeDetail from '../homeDetail/HomeDetail'
+
+// import HomeTagesDetail from '../homeTagesDetail/HomeTagesDetail'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Layout, Tabs, Card, Button } from 'element-react'
+
 // 引入HomeTages自定义样式
 import './HomeTages.less'
+// import HomeSidebar from '../homeSidebar/HomeSidebar'
+import HomeTagesDetail from '../homeTagesDetail/HomeTagesDetail'
+import HomeDetail from '../homeDetail/HomeDetail'
 class HomeTags extends Component {
+  homeDetail = () => {
+    // this.props.history.push('/detail')
+    console.log(this)
+  }
   render() {
     return (
-      <div>
+      <Router>
         <Tabs
           activeName="1"
           onTabClick={tab => console.log(tab.props.name)}
           className="homeTages"
         >
-          <Tabs.Pane label="用户管理" name="1">
+          <Tabs.Pane label="首页" name="1">
+            <div style={{ marginTop: '100px' }} className="home-contanier">
+              <Layout.Row gutter="20">
+                <Layout.Col span="16">
+                  <div className="grid-content bg-purple">
+                    <div className="home-main-contanier">
+                      <Layout.Col
+                        span={16}
+                        offset={0}
+                        style={{
+                          padding: '10px',
+                          width: '693px',
+                          marginBottom: '10px'
+                        }}
+                      >
+                        <Switch>
+                          <Route path="/detail" component={HomeDetail}></Route>
+                          <Route path="/" component={HomeTagesDetail}></Route>
+                        </Switch>
+                      </Layout.Col>
+                    </div>
+                  </div>
+                </Layout.Col>
+              </Layout.Row>
+            </div>
+          </Tabs.Pane>
+          <Tabs.Pane label="React" name="2">
             <div style={{ marginTop: '100px' }} className="home-contanier">
               <Layout.Row gutter="20">
                 <Layout.Col span="16">
@@ -27,21 +61,7 @@ class HomeTags extends Component {
               </Layout.Row>
             </div>
           </Tabs.Pane>
-          <Tabs.Pane label="配置管理" name="2">
-            <div style={{ marginTop: '100px' }} className="home-contanier">
-              <Layout.Row gutter="20">
-                <Layout.Col span="16">
-                  <div className="grid-content bg-purple">
-                    <div className="home-main-contanier">
-                      配置管理
-                      {console.log(this)}
-                    </div>
-                  </div>
-                </Layout.Col>
-              </Layout.Row>
-            </div>
-          </Tabs.Pane>
-          <Tabs.Pane label="角色管理" name="3">
+          <Tabs.Pane label="Vue" name="3">
             <div style={{ marginTop: '100px' }} className="home-contanier">
               <Layout.Row gutter="20">
                 <Layout.Col span="16">
@@ -55,7 +75,7 @@ class HomeTags extends Component {
               </Layout.Row>
             </div>
           </Tabs.Pane>
-          <Tabs.Pane label="定时补偿任务" name="4">
+          <Tabs.Pane label="学习随笔" name="4">
             <div style={{ marginTop: '100px' }} className="home-contanier">
               <Layout.Row gutter="20">
                 <Layout.Col span="16">
@@ -70,7 +90,7 @@ class HomeTags extends Component {
             </div>
           </Tabs.Pane>
         </Tabs>
-      </div>
+      </Router>
     )
   }
 }
