@@ -1,62 +1,71 @@
 import ajax from './ajax'
-const url = `/api/v1.0`
-export const reqUser = () =>
+const BASE_URL = '/api/v1.0'
+
+// 用户登录
+export const reqUserLogin = ({ username, password }) => {
   ajax({
-    method: 'get',
-    url: url + '/userlist'
-  })
-export const reqGetTags = id =>
-  ajax({
-    method: 'get',
-    url: url + '/getTags',
+    method: 'POST',
+    url: `${BASE_URL}/login`,
     data: {
-      id
+      username,
+      password
     }
   })
-export const reqGetCategories = () =>
+}
+
+// 用户注册
+export const reqUserRegister = ({ username, email, password, rePassword }) => {
   ajax({
-    method: 'get',
-    url: url + '/getCategories'
+    method: 'POST',
+    url: `${BASE_URL}/register`,
+    data: {
+      username,
+      email,
+      password,
+      rePassword
+    }
+  })
+}
+
+// 获取所有用户
+export const reqGetUsers = () =>
+  ajax({
+    method: 'GET',
+    url: `${BASE_URL}/userlist`
   })
 
-export const reqAddCategory = ({ categoryname, tags }) =>
+// 获取标签
+export const reqGetTags = () =>
   ajax({
-    method: 'post',
-    url: url + '/addCategory',
-    data: { categoryname, tags }
+    method: 'GET',
+    url: `${BASE_URL}/getTags`
   })
-export const reqUpdateCategory = ({ categoryname, id }) =>
-  ajax({
-    method: 'post',
-    url: url + '/updateCategory',
-    data: { categoryname, id }
-  })
-export const reqDelCategory = id =>
-  ajax({
-    method: 'post',
-    url: url + '/delCategory',
-    data: { id }
-  })
+
+// 添加标签
 export const reqAddTag = ({ tagname }) =>
   ajax({
-    method: 'post',
-    url: url + '/addTag',
+    method: 'POST',
+    url: `${BASE_URL}/addTag`,
     data: {
       tagname
     }
   })
+
+// 删除标签
 export const reqDelTag = ({ tagname }) =>
   ajax({
-    method: 'post',
-    url: url + '/delTag',
+    method: 'POST',
+    url: `${BASE_URL}/delTag`,
     data: {
       tagname
     }
   })
-export const requpdateTag = ({ tagname, newname }) =>
+
+// 更新标签
+export const reqUpdateTag = ({ tagname, newname }) =>
   ajax({
-    method: 'post',
-    url: url + '/updateTag',
+    method: 'POST',
+    url: `${BASE_URL}/updateTag`,
     data: {
       tagname,
       newname
