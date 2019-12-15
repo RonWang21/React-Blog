@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import './less/Login.less'
 
-import { Tabs, Form, Input, Button, Message } from 'element-react'
+import { Tabs, Form, Input, Message, Button} from 'element-react'
 
 class Login extends Component {
   constructor(props) {

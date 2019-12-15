@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 // 使用layout布局、Card卡片、Button按钮方法
-import { Button, Card } from 'element-react'
+import { Card } from 'element-react'
 
 import './HomeDetail.less'
 class HomeDetail extends Component {
   render() {
-    const { match } = this.props
+    // const { match } = this.props
     return (
       <div>
         <Card

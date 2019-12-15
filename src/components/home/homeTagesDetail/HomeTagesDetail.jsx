@@ -13,7 +13,7 @@ class HomeTagesDetail extends Component {
             marginTop: '10px'
           }}
         >
-          <img src="holder.js/200x150" className="image" />
+          <img src="holder.js/200x150" className="image" alt="holder"/>
           <div style={{ padding: 14 }}>
             <div className="detailContent">
               <span className="detailSpan">好吃的汉堡</span>

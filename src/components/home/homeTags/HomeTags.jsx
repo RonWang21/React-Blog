@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 // import HomeTagesDetail from '../homeTagesDetail/HomeTagesDetail'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Layout, Tabs, Card, Button } from 'element-react'
+import { Layout, Tabs } from 'element-react'
 
 // 引入HomeTages自定义样式
 import './HomeTages.less'

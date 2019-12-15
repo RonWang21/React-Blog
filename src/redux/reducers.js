@@ -12,19 +12,19 @@ function userList(prevState = [], action) {
       return prevState
   }
 }
-function tags(prevState = [], action) {
-  switch (action.type) {
-    case GET_TAGS:
-      return action.data
-    case ADD_TAG:
-      return [...prevState.action.data]
+// function tags(prevState = [], action) {
+//   switch (action.type) {
+//     case GET_TAGS:
+//       return action.data
+//     case ADD_TAG:
+//       return [...prevState.action.data]
 
-    default:
-      break
-  }
-}
+//     default:
+//       break
+//   }
+// }
 
 export default combineReducers({
   userList,
-  tags
+  // tags
 })
