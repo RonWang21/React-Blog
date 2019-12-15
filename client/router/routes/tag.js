@@ -1,23 +1,30 @@
 /**
- * 获取文章标签路由
+ * 分类标签路由
  */
 
 const express = require('express')
 const router = express.Router()
+const { API_BASEPATH } = require('../../config')
+const Categories = require('../../models/categories')
 
-const Tags = require('../../models/tags')
-
-// 获取标签
-router.get('/api/getTags', async (req, res) => {
+// 获取某分类下的标签
+router.get(`${API_BASEPATH}/getTags`, async (req, res) => {
+  const { id } = req.query
   try {
-    const tags = (await Tags.find()) || []
-    res.json({
-      status: 0,
-      msg: '获取标签成功',
-      data: {
-        tags
-      }
-    })
+    // 获取标签
+    const category = await Categories.findOne({ _id: id })
+    if (category) {
+      const tags = await Categories.findOne({ _id: id })
+      res.json({
+        status: 0,
+        data: {
+          tags: tags.tags,
+          categoryName: tags.name
+        }
+      })
+    } else {
+      res.json({ status: 1, msg: '分类不存在' })
+    }
   } catch (error) {
     res.json({
       status: 1,
@@ -26,119 +33,135 @@ router.get('/api/getTags', async (req, res) => {
   }
 })
 
-// 添加标签
-router.post('/api/addTag', async (req, res) => {
-  const { tagname } = req.body
-  if (tagname && typeof tagname === 'string') {
+// 添加文章分类中的tags
+router.post(`${API_BASEPATH}/addTag`, async (req, res) => {
+  const { id, tagname } = req.body
+  if (tagname) {
     try {
-      // 查找传入标签名是否已存在
-      const hasTag = await Tags.findOne({ name: tagname })
-      if (hasTag) {
-        return res.json({
-          status: 1,
-          msg: '标签名已存在'
-        })
-      }
-      // 添加标签
-      await Tags.create({
-        name: tagname
-      })
-      // 获取所有标签
-      const tags = await Tags.find()
-      res.json({
-        status: 0,
-        msg: '添加标签成功',
-        data: {
-          tags
-        }
-      })
-    } catch (error) {
-      res.json({
-        status: 1,
-        msg: `添加分类失败: ${error}`
-      })
-    }
-  } else {
-    res.json({
-      status: 1,
-      msg: `标签名不合法！`
-    })
-  }
-})
-// 修改标签
-router.post('/api/updateTag', async (req, res) => {
-  const { tagname, newname } = req.body
-
-  if (newname && typeof newname === 'string') {
-    try {
-      // 查找传入标签名是否已存在
-      const hasTag = await Tags.findOne({ name: tagname })
-      if (!hasTag) {
-        return res.json({
-          status: 1,
-          msg: '标签名不存在'
-        })
-      }
-      await Tags.update({ name: tagname }, { name: newname })
-      // 获取所有标签
-      const tags = await Tags.find()
-      res.json({
-        status: 0,
-        msg: '修改标签成功',
-        data: {
-          tags
-        }
-      })
-    } catch (error) {
-      res.json({
-        status: 1,
-        msg: `标签名修改错误: ${error}`
-      })
-    }
-  } else {
-    res.json({
-      status: 1,
-      msg: `newname标签名不合法！`
-    })
-  }
-})
-
-// 删除标签
-router.post('/api/delTag', async (req, res) => {
-  const { tagname } = req.body
-  // 判断标签名是否正确
-  if (tagname && typeof tagname === 'string') {
-    try {
-      // 判断标签名是否存在
-      const tag = await Tags.findOne({ name: tagname })
-      if (tag) {
-        // 删除标签
-        await Tags.deleteOne({ name: tagname })
-        // 获取所有标签
-        const tags = await Tags.find()
-        res.json({
-          status: 0,
-          msg: '删除标签成功',
-          data: {
-            tags
+      // 查找传入分类是否已存在
+      const hasCategory = await Categories.findOne({ _id: id })
+      if (hasCategory) {
+        // 查看是否已有该标签名
+        const hasTag = hasCategory.tags.indexOf(tagname)
+        if (hasTag > -1) {
+          res.json({
+            status: 1,
+            msg: 'tag in this category is exist'
+          })
+        } else {
+          try {
+            // 添加标签
+            await Categories.updateOne(
+              { _id: id },
+              { $addToSet: { tags: tagname } }
+            )
+            const category = await Categories.findOne({ _id: id })
+            res.json({
+              status: 0,
+              data: {
+                // 返回该分类的标签
+                tags: category.tags,
+                categoryId: category.name
+              }
+            })
+          } catch (error) {
+            res.json({
+              status: 1,
+              msg: error.message
+            })
           }
-        })
+        }
       } else {
         res.json({
           status: 1,
-          msg: '标签名不存在'
+          msg: 'category is not exist'
         })
       }
     } catch (error) {
       res.json({
         status: 1,
-        msg: `删除标签失败: ${error}`
+        msg: error.message
       })
     }
   } else {
     res.json({
       status: 1,
-      msg: `删除失败，请检查标签名是否正确！`
+      msg: 'tagname is required'
+    })
+  }
+})
+
+// 更新文章分类中的tags
+router.post(`${API_BASEPATH}/updateTags`, async (req, res) => {
+  const { id, targetTag, tagName } = req.body
+  if (targetTag && tagName) {
+    try {
+      // 查找传入文章分类是否已存在
+      const hasCategory = await Categories.findOne({ _id: id })
+      if (!hasCategory) {
+        return res.json({
+          status: 1,
+          msg: 'category is not exist'
+        })
+      }
+      // 更新标签
+      await Categories.updateOne(
+        { _id: id, tags: targetTag },
+        { $set: { 'tags.$': tagName } }
+      )
+      // 获取标签
+      const category = await Categories.findOne({ _id: id })
+
+      // 返回更新后的tags
+      res.json({
+        status: 0,
+        data: {
+          tags: category.tags,
+          categoryName: category.name
+        }
+      })
+    } catch (error) {
+      res.json({
+        status: 1,
+        msg: error.message
+      })
+    }
+  } else {
+    res.json({
+      status: 1,
+      msg: 'oldTagName/newTagName is required'
+    })
+  }
+})
+
+// 删除文章分类中的标签
+router.post(`${API_BASEPATH}/delTag`, async (req, res) => {
+  const { id, targetTag } = req.body
+  if (targetTag) {
+    try {
+      // 删除标签
+      // { $pull: { fruits: { $in: [ "apples", "oranges" ] }
+      await Categories.update({ _id: id }, { $pull: { tags: targetTag } })
+      // 获取所有标签
+      const category = await Categories.findOne({ _id: id })
+      console.log(category)
+      res.json({
+        status: 0,
+        data: {
+          tags: category.tags,
+          categoryName: category.name
+        }
+      })
+    } catch (error) {
+      res.json({
+        status: 1,
+        msg: error.message
+      })
+    }
+  } else {
+    res.json({
+      status: 1,
+      msg: 'targetTag is required'
     })
   }
 })
