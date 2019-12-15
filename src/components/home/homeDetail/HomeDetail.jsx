@@ -7,7 +7,7 @@ class HomeDetail extends Component {
       <div>
         <Layout.Col span={16} offset={0} style={{ padding: '10px' }}>
           <Card bodyStyle={{ padding: '10px', display: 'flex ' }}>
-            <img src="holder.js/200x200" className="image" />
+            <img alt="img" src="holder.js/200x200" className="image" />
             <div style={{ padding: 14 }}>
               <div>
                 <span>好吃的汉堡</span>
