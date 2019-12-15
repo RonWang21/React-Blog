@@ -76,7 +76,9 @@ class Login extends Component {
         username: 'admin',
         password: 'admin'
       })
-      console.log(result)
+      console.log('====================================')
+      console.log('login', result)
+      console.log('====================================')
     }
     if (status === 'register') {
       const { username, email, password, rePassword } = this.state.registerForm
