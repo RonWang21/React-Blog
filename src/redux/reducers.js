@@ -17,8 +17,34 @@ import {
   GET_ARTICLES
 } from './actionTypes'
 
-//引入redux
+// 引入redux
 import { combineReducers } from 'redux'
+
+// 引入存入localstorage的方法
+import {
+  getLocalStorageItem,
+  setLocalStorageItem,
+  removeLocalStorageItem,
+  clearLocalStorageItems
+} from '../utils/saveToLocalStorage'
+
+// 初始化user preveState的值---从localstorage获取
+const initState = {
+  user: getLocalStorageItem('user') || {},
+  token: getLocalStorageItem('token') || ''
+}
+// 操作user数据
+function user(preveState = initState, action) {
+  switch (action.type) {
+    case SAVE_USER:
+      // 存入localstorage
+      setLocalStorageItem('user', action.data.user)
+      setLocalStorageItem('token', action.data.token)
+      return action.data
+    default:
+      return preveState
+  }
+}
 
 // 操作tags数据
 function tags(preveState = [], action) {
@@ -33,5 +59,6 @@ function tags(preveState = [], action) {
 }
 
 export default combineReducers({
-  tags
+  tags,
+  user
 })

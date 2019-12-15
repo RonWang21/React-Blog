@@ -1,31 +1,18 @@
-// 引入Home组件
-import Home from '../containers/home/Home'
-//引入Admin 组件
-import Admin from '../containers/adminContainers/admin/Admin'
-//登录组件
-import HomeDetail from '../components/home/homeDetail/HomeDetail'
-import HomeTagesDetail from '../components/home/homeTagesDetail/HomeTagesDetail'
+
+
+import ArticleList from '../components/home/homeMain/articleList/ArticleList';
+import ArticleDetail from '../components/home/homeMain/articleDetail/ArticleDetail';
 
 // 默认暴露路由
 export default [
   {
     exact: true,
     path: '/',
-    component: Home
+    component: ArticleList
   },
   {
     exact: true,
-    path: '/admin/:id',
-    component: Admin
+    path: '/articledetail',
+    component: ArticleDetail
   },
-  // {
-  //   exact: true,
-  //   path: '/home/detail',
-  //   component: HomeDetail
-  // }
-  // {
-  //   exact: true,
-  //   path: '/',
-  //   component: HomeTagesDetail
-  // }
 ]

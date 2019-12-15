@@ -18,7 +18,7 @@ export default [
   },
   {
     exact: true,
-    path: '/admin/main',
+    path: '/admin',
     component: AdminMain
   },
   {
