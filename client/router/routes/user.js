@@ -1,19 +1,18 @@
 /**
- * 用户登录、注册路由
+ * 用户路由
  */
 
 const express = require('express')
 const router = express.Router()
-
+const { API_BASEPATH } = require('../../config')
 const md5 = require('blueimp-md5')
 const jwt = require('jsonwebtoken')
 
 const { PRIVARE_KEY } = require('../../config')
 
 const Users = require('../../models/users')
-
 // 用户登录路由
-router.post('/api/login', async (req, res) => {
+router.post(`${API_BASEPATH}/login`, async (req, res) => {
   // 获取请求体
   const { username, password } = req.body
 
@@ -58,7 +57,7 @@ const passwordPattern = /^[\w_]{6,16}$/
 const admins = ['小黑0708', '诗杰0708', '政东0708', '张景0708', '老王0708']
 
 // 用户注册路由
-router.post('/api/register', async (req, res) => {
+router.post(`${API_BASEPATH}/register`, async (req, res) => {
   // 获取请求体
   const { username, email, password, rePassword } = req.body
   // 正则校验 && 重复密码校验
