@@ -4,20 +4,7 @@ import './less/Login.less'
 
 import { Tabs, Form, Input, Button, Message } from 'element-react'
 
-// 引入请求方法
-import { reqLogin, reqRegister, reqArticles } from '../../../../api'
-
-// 引入connect
-import { connect } from 'react-redux'
-import { asyncReqUserLogin } from '../../../../redux/asyncAction'
-@connect(
-  state => ({
-    userInfo: state.userInfo
-  }),
-  {
-    asyncReqUserLogin
-  }
-)
+import { reqLogin } from '../../../../api/index'
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -105,6 +92,12 @@ class Login extends Component {
     this.setState({
       registerForm: Object.assign({}, this.state.registerForm, { [key]: value })
     })
+  }
+  async componentDidMount() {
+    const result = await reqLogin({ username: 'admin', password: 'admin' })
+    console.log('====================================')
+    console.log('login', result)
+    console.log('====================================')
   }
   render() {
     return (
