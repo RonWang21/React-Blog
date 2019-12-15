@@ -20,7 +20,6 @@ class Admin extends Component {
             {routes.map((route, index) => (
               <Route key={index} {...route}></Route>
             ))}
-
             <Route component={NotMath}></Route>
           </Switch>
         </div>
