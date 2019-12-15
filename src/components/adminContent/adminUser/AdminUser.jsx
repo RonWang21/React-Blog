@@ -3,12 +3,12 @@ import { Table, Tag, Button } from 'element-react'
 // 引入connect
 import { connect } from 'react-redux'
 // 引入action-creatar
-import { getUserList } from '../../../redux/asyncAction'
+import { asyncHandleTag } from '../../../redux/asyncActions'
 import './adminUser.less'
 
-@connect(state => {
-  
-}, { getUserList })
+const { asyncGetUsers } = asyncHandleTag
+
+@connect(state => {}, { asyncGetUsers })
 class AdminUser extends Component {
   constructor(props) {
     super(props)

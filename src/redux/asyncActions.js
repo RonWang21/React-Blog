@@ -2,40 +2,33 @@
  * 异步actions
  */
 
-
- // 引入同步action
-import { reqUserLogin, getTagsSuccess } from './action-creator'
+// 引入同步action
+import { handleTag, handleUser, handleArticle } from './actions'
 
 // 引入接口请求方法
 import { reqGetTags, reqLogin } from '../api'
 
-const asyncUserLogin = ({ username, password }) => {
-  return async dispatch => {
-    const result = await reqLogin({ username, password })
-    console.log(result)
-    if (result) {
-      dispatch(reqUserLogin)
+// 异步操作tag
+const asyncHandleTag = {
+  asyncGetTags: () => {
+    return async dispatch => {
+      const result = await reqGetTags()
+      if (result) {
+        dispatch(handleTag.getTags(result))
+      }
     }
   }
 }
-const asyncGetTags = () => {
-  return async dispatch => {
-    const result = await reqGetTags()
-    if (result) {
-      console.log(result)
-      dispatch(getTagsSuccess(result))
+// 异步操作tag
+const asyncHandleUser= {
+  asyncGetUsers: () => {
+    return async dispatch => {
+      const result = await reqGetTags()
+      if (result) {
+        dispatch(handleTag.getTags(result))
+      }
     }
   }
 }
 
-// const asyncGetUsers = () => {
-//   return async dispatch => {
-//     const result = await reqUser()
-//     if (result) {
-//       console.log(result)
-//       dispatch(getUserListSuccess(result))
-//     }
-//   }
-// }
-
-export { asyncUserLogin, asyncGetTags }
+export { asyncHandleTag, asyncHandleUser }

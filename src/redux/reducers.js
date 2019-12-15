@@ -15,7 +15,7 @@ import {
   UPDATE_CATEGORY,
   REMOVE_CATREGORY,
   GET_ARTICLES
-} from './action-types'
+} from './actionTypes'
 
 //引入redux
 import { combineReducers } from 'redux'
