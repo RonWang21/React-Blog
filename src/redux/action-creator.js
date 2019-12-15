@@ -1,5 +1,17 @@
-import { GET_USERLIST, GET_TAGS } from './action-types'
-import { reqUser, reqGetTags } from '../api'
+import {
+  GET_USERLIST,
+  UPDATE_CATEGORY,
+  DEL_CATEGORY,
+  GET_CATEGORIES,
+  ADD_CATEGORY
+} from './action-types'
+import {
+  reqUser,
+  reqGetCategories,
+  reqAddCategory,
+  reqUpdateCategory,
+  reqDelCategory
+} from '../api'
 
 const getUserListSuccess = userList => ({
   type: GET_USERLIST,
@@ -16,17 +28,59 @@ export const getUserList = () => {
   }
 }
 
-const getTagsSuccess = tags => ({
-  type: GET_TAGS,
+const getCategoriesSuccess = tags => ({
+  type: GET_CATEGORIES,
   data: tags
 })
 
-export const getTags = () => {
+export const getCategories = () => {
   return async dispatch => {
-    const result = await reqGetTags()
+    const result = await reqGetCategories()
     if (result) {
       console.log(result)
-      dispatch(getTagsSuccess(result))
+      dispatch(getCategoriesSuccess(result))
+    }
+  }
+}
+const addCategorySuccess = tags => ({
+  type: ADD_CATEGORY,
+  data: tags
+})
+
+export const addCategory = ({ tags, categoryname }) => {
+  return async dispatch => {
+    const result = await reqAddCategory({ tags, categoryname })
+    if (result) {
+      console.log(result)
+      dispatch(addCategorySuccess(result))
+    }
+  }
+}
+const updateCategorySuccess = tags => ({
+  type: UPDATE_CATEGORY,
+  data: tags
+})
+
+export const updateCategory = ({ id, categoryname }) => {
+  return async dispatch => {
+    const result = await reqUpdateCategory({ id, categoryname })
+    if (result) {
+      console.log(result)
+      dispatch(updateCategorySuccess(result))
+    }
+  }
+}
+const delCategorySuccess = tags => ({
+  type: DEL_CATEGORY,
+  data: tags
+})
+
+export const delCategory = id => {
+  return async dispatch => {
+    const result = await reqDelCategory(id)
+    if (result) {
+      console.log(result)
+      dispatch(delCategorySuccess(result))
     }
   }
 }
