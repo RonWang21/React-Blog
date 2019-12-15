@@ -1,48 +1,171 @@
 .recomWrapper {
   padding: 10px;
-  border : 1px solid #6666;
-  width  : 100%;
+  border-bottom: 1px solid #e8e8e8;
+  width: 100%;
+  background-color: #FFFF;
 
   .recomTile {
-    height     : 40px;
+    height: 40px;
     line-height: 40px;
-    text-align : center;
+    text-align: center;
+    border-bottom: 1px solid #e8e8e8;
   }
 
   .recomContentWrapper {
-    padding   : 0 16px;
-    margin-top: 10px;
+    padding: 0 16px;
+    border-bottom: 1px solid #e8e8e8;
+    background-color: #e8e8e8;
+    border: 1px solid #6666;
 
     .recomContent {
-      display             : flex;
+      display: flex;
       //  background-color: red;
-      width               : 100%;
-      height              : 80px;
+      width: 100%;
+      height: 80px;
 
       .recomContentImg {
-        flex           : 1;
-        display        : flex;
-        flex-direction : column;
-        align-items    : center;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
 
         #schoolIcon {
-          width : 30px;
-          height: 30px
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
         }
       }
 
       .recomContentDetail {
-        flex           : 2;
-        display        : flex;
-        flex-direction : column;
+        flex: 2;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         justify-content: space-around;
 
         span {
-          text-align: center;
+          text-align: left;
+          color: rgba(0, 0, 0, 0.65);
+          font-size: 12px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          overflow: hidden;
+        }
+
+        a {
+          text-align: left;
+          color: rgba(0, 0, 0, 0.65);
+          font-size: 12px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          overflow: hidden;
+          text-decoration: none;
+
+          &:hover {
+            color: #007fff
+          }
+
+        }
+
+
+      }
+    }
+  }
+
+  .recomMore {
+    padding: 20px;
+    text-align: center;
+
+    .recomBorder {
+      border: 1px solid #6666;
+      border-radius: 20px 20px 20px 20px;
+    }
+  }
+
+  .download {
+    padding: 10px 16px;
+    border: 1px solid #6666;
+    background-color: #e8e8e8;
+    display: flex;
+    align-items: center;
+
+
+    .downloadQr {
+      flex: 1 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-content: space-around;
+
+      img {
+        width: 53px;
+        height: 53px;
+      }
+    }
+
+    .downloadResource {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-content: space-around;
+
+      span {
+        text-align: left;
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 13px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        font-weight: 1000;
+      }
+
+      a {
+        margin-top: .5rem;
+        font-size: 10px;
+        color: #909090;
+        text-decoration:none;
+        &:hover {
+          color: #007fff
         }
       }
     }
+  }
+  .recomResource{
+    padding: 1px 16px;
+    border: 1px solid #6666;
+    background-color: #e8e8e8;
+    display: flex;
+    align-items: center;
+    .recomBook{
+      flex: 1 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-content: space-around;
+      img{
+        width: 53px;
+        height: 53px;
+      }
+    }
+    .recomIcon{
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-content: space-around;
+    }
+  }
+  .recomWx{
+    text-align: center;
+  }
+  img{
+    width: 43px;
+    height: 43px;
+    margin: 0 6px;
   }
 }
