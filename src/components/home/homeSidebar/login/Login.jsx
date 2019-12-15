@@ -22,7 +22,8 @@ class Login extends Component {
         rePassword: ''
       },
       // 当前tab切换状态
-      status: 'login'
+      status: 'login',
+      userInfo: null
     }
   }
 
@@ -30,6 +31,9 @@ class Login extends Component {
     const result = await reqUserLogin({ username: 'admin', password: 'admin' })
     console.log('====================================')
     console.log('login', result)
+    this.setState({
+      userInfo: result
+    })
     console.log('====================================')
   }
 
@@ -68,6 +72,11 @@ class Login extends Component {
       const { username, password } = this.state.loginForm
       // const result = await reqLogin({ username, password })
       // console.log(result)
+      const result = await reqUserLogin({
+        username: 'admin',
+        password: 'admin'
+      })
+      console.log(result)
     }
     if (status === 'register') {
       const { username, email, password, rePassword } = this.state.registerForm
@@ -92,6 +101,7 @@ class Login extends Component {
     })
   }
   render() {
+    console.log(this.state.userInfo)
     return (
       <div className="logiWrapper">
         <div className="introduce">
@@ -197,6 +207,10 @@ class Login extends Component {
             </Form>
           </Tabs.Pane>
         </Tabs>
+        <div className="tipsWrapper">
+          <span>注册登录即表示</span>
+          <span>同意<a href="###">用户协议</a>、</span>
+        </div>
       </div>
     )
   }
