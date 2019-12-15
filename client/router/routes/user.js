@@ -15,10 +15,11 @@ const Users = require('../../models/users')
 router.post(`${API_BASEPATH}/login`, async (req, res) => {
   // 获取请求体
   const { username, password } = req.body
-
   // 判断用户账号密码
-  const user = await Users.findOne({ username, password: md5(password) })
-
+  const user = await Users.findOne(
+    { username, password: md5(password) },
+    { password: 0 }
+  )
   if (!user) {
     return res.json({
       status: 1,
@@ -59,6 +60,8 @@ const admins = ['小黑0708', '诗杰0708', '政东0708', '张景0708', '老王0
 // 用户注册路由
 router.post(`${API_BASEPATH}/register`, async (req, res) => {
   // 获取请求体
+  console.log("here")
+
   const { username, email, password, rePassword } = req.body
   // 正则校验 && 重复密码校验
   if (
@@ -84,6 +87,7 @@ router.post(`${API_BASEPATH}/register`, async (req, res) => {
             usertype: 'user' // 默认为普通用户
           })
         } else {
+          
           // 创建用户
           await Users.create({
             username,

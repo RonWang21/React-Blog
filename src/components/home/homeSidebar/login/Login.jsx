@@ -16,11 +16,20 @@ class Login extends Component {
       },
       registerForm: {
         username: '',
+        email: '',
         password: '',
         rePassword: ''
       },
       status: 'login'
     }
+  }
+
+  async componentDidMount() {
+    await this.props.asyncReqUserLogin({
+      username: 'admin',
+      password: 'admin'
+    })
+    console.log(this.props.userInfo)
   }
 
   loginSuccess() {
@@ -37,26 +46,48 @@ class Login extends Component {
     })
   }
 
+  // tab栏切换事件
+  onTabChange = status => {
+    this.setState({
+      status
+    })
+    const from = `${status}Form`
+    // 清空表单
+    from === 'loginForm'
+      ? this.refs.registerForm.resetFields()
+      : this.refs.loginForm.resetFields()
+  }
+
   // 表单按钮点击事件
-  handleSubmit = e => {
+  handleSubmit = async e => {
     // 阻止默认事件
     e.preventDefault()
     const { status } = this.state
     if (status === 'login') {
-      this.loginSuccess()
-    } else {
-      this.registerSuccess()
+      const { username, password } = this.state.loginForm
+      const result = await reqLogin({ username, password })
+      console.log(result)
+    }
+    if (status === 'register') {
+      const { username, email, password, rePassword } = this.state.registerForm
+      const result = await reqRegister({
+        username,
+        email,
+        password,
+        rePassword
+      })
+      console.log(result)
     }
   }
 
-  // 绑定登录表单的内容
+  // 绑定登录表单的输入内容
   onLoginChange(key, value) {
     this.setState({
       loginForm: Object.assign({}, this.state.loginForm, { [key]: value })
     })
   }
 
-  // 绑定注册表单的内容
+  // 绑定注册表单的输入内容
   onRegisterChange(key, value) {
     this.setState({
       registerForm: Object.assign({}, this.state.registerForm, { [key]: value })
@@ -79,7 +110,7 @@ class Login extends Component {
         </div>
         <Tabs
           activeName="login"
-          onTabClick={tab => (this.state.status = tab.props.name)}
+          onTabClick={tab => this.onTabChange(tab.props.name)}
         >
           <Tabs.Pane label="登录" name="login">
             <Form
@@ -119,7 +150,7 @@ class Login extends Component {
           </Tabs.Pane>
           <Tabs.Pane label="注册" name="register">
             <Form
-              ref="form"
+              ref="registerForm"
               model={this.state.registerForm}
               rules={this.state.rules}
               className="demo-ruleForm"
@@ -127,9 +158,19 @@ class Login extends Component {
               <Form.Item prop="username">
                 <Input
                   className="inputStyle"
+                  type="username"
                   value={this.state.registerForm.username}
                   onChange={this.onRegisterChange.bind(this, 'username')}
                   placeholder="请输入用户名"
+                />
+              </Form.Item>
+              <Form.Item prop="email">
+                <Input
+                  className="inputStyle"
+                  type="email"
+                  value={this.state.registerForm.email}
+                  onChange={this.onRegisterChange.bind(this, 'email')}
+                  placeholder="请输入邮箱"
                 />
               </Form.Item>
               <Form.Item prop="password">
@@ -142,12 +183,12 @@ class Login extends Component {
                   placeholder="密码（不少于6位）"
                 />
               </Form.Item>
-              <Form.Item prop="checkPass">
+              <Form.Item prop="rePassword">
                 <Input
                   className="inputStyle"
                   type="password"
-                  value={this.state.registerForm.checkPass}
-                  onChange={this.onRegisterChange.bind(this, 'checkPass')}
+                  value={this.state.registerForm.rePassword}
+                  onChange={this.onRegisterChange.bind(this, 'rePassword')}
                   autoComplete="off"
                   placeholder="确认密码"
                 ></Input>

@@ -1,8 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
-import {
-  Message
-} from 'element-react'
+import { Message } from 'element-react'
 
 //基本路径
 axios.defaults.baseURL = `http://localhost:3001/`
@@ -21,12 +19,16 @@ axios.interceptors.request.use(config => {
 })
 
 //响应拦截器
-axios.interceptors.response.use(response => {
-  return response.data
-}, erros => {
-  Message('错误' + erros);
-  // 中断错误消息
-  return new Promise(() => {})
-})
+axios.interceptors.response.use(
+  response => {
+    console.log(response)
+    return response.data
+  },
+  erros => {
+    Message('错误' + erros)
+    // 中断错误消息
+    return new Promise(() => {})
+  }
+)
 
 export default axios

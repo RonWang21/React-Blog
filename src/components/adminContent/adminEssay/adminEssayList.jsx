@@ -3,7 +3,7 @@ import { Table, Tag, Button } from 'element-react'
 // 引入connect
 import { connect } from 'react-redux'
 // 引入action-creatar
-import { getUserList } from '../../../redux/action-creator'
+import { getUserList } from '../../../redux/asyncAction'
 @connect(null, { getUserList })
 class adminEssayList extends Component {
   constructor(props) {
