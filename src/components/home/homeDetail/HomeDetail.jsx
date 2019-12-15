@@ -8,7 +8,6 @@ class HomeDetail extends Component {
     const { match } = this.props
     return (
       <div>
-<<<<<<< HEAD
         <Card
           bodyStyle={{
             padding: '10px',
@@ -20,17 +19,6 @@ class HomeDetail extends Component {
           <div style={{ padding: 14 }}>
             <div className="detailContent">
               <span className="detailSpan">今天天气很好</span>
-=======
-        <Layout.Col span={16} offset={0} style={{ padding: '10px' }}>
-          <Card bodyStyle={{ padding: '10px', display: 'flex ' }}>
-            <img alt="img" src="holder.js/200x200" className="image" />
-            <div style={{ padding: 14 }}>
-              <div>
-                <span>好吃的汉堡</span>
-                <p>有时候你不努力一下，就不知道什么叫绝望。</p>
-              </div>
-
->>>>>>> aoliao
               <div className="bottom clearfix">
                 <time className="time">2016-10-21 16:19</time>
               </div>
