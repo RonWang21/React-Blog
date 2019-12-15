@@ -68,6 +68,13 @@ class Login extends Component {
       const { username, password } = this.state.loginForm
       // const result = await reqLogin({ username, password })
       // console.log(result)
+      const result = await reqUserLogin({
+        username: 'admin',
+        password: 'admin'
+      })
+      console.log('====================================')
+      console.log('login', result)
+      console.log('====================================')
     }
     if (status === 'register') {
       const { username, email, password, rePassword } = this.state.registerForm
