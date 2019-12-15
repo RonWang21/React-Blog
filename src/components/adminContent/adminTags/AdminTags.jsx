@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
 import { Table, Button, MessageBox, Message, Icon, Layout } from 'element-react'
 import { connect } from 'react-redux'
-import {
-  getCategories,
-  delCategory,
-  addCategory,
-  updateCategory
-} from '../../../redux/action-creator'
+import { asyncHandleTag } from '../../../redux/asyncActions'
 import './adminTags.less'
+
+// 结构异步action对象
+const { asyncGetTags } = asyncHandleTag
+
 @connect(state => ({ categories: state.categories }), {
-  getCategories,
-  delCategory,
-  addCategory,
-  updateCategory
+  asyncGetTags
 })
 class AdminTags extends Component {
   constructor(props) {

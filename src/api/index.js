@@ -71,18 +71,3 @@ export const reqUpdateTag = ({ tagname, newname }) =>
       newname
     }
   })
-// export const requpdateTag = ({ tagname, newname }) =>
-//   ajax({
-//     method: 'post',
-//     url: url + '/updateTag',
-//     data: {
-//       tagname,
-//       newname
-//     }
-//   })
-export const reqLogin = ({ username, password }) =>
-  ajax({
-    method: 'post',
-    url: url + '/login',
-    data: { username, password }
-  })

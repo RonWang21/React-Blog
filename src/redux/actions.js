@@ -16,7 +16,7 @@ import {
   UPDATE_CATEGORY,
   REMOVE_CATREGORY,
   GET_ARTICLES
-} from './action-types'
+} from './actionTypes'
 
 // 操作tags
 const handleTag = {
