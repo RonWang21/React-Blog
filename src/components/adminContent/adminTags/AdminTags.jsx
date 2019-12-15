@@ -1,13 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Form,
-  Table,
-  Button,
-  MessageBox,
-  Message,
-  Icon,
-  Layout
-} from 'element-react'
+import { Table, Button, MessageBox, Message, Icon, Layout } from 'element-react'
 import { reqGetTags, reqDelTag, requpdateTag, reqAddTag } from '../../../api'
 import './adminTags.less'
 class AdminTags extends Component {
@@ -15,7 +7,64 @@ class AdminTags extends Component {
     super(props)
 
     this.state = {
-      isLoading: true
+      isLoading: true,
+      columns: [
+        // {
+        //   type: 'expand',
+        //   expandPannel: function(data) {
+        //     return (
+        //       <Form
+        //         labelPosition="left"
+        //         inline={true}
+        //         className="demo-table-expand"
+        //       >
+        //         <Form.Item label="文章列表">
+        //           <span>荷兰优质淡奶，奶香浓而不腻</span>
+        //         </Form.Item>
+        //       </Form>
+        //     )
+        //   }
+        // },
+        {
+          label: '分类',
+          prop: 'name',
+          width: 160
+        },
+        {
+          label: '标签',
+          prop: 'desc'
+        },
+        {
+          label: '操作',
+          prop: 'take',
+          width: 160,
+          render: val => {
+            return (
+              <span>
+                <Button
+                  plain={true}
+                  type="info"
+                  size="small"
+                  onClick={() => {
+                    this.updateTag(val)
+                  }}
+                >
+                  编辑
+                </Button>
+                <Button
+                  type="danger"
+                  size="small"
+                  onClick={() => {
+                    this.delTag(val)
+                  }}
+                >
+                  删除
+                </Button>
+              </span>
+            )
+          }
+        }
+      ]
       // data: [
       //   {
       //     id: '12987122',
@@ -34,63 +83,6 @@ class AdminTags extends Component {
     if (result.status === 0) {
       this.setState({
         isLoading: false,
-        columns: [
-          // {
-          //   type: 'expand',
-          //   expandPannel: function(data) {
-          //     return (
-          //       <Form
-          //         labelPosition="left"
-          //         inline={true}
-          //         className="demo-table-expand"
-          //       >
-          //         <Form.Item label="文章列表">
-          //           <span>荷兰优质淡奶，奶香浓而不腻</span>
-          //         </Form.Item>
-          //       </Form>
-          //     )
-          //   }
-          // },
-          {
-            label: '分类',
-            prop: 'name',
-            width: 160
-          },
-          {
-            label: '标签',
-            prop: 'desc'
-          },
-          {
-            label: '操作',
-            prop: 'take',
-            width: 160,
-            render: val => {
-              return (
-                <span>
-                  <Button
-                    plain={true}
-                    type="info"
-                    size="small"
-                    onClick={() => {
-                      this.updateTag(val)
-                    }}
-                  >
-                    编辑
-                  </Button>
-                  <Button
-                    type="danger"
-                    size="small"
-                    onClick={() => {
-                      this.delTag(val)
-                    }}
-                  >
-                    删除
-                  </Button>
-                </span>
-              )
-            }
-          }
-        ],
         data: result.data.tags
       })
     }
@@ -164,7 +156,7 @@ class AdminTags extends Component {
         })
         Message({
           type: 'success',
-          message: '已添加' + value + '分类'
+          message: '已添加“' + value + '”分类'
         })
       })
       .catch(() => {
