@@ -9,7 +9,7 @@ import AdminEssay from '../components/adminContent/adminEssay/AdminEssay'
 //标签分类
 import AdminTags from '../components/adminContent/adminTags/AdminTags'
 // 文章列表
-import AdminEssayList from '../components/adminContent/adminEssay/adminEssayList'
+import AdminEssayList from '../components/adminContent/adminEssay/AdminEssayList'
 export default [
   {
     exact: true,

@@ -1,30 +1,37 @@
-//更新数据状态的函数
-import { GET_USERLIST, GET_TAGS, ADD_TAG } from './action-types'
+/**
+ *
+ */
+import {
+  SAVE_USER,
+  GET_USERS,
+  UPDATE_USER,
+  REMOVE_USER,
+  GET_TAGS,
+  ADD_TAG,
+  UPDATE_TAG,
+  REMOVE_TAG,
+  GET_CATEGORIES,
+  ADD_CATEGORY,
+  UPDATE_CATEGORY,
+  REMOVE_CATREGORY,
+  GET_ARTICLES
+} from './action-types'
 
 //引入redux
 import { combineReducers } from 'redux'
 
-function userList(prevState = [], action) {
+// 操作tags数据
+function tags(preveState = [], action) {
   switch (action.type) {
-    case GET_USERLIST:
-      return action.data
-    default:
-      return prevState
-  }
-}
-function tags(prevState = [], action) {
-  switch (action.type) {
-    case GET_TAGS:
-      return action.data
     case ADD_TAG:
-      return [...prevState.action.data]
-
+      return preveState
+    case GET_TAGS:
+      return preveState
     default:
-      break
+      return preveState
   }
 }
 
 export default combineReducers({
-  userList,
   tags
 })
