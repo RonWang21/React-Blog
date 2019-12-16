@@ -14,7 +14,11 @@ import {
   ADD_CATEGORY,
   UPDATE_CATEGORY,
   REMOVE_CATREGORY,
-  GET_ARTICLES
+  GET_ARTICLES,
+  DEL_CATEGORY,
+  ADD_ARTICLES,
+  DEL_ARTICLES,
+  UPDATE_ARTICLES
 } from './actionTypes'
 
 // 引入redux
@@ -57,17 +61,40 @@ function tags(preveState = [], action) {
       return preveState
   }
 }
-// 操作article数据
-function articles(preveState = [], action) {
+function categories(preveState = [], action) {
   switch (action.type) {
-    case GET_ARTICLES:
-      return action.data
+    case GET_CATEGORIES:
+      return action.data.data.categories
+    case ADD_CATEGORY:
+      return action.data.data.categories
+    case UPDATE_CATEGORY:
+      return action.data.data.categories
+    case DEL_CATEGORY:
+      return action.data.data.categories
     default:
       return preveState
   }
 }
+function essay(preveState = [], action) {
+  switch (action.type) {
+    case GET_ARTICLES:
+      preveState = action.data.data.articles
+      return action.data.data.articles
+    case ADD_ARTICLES:
+      preveState = action.data.data.articles
+      return action.data.data.articles
+    case DEL_ARTICLES:
+      return action.data.articles
+    case UPDATE_ARTICLES:
+      return preveState
+    default:
+      return preveState
+  }
+}
+
 export default combineReducers({
   tags,
+  categories,
   user,
-  articles
+  essay
 })

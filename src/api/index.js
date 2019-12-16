@@ -69,10 +69,78 @@ export const reqUpdateTag = ({ tagname, newname }) =>
       newname
     }
   })
-
-// 获取标签
-export const getArticles = () =>
+// 获取分类
+export const reqGetCategories = () =>
   ajax({
-    method: 'GET',
-    url: `${BASE_URL}/getArticle`
+    method: 'get',
+    url: `${BASE_URL}/getcategories`
+  })
+// 添加分类
+export const reqAddCategory = ({ categoryname, tags = [] }) =>
+  ajax({
+    method: 'post',
+    url: `${BASE_URL}/addcategories`,
+    data: {
+      categoryname,
+      tags
+    }
+  })
+// 更新分类
+export const reqUpdateCategory = ({ categoryname, id }) =>
+  ajax({
+    method: 'post',
+    url: `${BASE_URL}/uptatecategories`,
+    data: {
+      categoryname,
+      id
+    }
+  })
+// 删除分类
+export const reqDelCategory = id =>
+  ajax({
+    method: 'post',
+    url: `${BASE_URL}/delcategories`,
+    data: {
+      id
+    }
+  })
+// 获取文章
+export const reqGetEssay = () =>
+  ajax({
+    method: 'get',
+    url: BASE_URL + '/getArticles'
+  })
+// 获取文章
+export const reqAddEssay = ({
+  title,
+  content,
+  author,
+  category,
+  isPublish = false
+}) =>
+  ajax({
+    method: 'post',
+    url: BASE_URL + '/addArticle',
+    data: { title, content, author, category, isPublish }
+  })
+// 获取文章
+export const reqDelEssay = id =>
+  ajax({
+    method: 'post',
+    url: BASE_URL + '/delArticle',
+    data: { id }
+  })
+// 获取文章
+export const reqUpdateEssay = ({
+  category,
+  id,
+  title,
+  content,
+  author,
+  isPublish
+}) =>
+  ajax({
+    method: 'post',
+    url: BASE_URL + '/updateAricle',
+    data: { category, id, title, content, author, isPublish }
   })

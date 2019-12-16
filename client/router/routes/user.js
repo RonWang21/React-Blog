@@ -15,38 +15,62 @@ const Users = require('../../models/users')
 router.post(`${API_BASEPATH}/login`, async (req, res) => {
   // 获取请求体
   const { username, password } = req.body
-  // 判断用户账号密码
-  const user = await Users.findOne(
-    { username, password: md5(password) },
-    { password: 0 }
-  )
-  if (!user) {
-    return res.json({
+  // 是否传入账号面
+  if (username && password) {
+    try {
+      // 查找用户
+      const user = await Users.findOne(
+        { username, password: md5(password) },
+        { password: 0 }
+      )
+      // 找不到用户
+      if (user === null) {
+        return res.json({
+          status: 1,
+          msg: '账号或密码不正确'
+        })
+      }
+      // 每次登录拿到用户上一次的登录时间 如果没有就是首次登录 上次登录时间设置为当下
+      const lastLoginTime = user.loginTime || `${Date.now()}`
+      // 更新登录时间
+      const loginTime = `${Date.now()}`
+      // 更新到user
+      await Users.findOneAndUpdate({ username }, { loginTime })
+      const userToken = {
+        id: user._id
+      }
+
+      // 签发token
+      const token = jwt.sign(userToken, PRIVARE_KEY, { expiresIn: '7 days' })
+
+      // 返回用户信息
+      res.json({
+        status: 0,
+        data: {
+          token,
+          user: {
+            username: user.username,
+            email: user.email,
+            usertype: user.usertype,
+            createTime: user.createTime,
+            signature: user.signature,
+            lastLoginTime,
+            loginTime
+          }
+        }
+      })
+    } catch (error) {
+      return res.json({
+        status: 1,
+        msg: error.message
+      })
+    }
+  } else {
+    res.json({
       status: 1,
-      msg: '用户名密码不正确'
+      msg: 'username/password is required'
     })
   }
-
-  const userToken = {
-    id: user._id
-  }
-
-  // 签发token
-  const token = jwt.sign(userToken, PRIVARE_KEY, { expiresIn: '7 days' })
-
-  // 返回用户信息
-  res.json({
-    status: 0,
-    data: {
-      token,
-      user: {
-        username: user.username,
-        email: user.email,
-        usertype: user.usertype,
-        createTime: user.createTime
-      }
-    }
-  })
 })
 
 // 用户名、密码、邮箱正则
@@ -60,7 +84,6 @@ const admins = ['小黑0708', '诗杰0708', '政东0708', '张景0708', '老王0
 // 用户注册路由
 router.post(`${API_BASEPATH}/register`, async (req, res) => {
   // 获取请求体
-  console.log("here")
 
   const { username, email, password, rePassword } = req.body
   // 正则校验 && 重复密码校验
@@ -84,17 +107,18 @@ router.post(`${API_BASEPATH}/register`, async (req, res) => {
             password: md5(password),
             email,
             createTime: Date.now(),
-            usertype: 'user' // 默认为普通用户
+            usertype: 'user', // 默认为普通用户
+            signature: '就算是闲鱼，也要做最先的那条！'
           })
         } else {
-          
           // 创建用户
           await Users.create({
             username,
             password: md5(password),
             email,
             createTime: Date.now(),
-            usertype: 'admin'
+            usertype: 'admin',
+            signature: '纵有疾风起，人生不言弃'
           })
           console.log(`你好！${username.substring(2, 0)}同学`)
         }
