@@ -15,8 +15,12 @@ import {
   ADD_CATEGORY,
   UPDATE_CATEGORY,
   REMOVE_CATREGORY,
-  GET_ARTICLES
+  GET_ARTICLES,
+  ADD_ARTICLES,
+  UPDATE_ARTICLES,
+  DEL_ARTICLES
 } from './actionTypes'
+import { DEL_CATEGORY } from './actionTypes'
 
 // 操作tags
 const handleTag = {
@@ -45,5 +49,42 @@ const handleArticle = {
     data
   })
 }
-
-export { handleTag, handleUser, handleArticle }
+// category
+const handCategories = {
+  getCategories: data => ({
+    type: GET_CATEGORIES,
+    data
+  }),
+  addCategory: data => ({
+    type: ADD_CATEGORY,
+    data
+  }),
+  updateCategory: data => ({
+    type: UPDATE_CATEGORY,
+    data
+  }),
+  delCategory: data => ({
+    type: DEL_CATEGORY,
+    data
+  })
+}
+// Essay
+const handEssay = {
+  getEssay: data => ({
+    type: GET_ARTICLES,
+    data
+  }),
+  addEssay: data => ({
+    type: ADD_ARTICLES,
+    data
+  }),
+  updateEssay: data => ({
+    type: UPDATE_ARTICLES,
+    data
+  }),
+  delEssay: data => ({
+    type: DEL_ARTICLES,
+    data
+  })
+}
+export { handleTag, handleUser, handleArticle, handCategories, handEssay }
