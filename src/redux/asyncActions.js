@@ -20,7 +20,9 @@ import {
   reqGetEssay,
   reqAddEssay,
   reqDelEssay,
-  reqUpdateEssay
+  reqUpdateEssay,
+  reqUpdateCategory,
+  reqDelCategory
 } from '../api'
 
 // 异步操作tag
@@ -59,23 +61,23 @@ const asyncCategory = {
     return async dispatch => {
       const result = await reqAddCategory({ categoryname, tags })
       if (result.status === 0) {
-        dispatch(handCategories.addCategories(result))
+        dispatch(handCategories.addCategory(result))
       }
     }
   },
   asyncUpdateCategory: ({ categoryname, id }) => {
     return async dispatch => {
-      const result = await reqAddCategory({ categoryname, id })
+      const result = await reqUpdateCategory({ categoryname, id })
       if (result.status === 0) {
-        dispatch(handCategories.updateCategories(result))
+        dispatch(handCategories.updateCategory(result))
       }
     }
   },
   asyncDelCategory: id => {
     return async dispatch => {
-      const result = await reqAddCategory(id)
+      const result = await reqDelCategory(id)
       if (result.status === 0) {
-        dispatch(handCategories.delCategories(result))
+        dispatch(handCategories.delCategory(result))
       }
     }
   }
@@ -90,14 +92,15 @@ const asyncEssay = {
       }
     }
   },
-  asyncAddEssay: ({ title, content, category, isPulish, author }) => {
+  asyncAddEssay: ({ title, content, category, isPulish, author, tag }) => {
     return async dispatch => {
       const result = await reqAddEssay({
         title,
         content,
         category,
         isPulish,
-        author
+        author,
+        tag
       })
       if (result.status === 0) {
         dispatch(handEssay.addEssay(result))
@@ -116,7 +119,6 @@ const asyncEssay = {
       })
 
       if (result.status === 0) {
-        console.log(result)
         dispatch(handEssay.updateEssay(result.data))
       }
     }

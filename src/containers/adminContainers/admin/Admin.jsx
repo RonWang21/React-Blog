@@ -16,7 +16,8 @@ import './admin.css'
 class Admin extends Component {
   render() {
     return (
-      <Router>
+      <div>
+        {/* <Router> */}
         <Header></Header>
         <div className="adminContent">
           <Switch>
@@ -25,7 +26,8 @@ class Admin extends Component {
             ))}
           </Switch>
         </div>
-      </Router>
+        {/* </Router> */}
+      </div>
     )
   }
 }
