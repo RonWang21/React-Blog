@@ -1,14 +1,31 @@
 import React, { Component } from 'react'
-import { Table, Button, MessageBox, Message, Icon, Layout } from 'element-react'
+import {
+  Table,
+  Button,
+  MessageBox,
+  Message,
+  Icon,
+  Layout,
+  Tag,
+  Input
+} from 'element-react'
 import { connect } from 'react-redux'
 import { asyncCategory } from '../../../redux/asyncActions'
 import './adminTags.less'
 
 // 结构异步action对象
-const { asyncGetCategories, asyncDelCategory } = asyncCategory
+const {
+  asyncGetCategories,
+  asyncDelCategory,
+  asyncAddCategory,
+  asyncUpdateCategory
+} = asyncCategory
 
 @connect(state => ({ categories: state.categories }), {
-  asyncGetCategories
+  asyncGetCategories,
+  asyncDelCategory,
+  asyncAddCategory,
+  asyncUpdateCategory
 })
 class AdminTags extends Component {
   constructor(props) {
@@ -16,6 +33,14 @@ class AdminTags extends Component {
 
     this.state = {
       isLoading: true,
+      tags: [
+        { key: 1, name: '标签一', type: '' },
+        { key: 2, name: '标签二', type: 'gray' },
+        { key: 5, name: '标签三', type: 'primary' },
+        { key: 3, name: '标签四', type: 'success' },
+        { key: 4, name: '标签五', type: 'warning' },
+        { key: 6, name: '标签六', type: 'danger' }
+      ],
       columns: [
         // {
         //   type: 'expand',
@@ -40,7 +65,28 @@ class AdminTags extends Component {
         },
         {
           label: '标签',
-          prop: 'tags'
+          prop: 'tags',
+          render: val => {
+            return (
+              <div>
+                {val.tags.map((tag, index) => {
+                  return (
+                    <span style={{ margin: '0 10px' }} key={index}>
+                      <Tag
+                        key={tag}
+                        closable={true}
+                        type={'success'}
+                        closeTransition={true}
+                        onClose={this.handleClose.bind(this, tag)}
+                      >
+                        &nbsp;{tag}&nbsp;
+                      </Tag>
+                    </span>
+                  )
+                })}
+              </div>
+            )
+          }
         },
         {
           label: '操作',
@@ -86,6 +132,13 @@ class AdminTags extends Component {
       // ]
     }
   }
+  handleClose(tag) {
+    const { tags } = this.state
+
+    tags.splice(tags.map(el => el.key).indexOf(tag.key), 1)
+
+    this.setState({ tag })
+  }
   async componentDidMount() {
     // 获取分类
     if (!this.props.categories.length) {
@@ -97,15 +150,8 @@ class AdminTags extends Component {
       type: 'warning'
     })
       .then(() => {
-        console.log('====================================')
-        console.log('del:', val._id)
-        console.log('====================================')
         this.props.asyncDelCategory(val._id)
-        // if (result.status === 0) {
-        //   this.setState({
-        //     data: result.data.tags
-        //   })
-        // }
+        // this.props.asyncGetCategories()
         Message({
           type: 'success',
           message: '删除“' + val.name + '”分类成功!'
@@ -132,13 +178,9 @@ class AdminTags extends Component {
       inputValidator: v => v !== val.name,
       inputErrorMessage: '分类名称与原来的一致'
     })
-      .then(async ({ value }) => {
+      .then(({ value }) => {
         // 修改分类请求
-        // const result = await requpdateTag({ tagname: val.name, newname: value })
-        this.props.updateCategory({ id: value })
-        // this.setState({
-        //   data: result.data.tags
-        // })
+        this.props.asyncUpdateCategory({ id: val._id, categoryname: value })
         Message({
           type: 'success',
           message: val.name + '分类名称已修改为' + value
@@ -159,11 +201,7 @@ class AdminTags extends Component {
     })
       .then(({ value }) => {
         //添加分类请求
-        // const result = await reqAddTag({ tagname: value })
-        this.props.addCategory({ categoryname: value })
-        // this.setState({
-        //   data: result.data.tags
-        // })
+        this.props.asyncAddCategory({ categoryname: value })
         Message({
           type: 'success',
           message: '已添加“' + value + '”分类'
@@ -179,9 +217,6 @@ class AdminTags extends Component {
   render() {
     const { columns } = this.state
     const { categories } = this.props
-    console.log('====================================')
-    console.log(this.props)
-    console.log('====================================')
     return (
       <div className="adminTags">
         <Layout.Row gutter="24">
