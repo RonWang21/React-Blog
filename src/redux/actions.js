@@ -39,6 +39,10 @@ const handleUser = {
   saveUser: data => ({
     type: SAVE_USER,
     data
+  }),
+  removeUser : data => ({
+    type: REMOVE_USER,
+    data
   })
 }
 

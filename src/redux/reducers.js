@@ -45,6 +45,11 @@ function user(preveState = initState, action) {
       setLocalStorageItem('user', action.data.user)
       setLocalStorageItem('token', action.data.token)
       return action.data
+    case REMOVE_USER:
+      // 删除用户信息
+      removeLocalStorageItem('user')
+      removeLocalStorageItem('token')
+      return {}
     default:
       return preveState
   }
