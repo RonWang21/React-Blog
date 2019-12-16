@@ -71,3 +71,38 @@ export const reqUpdateTag = ({ tagname, newname }) =>
       newname
     }
   })
+// 获取分类
+export const reqGetCategories = () =>
+  ajax({
+    method: 'get',
+    url: `${BASE_URL}/getcategories`
+  })
+// 添加分类
+export const reqAddCategory = ({ categoryname, tags = [] }) =>
+  ajax({
+    method: 'post',
+    url: `${BASE_URL}/addcategories`,
+    data: {
+      categoryname,
+      tags
+    }
+  })
+// 添加分类
+export const reqUpdateCategory = ({ categoryname, id }) =>
+  ajax({
+    method: 'post',
+    url: `${BASE_URL}/uptatecategories`,
+    data: {
+      categoryname,
+      id
+    }
+  })
+// 添加分类
+export const reqDelCategory = id =>
+  ajax({
+    method: 'post',
+    url: `${BASE_URL}/delcategories`,
+    data: {
+      id
+    }
+  })

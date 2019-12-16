@@ -3,13 +3,11 @@ import React, { Component } from 'react'
 import './less/Login.less'
 
 import { Tabs, Form, Input, Button, Message } from 'element-react'
-
 import { reqUserLogin, reqUserRegister } from '../../../../api/index'
 class Login extends Component {
   constructor(props) {
     super(props)
 
-    // 用来存储登录/注册表单数据的状态数据
     this.state = {
       loginForm: {
         username: '',
@@ -21,7 +19,6 @@ class Login extends Component {
         password: '',
         rePassword: ''
       },
-      // 当前tab切换状态
       status: 'login'
     }
   }
@@ -65,16 +62,19 @@ class Login extends Component {
     e.preventDefault()
     const { status } = this.state
     if (status === 'login') {
-      const { username, password } = this.state.loginForm
+      // const { username, password } = this.state.loginForm
       // const result = await reqLogin({ username, password })
       // console.log(result)
     }
     if (status === 'register') {
       const { username, email, password, rePassword } = this.state.registerForm
-      // const result = await reqRegister({
-      // username, email, password, rePassword
-      // })
-      // console.log(result)
+      const result = await reqUserRegister({
+        username,
+        email,
+        password,
+        rePassword
+      })
+      console.log(result)
     }
   }
 
@@ -91,6 +91,12 @@ class Login extends Component {
       registerForm: Object.assign({}, this.state.registerForm, { [key]: value })
     })
   }
+  // async componentDidMount() {
+  //   const result = await reqLogin({ username: 'admin', password: 'admin' })
+  //   console.log('====================================')
+  //   console.log('login', result)
+  //   console.log('====================================')
+  // }
   render() {
     return (
       <div className="logiWrapper">

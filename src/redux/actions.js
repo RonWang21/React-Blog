@@ -17,6 +17,7 @@ import {
   REMOVE_CATREGORY,
   GET_ARTICLES
 } from './actionTypes'
+import { DEL_CATEGORY } from './actionTypes'
 
 // 操作tags
 const handleTag = {
@@ -45,5 +46,23 @@ const handleArticle = {
     data
   })
 }
-
-export { handleTag, handleUser, handleArticle }
+// category
+const handCategories = {
+  getCategories: data => ({
+    type: GET_CATEGORIES,
+    data
+  }),
+  addCategory: data => ({
+    type: ADD_CATEGORY,
+    data
+  }),
+  updateCategory: data => ({
+    type: UPDATE_CATEGORY,
+    data
+  }),
+  delCategory: data => ({
+    type: DEL_CATEGORY,
+    data
+  })
+}
+export { handleTag, handleUser, handleArticle, handCategories }

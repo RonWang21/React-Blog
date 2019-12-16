@@ -3,9 +3,9 @@ import { Table, Tag, Button } from 'element-react'
 // 引入connect
 import { connect } from 'react-redux'
 // 引入action-creatar
-import { asyncHandleUser } from '../../../redux/asyncActions'
-const { asyncGetUsers } = asyncHandleUser
-@connect(null, { asyncGetUsers })
+import { asyncCategory } from '../../../redux/asyncActions'
+// const { asyncCategory } = asyncCategory
+@connect(null, { asyncCategory })
 class AdminEssayList extends Component {
   constructor(props) {
     super(props)
@@ -67,7 +67,7 @@ class AdminEssayList extends Component {
   }
   componentDidMount() {
     //请求userList
-    this.props.getUserList()
+    this.props.asyncCategory()
   }
   //查看
   examine = v => {

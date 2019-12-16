@@ -31,7 +31,18 @@ function tags(preveState = [], action) {
       return preveState
   }
 }
+function categories(preveState = [], action) {
+  switch (action.type) {
+    case GET_CATEGORIES:
+      return action.data.data.categories
+    case ADD_CATEGORY:
+      return action.data.data.categories
+    default:
+      return preveState
+  }
+}
 
 export default combineReducers({
-  tags
+  tags,
+  categories
 })
