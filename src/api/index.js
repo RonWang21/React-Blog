@@ -105,13 +105,13 @@ export const reqDelCategory = id =>
     }
   })
 // 获取文章
-export const reqGetEssay = () =>
+export const reqGetArticle = () =>
   ajax({
     method: 'get',
     url: BASE_URL + '/getArticles'
   })
 // 获取文章
-export const reqAddEssay = ({
+export const reqAddArticle = ({
   title,
   content,
   author,
@@ -125,14 +125,14 @@ export const reqAddEssay = ({
     data: { title, content, author, category, isPublish, tag }
   })
 // 获取文章
-export const reqDelEssay = id =>
+export const reqDelArticle = id =>
   ajax({
     method: 'post',
     url: BASE_URL + '/delArticle',
     data: { id }
   })
 // 获取文章
-export const reqUpdateEssay = ({
+export const reqUpdateArticle = ({
   category,
   id,
   title,

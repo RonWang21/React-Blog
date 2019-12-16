@@ -68,23 +68,23 @@ const handCategories = {
     data
   })
 }
-// Essay
-const handEssay = {
-  getEssay: data => ({
+// Article
+const handArticle = {
+  getArticle: data => ({
     type: GET_ARTICLES,
     data
   }),
-  addEssay: data => ({
+  addArticle: data => ({
     type: ADD_ARTICLES,
     data
   }),
-  updateEssay: data => ({
+  updateArticle: data => ({
     type: UPDATE_ARTICLES,
     data
   }),
-  delEssay: data => ({
+  delArticle: data => ({
     type: DEL_ARTICLES,
     data
   })
 }
-export { handleTag, handleUser, handleArticle, handCategories, handEssay }
+export { handleTag, handleUser, handleArticle, handCategories, handArticle }

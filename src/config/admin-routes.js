@@ -1,15 +1,13 @@
-//Admin
-import Admin from '../containers/adminContainers/admin/Admin'
 //admin首页
 import AdminMain from '../components/adminContent/adminMain/AdminMain'
 //admin用户管理
 import AdminUser from '../components/adminContent/adminUser/AdminUser'
 //admin文章
-import AdminEssay from '../components/adminContent/adminEssay/AdminEssay'
+import AdminArticle from '../components/adminContent/adminArticle/AdminArticle'
 //标签分类
 import AdminTags from '../components/adminContent/adminTags/AdminTags'
 // 文章列表
-import AdminEssayList from '../components/adminContent/adminEssay/AdminEssayList'
+import AdminArticleList from '../components/adminContent/adminArticle/AdminArticleList'
 export default [
   // {
   //   exact: true,
@@ -28,8 +26,8 @@ export default [
   },
   {
     exact: true,
-    path: '/admin/essay',
-    component: AdminEssay
+    path: '/admin/article',
+    component: AdminArticle
   },
   {
     exact: true,
@@ -38,7 +36,7 @@ export default [
   },
   {
     exact: true,
-    path: '/admin/essaylist',
-    component: AdminEssayList
+    path: '/admin/articlelist',
+    component: AdminArticleList
   }
 ]

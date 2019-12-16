@@ -8,7 +8,7 @@ import {
   handleUser,
   handleArticle,
   handCategories,
-  handEssay
+  handArticle
 } from './actions'
 
 // 引入接口请求方法
@@ -17,10 +17,10 @@ import {
   reqUserLogin,
   reqGetCategories,
   reqAddCategory,
-  reqGetEssay,
-  reqAddEssay,
-  reqDelEssay,
-  reqUpdateEssay,
+  reqGetArticle,
+  reqAddArticle,
+  reqDelArticle,
+  reqUpdateArticle,
   reqUpdateCategory,
   reqDelCategory
 } from '../api'
@@ -82,19 +82,19 @@ const asyncCategory = {
     }
   }
 }
-// 异步的essay
-const asyncEssay = {
-  asyncGetEssay: () => {
+// 异步的article
+const asyncArticle = {
+  asyncGetArticle: () => {
     return async dispatch => {
-      const result = await reqGetEssay()
+      const result = await reqGetArticle()
       if (result) {
-        dispatch(handEssay.getEssay(result))
+        dispatch(handArticle.getArticle(result))
       }
     }
   },
-  asyncAddEssay: ({ title, content, category, isPulish, author, tag }) => {
+  asyncAddArticle: ({ title, content, category, isPulish, author, tag }) => {
     return async dispatch => {
-      const result = await reqAddEssay({
+      const result = await reqAddArticle({
         title,
         content,
         category,
@@ -103,13 +103,13 @@ const asyncEssay = {
         tag
       })
       if (result.status === 0) {
-        dispatch(handEssay.addEssay(result))
+        dispatch(handArticle.addArticle(result))
       }
     }
   },
-  asyncUpdateEssay: ({ category, id, title, content, author, isPublish }) => {
+  asyncUpdateArticle: ({ category, id, title, content, author, isPublish }) => {
     return async dispatch => {
-      const result = await reqUpdateEssay({
+      const result = await reqUpdateArticle({
         category,
         id,
         title,
@@ -119,17 +119,17 @@ const asyncEssay = {
       })
 
       if (result.status === 0) {
-        dispatch(handEssay.updateEssay(result.data))
+        dispatch(handArticle.updateArticle(result.data))
       }
     }
   },
-  asyncDelEssay: id => {
+  asyncDelArticle: id => {
     return async dispatch => {
-      const result = await reqDelEssay(id)
+      const result = await reqDelArticle(id)
       if (result.status === 0) {
-        dispatch(handEssay.delEssay(result))
+        dispatch(handArticle.delArticle(result))
       }
     }
   }
 }
-export { asyncHandleTag, asyncHandleUser, asyncCategory, asyncEssay }
+export { asyncHandleTag, asyncHandleUser, asyncCategory, asyncArticle }
