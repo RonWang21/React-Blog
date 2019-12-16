@@ -1,30 +1,64 @@
-//更新数据状态的函数
-import { GET_USERLIST, GET_TAGS, ADD_TAG } from './action-types'
+/**
+ *
+ */
+import {
+  SAVE_USER,
+  GET_USERS,
+  UPDATE_USER,
+  REMOVE_USER,
+  GET_TAGS,
+  ADD_TAG,
+  UPDATE_TAG,
+  REMOVE_TAG,
+  GET_CATEGORIES,
+  ADD_CATEGORY,
+  UPDATE_CATEGORY,
+  REMOVE_CATREGORY,
+  GET_ARTICLES
+} from './actionTypes'
 
-//引入redux
+// 引入redux
 import { combineReducers } from 'redux'
 
-function userList(prevState = [], action) {
+// 引入存入localstorage的方法
+import {
+  getLocalStorageItem,
+  setLocalStorageItem,
+  removeLocalStorageItem,
+  clearLocalStorageItems
+} from '../utils/saveToLocalStorage'
+
+// 初始化user preveState的值---从localstorage获取
+const initState = {
+  user: getLocalStorageItem('user') || {},
+  token: getLocalStorageItem('token') || ''
+}
+// 操作user数据
+function user(preveState = initState, action) {
   switch (action.type) {
-    case GET_USERLIST:
+    case SAVE_USER:
+      // 存入localstorage
+      setLocalStorageItem('user', action.data.user)
+      setLocalStorageItem('token', action.data.token)
       return action.data
     default:
-      return prevState
+      return preveState
   }
 }
-// function tags(prevState = [], action) {
-//   switch (action.type) {
-//     case GET_TAGS:
-//       return action.data
-//     case ADD_TAG:
-//       return [...prevState.action.data]
 
-//     default:
-//       break
-//   }
-// }
+// 操作tags数据
+function tags(preveState = [], action) {
+  switch (action.type) {
+    case ADD_TAG:
+      return preveState
+    case GET_TAGS:
+      return preveState
+    default:
+      return preveState
+  }
+}
 
 export default combineReducers({
-  userList,
-  // tags
+  tags,
+  user
 })

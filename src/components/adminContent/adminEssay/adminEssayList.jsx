@@ -3,9 +3,10 @@ import { Table, Tag, Button } from 'element-react'
 // 引入connect
 import { connect } from 'react-redux'
 // 引入action-creatar
-import { getUserList } from '../../../redux/action-creator'
-@connect(null, { getUserList })
-class adminEssayList extends Component {
+import { asyncHandleUser } from '../../../redux/asyncActions'
+const { asyncGetUsers } = asyncHandleUser
+@connect(null, { asyncGetUsers })
+class AdminEssayList extends Component {
   constructor(props) {
     super(props)
 
@@ -99,4 +100,4 @@ class adminEssayList extends Component {
   }
 }
 
-export default adminEssayList
+export default AdminEssayList

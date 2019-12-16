@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import { Table, Button, MessageBox, Message, Icon, Layout } from 'element-react'
-import { reqGetTags, reqDelTag, requpdateTag, reqAddTag } from '../../../api'
+import { connect } from 'react-redux'
+import { asyncHandleTag } from '../../../redux/asyncActions'
 import './adminTags.less'
+
+// 结构异步action对象
+const { asyncGetTags } = asyncHandleTag
+
+@connect(state => ({ categories: state.categories }), {
+  asyncGetTags
+})
 class AdminTags extends Component {
   constructor(props) {
     super(props)
@@ -32,7 +40,7 @@ class AdminTags extends Component {
         },
         {
           label: '标签',
-          prop: 'desc'
+          prop: 'tags'
         },
         {
           label: '操作',
@@ -79,25 +87,22 @@ class AdminTags extends Component {
     }
   }
   async componentDidMount() {
-    const result = await reqGetTags()
-    if (result.status === 0) {
-      this.setState({
-        isLoading: false,
-        data: result.data.tags
-      })
-    }
+    this.props.getCategories()
   }
   delTag = val => {
     MessageBox.confirm(`此操作将永久删除“${val.name}”分类, 是否继续?`, '提示', {
       type: 'warning'
     })
-      .then(async () => {
-        const result = await reqDelTag({ tagname: val.name })
-        if (result.status === 0) {
-          this.setState({
-            data: result.data.tags
-          })
-        }
+      .then(() => {
+        console.log('====================================')
+        console.log('del:', val._id)
+        console.log('====================================')
+        this.props.delCategory(val._id)
+        // if (result.status === 0) {
+        //   this.setState({
+        //     data: result.data.tags
+        //   })
+        // }
         Message({
           type: 'success',
           message: '删除“' + val.name + '”分类成功!'
@@ -126,10 +131,11 @@ class AdminTags extends Component {
     })
       .then(async ({ value }) => {
         // 修改分类请求
-        const result = await requpdateTag({ tagname: val.name, newname: value })
-        this.setState({
-          data: result.data.tags
-        })
+        // const result = await requpdateTag({ tagname: val.name, newname: value })
+        this.props.updateCategory({ id: value })
+        // this.setState({
+        //   data: result.data.tags
+        // })
         Message({
           type: 'success',
           message: val.name + '分类名称已修改为' + value
@@ -148,12 +154,13 @@ class AdminTags extends Component {
       inputValidator: v => v !== 'asd',
       inputErrorMessage: '分类名称格式不正确'
     })
-      .then(async ({ value }) => {
+      .then(({ value }) => {
         //添加分类请求
-        const result = await reqAddTag({ tagname: value })
-        this.setState({
-          data: result.data.tags
-        })
+        // const result = await reqAddTag({ tagname: value })
+        this.props.addCategory({ categoryname: value })
+        // this.setState({
+        //   data: result.data.tags
+        // })
         Message({
           type: 'success',
           message: '已添加“' + value + '”分类'
@@ -167,7 +174,11 @@ class AdminTags extends Component {
       })
   }
   render() {
-    const { columns, data } = this.state
+    const { columns } = this.state
+    const { categories } = this.props
+    console.log('====================================')
+    console.log(this.props)
+    console.log('====================================')
     return (
       <div className="adminTags">
         <Layout.Row gutter="24">
@@ -192,7 +203,7 @@ class AdminTags extends Component {
         <Table
           style={{ width: '100%' }}
           columns={columns}
-          data={data}
+          data={categories}
           border={true}
           onCurrentChange={item => {
             console.log(item)

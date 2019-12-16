@@ -1,5 +1,0 @@
-export const GET_USERLIST = 'get_userlist'
-export const GET_TAGS = 'get_tags'
-export const ADD_TAG = 'ADD_TAG'
-export const UPDATE_TAG = 'update_tag'
-export const DEL_TAG = 'del_tag'
