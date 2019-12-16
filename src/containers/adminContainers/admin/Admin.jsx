@@ -17,7 +17,6 @@ class Admin extends Component {
   render() {
     return (
       <div>
-        {/* <Router> */}
         <Header></Header>
         <div className="adminContent">
           <Switch>
@@ -26,7 +25,6 @@ class Admin extends Component {
             ))}
           </Switch>
         </div>
-        {/* </Router> */}
       </div>
     )
   }
