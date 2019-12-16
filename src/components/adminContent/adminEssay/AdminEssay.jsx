@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import NewText from './NewText'
 // 引入element-ui
-import { Input, Select, Button, Layout } from 'element-react'
+import {
+  Input,
+  Select,
+  Button,
+  Layout,
+  Switch,
+  MessageBox,
+  Message
+} from 'element-react'
 // redux
 import { connect } from 'react-redux'
 import { asyncEssay, asyncCategory } from '../../../redux/asyncActions'
@@ -16,15 +24,20 @@ const { asyncGetCategories } = asyncCategory
 class AdminEssay extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
-      options: []
+      options: [],
+      isPublish: true
     }
   }
   async componentDidMount() {
     // 获取分类
     if (!this.props.categories.length) {
       this.props.asyncGetCategories()
+    }
+    if (this.props.location.state) {
+      this.setState({
+        isPublish: this.props.location.state.essay.isPublish
+      })
     }
   }
   // 标题
@@ -46,35 +59,51 @@ class AdminEssay extends Component {
   }
   // 提交文章
   submitEssay = () => {
-    let { value, title, tag } = this.state
-    console.log('====================================')
-    console.log(this.props.location.state)
-    console.log('====================================')
+    let { value, title, tag, isPublish } = this.state
     if (this.props.location.state) {
       this.props.asyncUpdateEssay({
         title,
         content: value,
         category: (tag = tag ? tag : this.props.location.state.essay.category),
-        id: this.props.location.state.essay._id
+        id: this.props.location.state.essay._id,
+        isPublish: isPublish
       })
+      this.props.history.push('/admin/essaylist')
     } else {
       if (value && title && tag) {
-        //   console.log('====================================')
-        //   console.log(this.state)
-        //   console.log('====================================')
-        this.props.asyncAddEssay({
-          title,
-          content: value,
-          author: 'admin',
-          category: tag,
-          isPublish: true
+        MessageBox.confirm('将要提交文章, 是否继续?', '提示', {
+          type: 'warning'
         })
-        this.props.history.push('/admin/essaylist')
-        //添加请求
+          .then(() => {
+            this.props.asyncAddEssay({
+              title,
+              content: value,
+              author: JSON.parse(window.localStorage.user).username,
+              category: tag,
+              isPublish
+            })
+            this.props.history.push('/admin/essaylist')
+            //添加请求
+            Message({
+              type: 'success',
+              message: '添加成功!'
+            })
+          })
+          .catch(() => {
+            Message({
+              type: 'info',
+              message: '已取消'
+            })
+          })
       } else {
         console.log('文章内容不完整')
       }
     }
+  }
+  publish = val => {
+    this.setState({
+      isPublish: val
+    })
   }
   render() {
     const { categories, location } = this.props
@@ -82,15 +111,12 @@ class AdminEssay extends Component {
     if (location.state) {
       essay = location.state.essay
     }
-    // console.log('====================================')
-    // console.log(this.props.location.state)
-    // console.log('====================================')
     return (
       <div>
         {/* value是插入文本的内容 */}
         <div className="essayIpt">
           <Layout.Row gutter="20">
-            <Layout.Col span="12">
+            <Layout.Col span="8">
               <Input
                 // placeholder="请输入标题"
                 placeholder={essay ? essay.title : '请输入标题'}
@@ -114,6 +140,17 @@ class AdminEssay extends Component {
                   )
                 })}
               </Select>
+            </Layout.Col>
+            <Layout.Col span="4" style={{ lineHeight: '35px' }}>
+              <span>
+                是否直接发布？
+                <Switch
+                  value={this.state.isPublish}
+                  onColor="#13ce66"
+                  offColor="#ff4949"
+                  onChange={v => this.publish(v)}
+                ></Switch>
+              </span>
             </Layout.Col>
             <Layout.Col span="4">
               <Button onClick={this.submitEssay}>提交</Button>
