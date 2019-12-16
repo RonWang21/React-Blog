@@ -24,8 +24,11 @@ axios.interceptors.response.use(
     console.log('xxx', response)
     return response.data
   },
-  erros => {
-    Message('错误' + erros)
+  error => {
+    Message({
+      message: `错误： ${error}`,
+      type: error
+    })
     // 中断错误消息
     return new Promise(() => {})
   }
