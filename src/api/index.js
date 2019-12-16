@@ -69,14 +69,6 @@ export const reqUpdateTag = ({ tagname, newname }) =>
       newname
     }
   })
-<<<<<<< HEAD
-
-// 获取标签
-export const getArticles = () =>
-  ajax({
-    method: 'GET',
-    url: `${BASE_URL}/getArticle`
-=======
 // 获取分类
 export const reqGetCategories = () =>
   ajax({
@@ -151,5 +143,4 @@ export const reqUpdateEssay = ({
     method: 'post',
     url: BASE_URL + '/updateAricle',
     data: { category, id, title, content, author, isPublish }
->>>>>>> 84ecb04835a4ce470d262b3de5a4a7f53988f5d4
   })
