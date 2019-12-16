@@ -8,6 +8,9 @@ import { Button } from 'element-react'
 
 import './loginSuccess.less'
 
+// 引入时间戳转换方法
+import utils from '../../../../../../utils/setTime'
+const { getTimeAgo } = utils
 @withRouter
 @connect(
   state => ({
@@ -32,7 +35,7 @@ class LoginSuccess extends Component {
         <div className="lastLoginTime">
           <span>上次登录时间: </span>
           {/* <br /> */}
-          <span>{this.props.user.lastLoginTime}</span>
+          <span>{getTimeAgo(this.props.user.lastLoginTime)}</span>
         </div>
         {this.props.user.usertype === 'admin' ? (
           <Button

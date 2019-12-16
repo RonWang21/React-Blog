@@ -9,7 +9,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 class Home extends Component {
   render() {
     return (
-      <Router>
+      // <Router>
         <Layout.Row className="view-container" justify="center">
           {/* header--start */}
           <Header />
@@ -19,7 +19,7 @@ class Home extends Component {
           <HomeMain children={this.props.children} />
           {/* main--end */}
         </Layout.Row>
-      </Router>
+      // </Router>
     )
   }
 }
