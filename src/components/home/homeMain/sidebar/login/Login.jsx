@@ -32,10 +32,10 @@ class Login extends Component {
     this.setState({
       status
     })
-    if (status === 'login' && this.registerForm.resetFields) {
+    if (status === 'login' && this.registerForm) {
       this.registerForm.resetFields()
     }
-    if (status === 'register' && this.loginForm.resetFields) {
+    if (status === 'register' && this.loginForm) {
       this.loginForm.resetFields()
     }
   }
