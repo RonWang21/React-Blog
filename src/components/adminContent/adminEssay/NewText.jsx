@@ -20,7 +20,7 @@ class NewText extends Component {
     // this.richtext.toolbar.data.add({
     //   value: 'MyAction'
     // })
-    console.log(this.props.value)
+    // console.log(this.props.value)
 
     if (this.props.value) {
       this.richtext.setValue(this.props.value, this.props.dataType)

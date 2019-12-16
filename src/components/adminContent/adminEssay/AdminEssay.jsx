@@ -2,8 +2,17 @@ import React, { Component } from 'react'
 import NewText from './NewText'
 // 引入element-ui
 import { Input, Select, Button, Layout } from 'element-react'
-import { reqGetTags } from '../../../api'
+// redux
+import { connect } from 'react-redux'
+import { asyncEssay, asyncCategory } from '../../../redux/asyncActions'
 import './adminEssay.less'
+const { asyncAddEssay, asyncUpdateEssay } = asyncEssay
+const { asyncGetCategories } = asyncCategory
+@connect(state => ({ categories: state.categories }), {
+  asyncAddEssay,
+  asyncGetCategories,
+  asyncUpdateEssay
+})
 class AdminEssay extends Component {
   constructor(props) {
     super(props)
@@ -14,22 +23,8 @@ class AdminEssay extends Component {
   }
   async componentDidMount() {
     // 获取分类
-    const result = await reqGetTags()
-    if (result.status === 0) {
-      let options = []
-      result.data.tags.map((item, index) => {
-        let obj = {}
-        // 设置分类的value、label、index
-        obj.index = index
-        obj.value = item.name
-        obj.label = item.name
-        options.push(obj)
-        return options
-      })
-      // 设置state的options
-      this.setState({
-        options
-      })
+    if (!this.props.categories.length) {
+      this.props.asyncGetCategories()
     }
   }
   // 标题
@@ -51,17 +46,45 @@ class AdminEssay extends Component {
   }
   // 提交文章
   submitEssay = () => {
-    const { value, title, tag } = this.state
-    if (value && title && tag) {
-      console.log('====================================')
-      console.log(this.state)
-      console.log('====================================')
-      //添加请求
+    let { value, title, tag } = this.state
+    console.log('====================================')
+    console.log(this.props.location.state)
+    console.log('====================================')
+    if (this.props.location.state) {
+      this.props.asyncUpdateEssay({
+        title,
+        content: value,
+        category: (tag = tag ? tag : this.props.location.state.essay.category),
+        id: this.props.location.state.essay._id
+      })
     } else {
-      console.log('文章内容不完整')
+      if (value && title && tag) {
+        //   console.log('====================================')
+        //   console.log(this.state)
+        //   console.log('====================================')
+        this.props.asyncAddEssay({
+          title,
+          content: value,
+          author: 'admin',
+          category: tag,
+          isPublish: true
+        })
+        this.props.history.push('/admin/essaylist')
+        //添加请求
+      } else {
+        console.log('文章内容不完整')
+      }
     }
   }
   render() {
+    const { categories, location } = this.props
+    let essay = null
+    if (location.state) {
+      essay = location.state.essay
+    }
+    // console.log('====================================')
+    // console.log(this.props.location.state)
+    // console.log('====================================')
     return (
       <div>
         {/* value是插入文本的内容 */}
@@ -69,21 +92,24 @@ class AdminEssay extends Component {
           <Layout.Row gutter="20">
             <Layout.Col span="12">
               <Input
-                placeholder="请输入标题"
+                // placeholder="请输入标题"
+                placeholder={essay ? essay.title : '请输入标题'}
                 onChange={title => this.setTitle(title)}
               />
             </Layout.Col>
             <Layout.Col span="8">
               <Select
-                value={this.state.options}
+                value={categories}
+                // placeholder={essay ? essay.categories : '请选择分类'}
+                placeholder="请选择分类"
                 onChange={tag => this.setTag(tag)}
               >
-                {this.state.options.map(el => {
+                {categories.map(el => {
                   return (
                     <Select.Option
-                      key={el.value}
-                      label={el.label}
-                      value={el.value}
+                      key={el._id}
+                      label={el.name}
+                      value={el.name}
                     />
                   )
                 })}
@@ -94,7 +120,10 @@ class AdminEssay extends Component {
             </Layout.Col>
           </Layout.Row>
         </div>
-        <NewText onChange={this.textContent} value={''} />
+        <NewText
+          onChange={this.textContent}
+          value={essay ? essay.content : ''}
+        />
       </div>
     )
   }

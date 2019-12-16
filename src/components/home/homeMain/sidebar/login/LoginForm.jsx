@@ -34,18 +34,24 @@ class LoginForm extends Component {
     }
   }
 
-  // 登录成功提示
-  loginSuccess() {
-    Message({
-      message: '登陆失败，请检查网络连接！',
-      type: 'success'
-    })
-  }
-
   // 绑定登录表单的输入内容
   onLoginChange(key, value) {
     this.setState({
       loginForm: Object.assign({}, this.state.loginForm, { [key]: value })
+    })
+  }
+
+  // 登录成功提示
+  loginSuccess() {
+    Message({
+      message: '登陆成功！',
+      type: 'success'
+    })
+  }
+  loginFailed() {
+    Message({
+      message: '登陆失败，请检查网络连接！',
+      type: 'error'
     })
   }
 
@@ -57,9 +63,12 @@ class LoginForm extends Component {
     // 发送登录请求
     const { username, password } = this.state.loginForm
     const result = await reqUserLogin({ username, password })
+    console.log(result)
     if (result.status === 0) {
       this.props.saveUser(result.data)
-      // console.log(saveUser)
+      this.loginSuccess()
+    } else {
+      this.loginFailed()
     }
   }
 

@@ -23,15 +23,17 @@ class App extends Component {
       <Router>
         <Switch>
           {/* Admin和Home是同一级 */}
-          <Route path="/admin/:id" exact component={Admin} />
-          <Home>
-            <Switch>
-              {router.map((route, index) => (
-                <Route key={index} {...route}></Route>
-              ))}
-            </Switch>
-          </Home>
-          <Redirect path="/admin" to="/admin/main" />
+          <Route path="/admin" component={Admin} />
+          <Route path="/">
+            <Home>
+              <Switch>
+                {router.map((route, index) => (
+                  <Route key={index} {...route}></Route>
+                ))}
+              </Switch>
+            </Home>
+          </Route>
+
           <Route component={NotMath}></Route>
         </Switch>
       </Router>

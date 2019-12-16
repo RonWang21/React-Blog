@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Table, Button, MessageBox, Message, Icon, Layout } from 'element-react'
 import { connect } from 'react-redux'
-import { asyncHandleTag } from '../../../redux/asyncActions'
+import { asyncCategory } from '../../../redux/asyncActions'
 import './adminTags.less'
 
 // 结构异步action对象
-const { asyncGetTags } = asyncHandleTag
+const { asyncGetCategories, asyncDelCategory } = asyncCategory
 
 @connect(state => ({ categories: state.categories }), {
-  asyncGetTags
+  asyncGetCategories
 })
 class AdminTags extends Component {
   constructor(props) {
@@ -87,7 +87,10 @@ class AdminTags extends Component {
     }
   }
   async componentDidMount() {
-    this.props.getCategories()
+    // 获取分类
+    if (!this.props.categories.length) {
+      this.props.asyncGetCategories()
+    }
   }
   delTag = val => {
     MessageBox.confirm(`此操作将永久删除“${val.name}”分类, 是否继续?`, '提示', {
@@ -97,7 +100,7 @@ class AdminTags extends Component {
         console.log('====================================')
         console.log('del:', val._id)
         console.log('====================================')
-        this.props.delCategory(val._id)
+        this.props.asyncDelCategory(val._id)
         // if (result.status === 0) {
         //   this.setState({
         //     data: result.data.tags
