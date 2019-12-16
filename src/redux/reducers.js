@@ -57,8 +57,17 @@ function tags(preveState = [], action) {
       return preveState
   }
 }
-
+// 操作article数据
+function articles(preveState = [], action) {
+  switch (action.type) {
+    case GET_ARTICLES:
+      return action.data
+    default:
+      return preveState
+  }
+}
 export default combineReducers({
   tags,
-  user
+  user,
+  articles
 })

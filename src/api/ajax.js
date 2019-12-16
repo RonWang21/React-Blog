@@ -21,7 +21,7 @@ axios.interceptors.request.use(config => {
 //响应拦截器
 axios.interceptors.response.use(
   response => {
-    console.log(response)
+    console.log('xxx', response)
     return response.data
   },
   erros => {

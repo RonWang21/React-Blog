@@ -20,7 +20,7 @@ const asyncHandleTag = {
   }
 }
 // 异步操作tag
-const asyncHandleUser= {
+const asyncHandleUser = {
   asyncGetUsers: () => {
     return async dispatch => {
       const result = await reqGetTags()

@@ -2,7 +2,7 @@ import ajax from './ajax'
 const BASE_URL = '/api/v1.0'
 
 // 用户登录
-export const reqUserLogin = ({ username, password }) => 
+export const reqUserLogin = ({ username, password }) =>
   ajax({
     method: 'POST',
     url: `${BASE_URL}/login`,
@@ -12,9 +12,8 @@ export const reqUserLogin = ({ username, password }) =>
     }
   })
 
-
 // 用户注册
-export const reqUserRegister = ({ username, email, password, rePassword }) => 
+export const reqUserRegister = ({ username, email, password, rePassword }) =>
   ajax({
     method: 'POST',
     url: `${BASE_URL}/register`,
@@ -69,4 +68,11 @@ export const reqUpdateTag = ({ tagname, newname }) =>
       tagname,
       newname
     }
+  })
+
+// 获取标签
+export const getArticles = () =>
+  ajax({
+    method: 'GET',
+    url: `${BASE_URL}/getArticle`
   })
