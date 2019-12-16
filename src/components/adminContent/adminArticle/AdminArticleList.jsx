@@ -3,20 +3,20 @@ import { Table, Tag, Button, Switch } from 'element-react'
 // 引入connect
 import { connect } from 'react-redux'
 // 引入action-creatar
-import { asyncEssay } from '../../../redux/asyncActions'
+import { asyncArticle } from '../../../redux/asyncActions'
 //route
 
 //引入时间修改函数
 import setTime from '../../../utils/setTime'
 // import {} from 'react-router-dom'
-const { asyncGetEssay, asyncDelEssay, asyncUpdateEssay } = asyncEssay
+const { asyncGetArticle, asyncDelArticle, asyncUpdateArticle } = asyncArticle
 const formateDate = setTime.formateDate
-@connect(state => ({ essay: state.essay }), {
-  asyncGetEssay,
-  asyncDelEssay,
-  asyncUpdateEssay
+@connect(state => ({ article: state.article }), {
+  asyncGetArticle,
+  asyncDelArticle,
+  asyncUpdateArticle
 })
-class AdminEssayList extends Component {
+class AdminArticleList extends Component {
   constructor(props) {
     super(props)
 
@@ -96,7 +96,7 @@ class AdminEssayList extends Component {
                 <Button
                   type="danger"
                   size="small"
-                  onClick={() => this.delEssay(val)}
+                  onClick={() => this.delArticle(val)}
                 >
                   删除
                 </Button>
@@ -113,27 +113,27 @@ class AdminEssayList extends Component {
     this.setState({
       isPublish
     })
-    this.props.asyncUpdateEssay({ id: a._id, isPublish })
+    this.props.asyncUpdateArticle({ id: a._id, isPublish })
   }
   componentDidMount() {
     //请求userList
-    this.props.asyncGetEssay()
+    this.props.asyncGetArticle()
   }
   //查看
-  delEssay = v => {
+  delArticle = v => {
     console.log('删除', v)
-    this.props.asyncDelEssay(v._id)
+    this.props.asyncDelArticle(v._id)
   }
   // 编辑
   compile = v => {
     console.log('编辑', this.props)
-    this.props.history.push('/admin/essay', { essay: v })
+    this.props.history.push('/admin/article', { article: v })
   }
 
   render() {
-    const { essay } = this.props
+    const { article } = this.props
 
-    essay.forEach(item => {
+    article.forEach(item => {
       item.time = formateDate(item.createTime)
     })
     return (
@@ -150,7 +150,7 @@ class AdminEssayList extends Component {
         <Table
           style={{ width: '100%' }}
           columns={this.state.columns}
-          data={this.props.essay}
+          data={this.props.article}
           border={true}
         />
       </div>
@@ -158,4 +158,4 @@ class AdminEssayList extends Component {
   }
 }
 
-export default AdminEssayList
+export default AdminArticleList

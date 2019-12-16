@@ -16,7 +16,7 @@ class HomeMain extends Component {
             {/* 标签导航栏 */}
             <div className="main-content">
               {/* 文章列表和文章详情 */}
-              {this.props.children}
+              <div className="main-articlebox">{this.props.children}</div>
               {/* 文章列表和文字详情 */}
               {/* main--sidebar--start */}
               <Sidebar />

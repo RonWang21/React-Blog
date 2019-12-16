@@ -51,15 +51,15 @@ class AdminMain extends Component {
                 <Menu.Item index="/admin/tags">分类管理</Menu.Item>
               </Link>
               <Menu.SubMenu
-                index="/admin/essay"
+                index="/admin/article"
                 title="我的文章"
                 defaultActive={pathname}
               >
-                <Link to="/admin/essaylist">
-                  <Menu.Item index="/admin/essaylist">文章列表</Menu.Item>
+                <Link to="/admin/articlelist">
+                  <Menu.Item index="/admin/articlelist">文章列表</Menu.Item>
                 </Link>
-                <Link to="/admin/essay">
-                  <Menu.Item index="/admin/essay">添加文章</Menu.Item>
+                <Link to="/admin/article">
+                  <Menu.Item index="/admin/article">添加文章</Menu.Item>
                 </Link>
               </Menu.SubMenu>
               <Layout.Col span="6" offset="10">

@@ -12,16 +12,16 @@ import {
 } from 'element-react'
 // redux
 import { connect } from 'react-redux'
-import { asyncEssay, asyncCategory } from '../../../redux/asyncActions'
-import './adminEssay.less'
-const { asyncAddEssay, asyncUpdateEssay } = asyncEssay
+import { asyncArticle, asyncCategory } from '../../../redux/asyncActions'
+import './adminArticle.less'
+const { asyncAddArticle, asyncUpdateArticle } = asyncArticle
 const { asyncGetCategories } = asyncCategory
 @connect(state => ({ categories: state.categories }), {
-  asyncAddEssay,
+  asyncAddArticle,
   asyncGetCategories,
-  asyncUpdateEssay
+  asyncUpdateArticle
 })
-class AdminEssay extends Component {
+class AdminArticle extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -36,7 +36,7 @@ class AdminEssay extends Component {
     }
     if (this.props.location.state) {
       this.setState({
-        isPublish: this.props.location.state.essay.isPublish
+        isPublish: this.props.location.state.article.isPublish
       })
     }
   }
@@ -58,31 +58,31 @@ class AdminEssay extends Component {
     })
   }
   // 提交文章
-  submitEssay = () => {
+  submitArticle = () => {
     let { value, title, tag, isPublish } = this.state
     if (this.props.location.state) {
-      this.props.asyncUpdateEssay({
+      this.props.asyncUpdateArticle({
         title,
         content: value,
-        category: (tag = tag ? tag : this.props.location.state.essay.category),
-        id: this.props.location.state.essay._id,
+        category: (tag = tag ? tag : this.props.location.state.article.category),
+        id: this.props.location.state.article._id,
         isPublish: isPublish
       })
-      this.props.history.push('/admin/essaylist')
+      this.props.history.push('/admin/articlelist')
     } else {
       if (value && title && tag) {
         MessageBox.confirm('将要提交文章, 是否继续?', '提示', {
           type: 'warning'
         })
           .then(() => {
-            this.props.asyncAddEssay({
+            this.props.asyncAddArticle({
               title,
               content: value,
               author: JSON.parse(window.localStorage.user).username,
               category: tag,
               isPublish
             })
-            this.props.history.push('/admin/essaylist')
+            this.props.history.push('/admin/articlelist')
             //添加请求
             Message({
               type: 'success',
@@ -107,26 +107,26 @@ class AdminEssay extends Component {
   }
   render() {
     const { categories, location } = this.props
-    let essay = null
+    let article = null
     if (location.state) {
-      essay = location.state.essay
+      article = location.state.article
     }
     return (
       <div>
         {/* value是插入文本的内容 */}
-        <div className="essayIpt">
+        <div className="articleIpt">
           <Layout.Row gutter="20">
             <Layout.Col span="8">
               <Input
                 // placeholder="请输入标题"
-                placeholder={essay ? essay.title : '请输入标题'}
+                placeholder={article ? article.title : '请输入标题'}
                 onChange={title => this.setTitle(title)}
               />
             </Layout.Col>
             <Layout.Col span="8">
               <Select
                 value={categories}
-                // placeholder={essay ? essay.categories : '请选择分类'}
+                // placeholder={article ? article.categories : '请选择分类'}
                 placeholder="请选择分类"
                 onChange={tag => this.setTag(tag)}
               >
@@ -153,17 +153,17 @@ class AdminEssay extends Component {
               </span>
             </Layout.Col>
             <Layout.Col span="4">
-              <Button onClick={this.submitEssay}>提交</Button>
+              <Button onClick={this.submitArticle}>提交</Button>
             </Layout.Col>
           </Layout.Row>
         </div>
         <NewText
           onChange={this.textContent}
-          value={essay ? essay.content : ''}
+          value={article ? article.content : ''}
         />
       </div>
     )
   }
 }
 
-export default AdminEssay
+export default AdminArticle

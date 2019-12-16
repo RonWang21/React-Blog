@@ -78,7 +78,7 @@ function categories(preveState = [], action) {
       return preveState
   }
 }
-function essay(preveState = [], action) {
+function article(preveState = [], action) {
   switch (action.type) {
     case GET_ARTICLES:
       preveState = action.data.data.articles
@@ -99,5 +99,5 @@ export default combineReducers({
   tags,
   categories,
   user,
-  essay
+  article
 })
