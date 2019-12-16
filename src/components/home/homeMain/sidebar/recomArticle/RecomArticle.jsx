@@ -20,7 +20,6 @@ class RecomArticle extends Component {
           </div>
           {/* 使用map遍历 */}
           {arr.map((item, index) => {
-            console.log(arr)
             return (
               <div className="recomContentWrapper" key={index}>
                 <div className="recomContent">

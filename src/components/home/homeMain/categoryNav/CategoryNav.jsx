@@ -21,17 +21,47 @@ const { asyncGetCategories } = asyncCategory
 class CategoryNav extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      currentTag: '前端'
+    }
   }
-  componentDidMount() {
-    console.log(this.props.asyncGetCategories)
+
+  // 获取分类
+  async componentDidMount() {
+    await this.props.asyncGetCategories()
   }
+
+  // tagNav切换事件
+  onTagChange = currentTag => {
+    this.setState({
+      currentTag
+    })
+  }
+
   render() {
-    console.log(this.props.categories)
+    const categories = this.props.categories
     return (
       // 分类导航栏
       <div className="home-category-nav">
         <ul className="category-nav-list">
-          <li className="category-nav-item">java</li>
+          {categories.map((item, index) => {
+            const itemStyle =
+              item.name === this.state.currentTag
+                ? 'category-nav-item active'
+                : 'category-nav-item'
+            return (
+              <li
+                key={index}
+                onClick={this.onTagChange.bind(this, item.name)}
+                className={itemStyle}
+              >
+                <a href key={index}>
+                  {item.name}
+                </a>
+              </li>
+            )
+          })}
         </ul>
       </div>
     )
