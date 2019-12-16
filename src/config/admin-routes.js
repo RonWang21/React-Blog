@@ -1,5 +1,3 @@
-//Admin
-import Admin from '../containers/adminContainers/admin/Admin'
 //admin首页
 import AdminMain from '../components/adminContent/adminMain/AdminMain'
 //admin用户管理
