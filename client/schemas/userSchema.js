@@ -9,5 +9,7 @@ module.exports = new mongoose.Schema({
   password: String,
   email: String,
   createTime: String, // 创建时间
-  usertype: String // 用户类型
+  usertype: String, // 用户类型
+  loginTime: String, // 登录时间
+  signature: String // 用户签名
 })
