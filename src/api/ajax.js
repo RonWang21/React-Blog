@@ -21,11 +21,14 @@ axios.interceptors.request.use(config => {
 //响应拦截器
 axios.interceptors.response.use(
   response => {
-    console.log(response)
+    console.log('xxx', response)
     return response.data
   },
-  erros => {
-    Message('错误' + erros)
+  error => {
+    Message({
+      message: `错误： ${error}`,
+      type: error
+    })
     // 中断错误消息
     return new Promise(() => {})
   }
