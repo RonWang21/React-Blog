@@ -211,7 +211,7 @@ class AdminTags extends Component {
         Message({
           type: 'info',
           message: '取消添加',
-          duration : 0
+          duration: 0
         })
       })
   }
