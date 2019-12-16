@@ -10441,8 +10441,8 @@ react-slick@~0.25.2:
 
 react-sticky@^6.0.3:
   version "6.0.3"
-  resolved "https://registry.npm.taobao.org/react-sticky/download/react-sticky-6.0.3.tgz#7a18b643e1863da113d7f7036118d2a75d9ecde4"
-  integrity sha1-ehi2Q+GGPaET1/cDYRjSp12ezeQ=
+  resolved "https://registry.yarnpkg.com/react-sticky/-/react-sticky-6.0.3.tgz#7a18b643e1863da113d7f7036118d2a75d9ecde4"
+  integrity sha512-LNH4UJlRatOqo29/VHxDZOf6fwbgfgcHO4mkEFvrie5FuaZCSTGtug5R8NGqJ0kSnX8gHw8qZN37FcvnFBJpTQ==
   dependencies:
     prop-types "^15.5.8"
     raf "^3.3.0"
