@@ -210,7 +210,8 @@ class AdminTags extends Component {
       .catch(() => {
         Message({
           type: 'info',
-          message: '取消添加'
+          message: '取消添加',
+          duration: 0
         })
       })
   }

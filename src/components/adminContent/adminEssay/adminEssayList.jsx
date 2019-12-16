@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Tag, Button, Switch } from 'element-react'
+import { Table, Tag, Button, Switch, MessageBox, Message } from 'element-react'
 // 引入connect
 import { connect } from 'react-redux'
 // 引入action-creatar
@@ -122,7 +122,22 @@ class AdminEssayList extends Component {
   //查看
   delEssay = v => {
     console.log('删除', v)
-    this.props.asyncDelEssay(v._id)
+    MessageBox.confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+      type: 'warning'
+    })
+      .then(() => {
+        this.props.asyncDelEssay(v._id)
+        Message({
+          type: 'success',
+          message: '删除成功!'
+        })
+      })
+      .catch(() => {
+        Message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
   }
   // 编辑
   compile = v => {

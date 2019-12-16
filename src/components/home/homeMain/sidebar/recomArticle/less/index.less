@@ -14,8 +14,8 @@
   .recomContentWrapper {
     padding: 0 16px;
     border-bottom: 1px solid #e8e8e8;
-    background-color: #e8e8e8;
-    border: 1px solid #6666;
+    // background-color: #e8e8e8;
+    // border: 1px solid #6666;
 
     .recomContent {
       display: flex;
@@ -101,8 +101,8 @@
       justify-content: space-around;
 
       img {
-        width: 53px;
-        height: 53px;
+        width: 50px;
+        height: 50px;
       }
     }
 
@@ -128,7 +128,12 @@
         margin-top: .5rem;
         font-size: 10px;
         color: #909090;
-        text-decoration:none;
+        text-decoration:none;        
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-decoration: none;
         &:hover {
           color: #007fff
         }
@@ -136,9 +141,9 @@
     }
   }
   .recomResource{
-    padding: 1px 16px;
-    border: 1px solid #6666;
-    background-color: #e8e8e8;
+    padding: 10px 16px;
+    // border: 1px solid #6666;
+    border-bottom: 1px solid #e8e8e8;
     display: flex;
     align-items: center;
     .recomBook{
@@ -148,8 +153,8 @@
       justify-content: center;
       justify-content: space-around;
       img{
-        width: 53px;
-        height: 53px;
+        width: 38px;
+        height: 38px;
       }
     }
     .recomIcon{
@@ -160,12 +165,16 @@
       justify-content: space-around;
     }
   }
-  .recomWx{
+  .recomAboutUs{
+    padding: 10px 0;
     text-align: center;
   }
   img{
-    width: 43px;
-    height: 43px;
-    margin: 0 6px;
+    width: 38px;
+    height: 38px;
+    margin: 0 5px;
   }
+}
+section{
+  margin: 10px;
 }

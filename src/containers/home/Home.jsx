@@ -5,7 +5,7 @@ import HomeMain from '../../components/home/homeMain/HomeMain'
 import Header from '../../components/home/header/Header'
 import { Layout } from 'element-react'
 
-import { BrowserRouter as Router } from 'react-router-dom'
+// import { BrowserRouter as Router } from 'react-router-dom'
 class Home extends Component {
   render() {
     return (

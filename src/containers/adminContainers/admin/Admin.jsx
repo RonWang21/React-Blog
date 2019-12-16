@@ -19,18 +19,14 @@ class Admin extends Component {
   render() {
     return (
       <div>
-        {/* <Router> */}
         <Header></Header>
         <div className="adminContent">
-          {/* <Redirect path="/admin" to="/admin/main" /> */}
           <Switch>
             {routes.map((route, index) => (
               <Route key={index} {...route}></Route>
             ))}
-            <Route component={NotMath}></Route>
           </Switch>
         </div>
-        {/* </Router> */}
       </div>
     )
   }
