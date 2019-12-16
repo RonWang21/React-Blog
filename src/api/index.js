@@ -2,7 +2,7 @@ import ajax from './ajax'
 const BASE_URL = '/api/v1.0'
 
 // 用户登录
-export const reqUserLogin = ({ username, password }) => {
+export const reqUserLogin = ({ username, password }) =>
   ajax({
     method: 'POST',
     url: `${BASE_URL}/login`,
@@ -11,10 +11,9 @@ export const reqUserLogin = ({ username, password }) => {
       password
     }
   })
-}
 
 // 用户注册
-export const reqUserRegister = ({ username, email, password, rePassword }) => {
+export const reqUserRegister = ({ username, email, password, rePassword }) =>
   ajax({
     method: 'POST',
     url: `${BASE_URL}/register`,
@@ -25,7 +24,6 @@ export const reqUserRegister = ({ username, email, password, rePassword }) => {
       rePassword
     }
   })
-}
 
 // 获取所有用户
 export const reqGetUsers = () =>
@@ -87,7 +85,7 @@ export const reqAddCategory = ({ categoryname, tags = [] }) =>
       tags
     }
   })
-// 添加分类
+// 更新分类
 export const reqUpdateCategory = ({ categoryname, id }) =>
   ajax({
     method: 'post',
@@ -97,7 +95,7 @@ export const reqUpdateCategory = ({ categoryname, id }) =>
       id
     }
   })
-// 添加分类
+// 删除分类
 export const reqDelCategory = id =>
   ajax({
     method: 'post',
@@ -105,4 +103,44 @@ export const reqDelCategory = id =>
     data: {
       id
     }
+  })
+// 获取文章
+export const reqGetEssay = () =>
+  ajax({
+    method: 'get',
+    url: BASE_URL + '/getArticles'
+  })
+// 获取文章
+export const reqAddEssay = ({
+  title,
+  content,
+  author,
+  category,
+  isPublish = false
+}) =>
+  ajax({
+    method: 'post',
+    url: BASE_URL + '/addArticle',
+    data: { title, content, author, category, isPublish }
+  })
+// 获取文章
+export const reqDelEssay = id =>
+  ajax({
+    method: 'post',
+    url: BASE_URL + '/delArticle',
+    data: { id }
+  })
+// 获取文章
+export const reqUpdateEssay = ({
+  category,
+  id,
+  title,
+  content,
+  author,
+  isPublish
+}) =>
+  ajax({
+    method: 'post',
+    url: BASE_URL + '/updateAricle',
+    data: { category, id, title, content, author, isPublish }
   })

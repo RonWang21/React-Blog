@@ -15,7 +15,10 @@ import {
   ADD_CATEGORY,
   UPDATE_CATEGORY,
   REMOVE_CATREGORY,
-  GET_ARTICLES
+  GET_ARTICLES,
+  ADD_ARTICLES,
+  UPDATE_ARTICLES,
+  DEL_ARTICLES
 } from './actionTypes'
 import { DEL_CATEGORY } from './actionTypes'
 
@@ -65,4 +68,23 @@ const handCategories = {
     data
   })
 }
-export { handleTag, handleUser, handleArticle, handCategories }
+// Essay
+const handEssay = {
+  getEssay: data => ({
+    type: GET_ARTICLES,
+    data
+  }),
+  addEssay: data => ({
+    type: ADD_ARTICLES,
+    data
+  }),
+  updateEssay: data => ({
+    type: UPDATE_ARTICLES,
+    data
+  }),
+  delEssay: data => ({
+    type: DEL_ARTICLES,
+    data
+  })
+}
+export { handleTag, handleUser, handleArticle, handCategories, handEssay }

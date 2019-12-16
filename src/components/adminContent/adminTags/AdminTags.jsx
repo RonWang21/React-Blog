@@ -87,7 +87,10 @@ class AdminTags extends Component {
     }
   }
   async componentDidMount() {
-    this.props.asyncGetCategories()
+    // 获取分类
+    if (!this.props.categories.length) {
+      this.props.asyncGetCategories()
+    }
   }
   delTag = val => {
     MessageBox.confirm(`此操作将永久删除“${val.name}”分类, 是否继续?`, '提示', {

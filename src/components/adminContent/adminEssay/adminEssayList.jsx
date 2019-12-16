@@ -3,9 +3,15 @@ import { Table, Tag, Button } from 'element-react'
 // 引入connect
 import { connect } from 'react-redux'
 // 引入action-creatar
-import { asyncCategory } from '../../../redux/asyncActions'
-// const { asyncCategory } = asyncCategory
-@connect(null, { asyncCategory })
+import { asyncEssay } from '../../../redux/asyncActions'
+//route
+
+//引入时间修改函数
+import setTime from '../../../utils/setTime'
+// import {} from 'react-router-dom'
+const { asyncGetEssay, asyncDelEssay } = asyncEssay
+const formateDate = setTime.formateDate
+@connect(state => ({ essay: state.essay }), { asyncGetEssay, asyncDelEssay })
 class AdminEssayList extends Component {
   constructor(props) {
     super(props)
@@ -24,12 +30,17 @@ class AdminEssayList extends Component {
         },
         {
           label: '作者',
-          prop: 'autho'
+          prop: 'author',
+          width: 180
+        },
+        {
+          label: '分类',
+          prop: 'category',
+          width: 180
         },
         {
           label: '标签',
           prop: 'tag',
-          width: 100,
           filters: [
             { text: '家', value: '家' },
             { text: '公司', value: '公司' }
@@ -48,13 +59,23 @@ class AdminEssayList extends Component {
         {
           label: '操作',
           prop: 'address',
-          render: function() {
+          width: 180,
+          render: val => {
             return (
               <span>
-                <Button plain={true} type="info" size="small">
+                <Button
+                  plain={true}
+                  type="info"
+                  size="small"
+                  onClick={() => this.compile(val)}
+                >
                   编辑
                 </Button>
-                <Button type="danger" size="small">
+                <Button
+                  type="danger"
+                  size="small"
+                  onClick={() => this.delEssay(val)}
+                >
                   删除
                 </Button>
               </span>
@@ -67,17 +88,27 @@ class AdminEssayList extends Component {
   }
   componentDidMount() {
     //请求userList
-    this.props.asyncCategory()
+    this.props.asyncGetEssay()
   }
   //查看
-  examine = v => {
-    console.log('查看', v, this)
+  delEssay = v => {
+    console.log('删除', v)
+    this.props.asyncDelEssay(v._id)
   }
   // 编辑
   compile = v => {
-    console.log('编辑', v)
+    console.log('编辑', this.props)
+    this.props.history.push('/admin/essay', { essay: v })
   }
+
   render() {
+    const { essay } = this.props
+    essay.forEach(item => {
+      item.time = formateDate(item.createTime)
+    })
+    console.log('====================================')
+    console.log(essay)
+    console.log('====================================')
     return (
       <div className="tagBox">
         <h2
@@ -92,7 +123,7 @@ class AdminEssayList extends Component {
         <Table
           style={{ width: '100%' }}
           columns={this.state.columns}
-          data={this.state.data}
+          data={this.props.essay}
           border={true}
         />
       </div>

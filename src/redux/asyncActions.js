@@ -3,14 +3,24 @@
  */
 
 // 引入同步action
-import { handleTag, handleUser, handleArticle, handCategories } from './actions'
+import {
+  handleTag,
+  handleUser,
+  handleArticle,
+  handCategories,
+  handEssay
+} from './actions'
 
 // 引入接口请求方法
 import {
   reqGetTags,
   reqUserLogin,
   reqGetCategories,
-  reqAddCategory
+  reqAddCategory,
+  reqGetEssay,
+  reqAddEssay,
+  reqDelEssay,
+  reqUpdateEssay
 } from '../api'
 
 // 异步操作tag
@@ -70,4 +80,54 @@ const asyncCategory = {
     }
   }
 }
-export { asyncHandleTag, asyncHandleUser, asyncCategory }
+// 异步的essay
+const asyncEssay = {
+  asyncGetEssay: () => {
+    return async dispatch => {
+      const result = await reqGetEssay()
+      if (result) {
+        dispatch(handEssay.getEssay(result))
+      }
+    }
+  },
+  asyncAddEssay: ({ title, content, category, isPulish, author }) => {
+    return async dispatch => {
+      const result = await reqAddEssay({
+        title,
+        content,
+        category,
+        isPulish,
+        author
+      })
+      if (result.status === 0) {
+        dispatch(handEssay.addEssay(result))
+      }
+    }
+  },
+  asyncUpdateEssay: ({ category, id, title, content, author, isPublish }) => {
+    return async dispatch => {
+      const result = await reqUpdateEssay({
+        category,
+        id,
+        title,
+        content,
+        author,
+        isPublish
+      })
+
+      if (result.status === 0) {
+        console.log(result)
+        dispatch(handEssay.updateEssay(result.data))
+      }
+    }
+  },
+  asyncDelEssay: id => {
+    return async dispatch => {
+      const result = await reqDelEssay(id)
+      if (result.status === 0) {
+        dispatch(handEssay.delEssay(result))
+      }
+    }
+  }
+}
+export { asyncHandleTag, asyncHandleUser, asyncCategory, asyncEssay }
