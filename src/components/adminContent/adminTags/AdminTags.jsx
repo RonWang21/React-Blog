@@ -5,10 +5,11 @@ import { asyncCategory } from '../../../redux/asyncActions'
 import './adminTags.less'
 
 // 结构异步action对象
-const { asyncGetCategories, asyncDelCategory } = asyncCategory
+const { asyncGetCategories, asyncDelCategory, asyncAddCategory } = asyncCategory
 
 @connect(state => ({ categories: state.categories }), {
-  asyncGetCategories
+  asyncGetCategories,
+  asyncAddCategory
 })
 class AdminTags extends Component {
   constructor(props) {
@@ -160,7 +161,7 @@ class AdminTags extends Component {
       .then(({ value }) => {
         //添加分类请求
         // const result = await reqAddTag({ tagname: value })
-        this.props.addCategory({ categoryname: value })
+        this.props.asyncAddCategory({ categoryname: value })
         // this.setState({
         //   data: result.data.tags
         // })
@@ -172,7 +173,8 @@ class AdminTags extends Component {
       .catch(() => {
         Message({
           type: 'info',
-          message: '取消添加'
+          message: '取消添加',
+          duration : 0
         })
       })
   }

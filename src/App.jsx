@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import router from './config/routes'
-import NotMath from './components/notMath/NotMath'
 import {
   BrowserRouter as Router,
   Route,
@@ -13,7 +12,7 @@ import 'element-theme-default'
 
 // 引入Home组件
 import Home from './containers/home/Home'
-import HomeMain from './components/home/homeMain/HomeMain'
+import ArticleList from './components/home/homeMain/articleList/ArticleList'
 //引入Admin 组件
 import Admin from './containers/adminContainers/admin/Admin'
 
@@ -24,17 +23,14 @@ class App extends Component {
         <Switch>
           {/* Admin和Home是同一级 */}
           <Route path="/admin" component={Admin} />
-          <Route path="/">
-            <Home>
-              <Switch>
-                {router.map((route, index) => (
-                  <Route key={index} {...route}></Route>
-                ))}
-              </Switch>
-            </Home>
-          </Route>
-
-          <Route component={NotMath}></Route>
+          <Home>
+            <Switch>
+              {router.map((route, index) => (
+                <Route key={index} {...route}></Route>
+              ))}
+              <Route key="_id" path="*" component={ArticleList} />
+            </Switch>
+          </Home>
         </Switch>
       </Router>
     )
