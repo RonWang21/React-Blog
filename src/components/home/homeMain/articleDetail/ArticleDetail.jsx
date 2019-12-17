@@ -5,7 +5,10 @@ import { Card, Button, Tag } from 'element-react'
 import { connect } from 'react-redux'
 import { asyncArticle } from '../../../../redux/asyncActions'
 import './articleDetail.less'
-import detailImg from './images/Vue.js 2.0 快速上手精华梳理 - 掘金.webp'
+// 格式化时间
+import formatTime from '../../../../utils/setTime'
+
+const { formateDate } = formatTime
 const { asyncGetArticle } = asyncArticle
 @connect(
   state => ({
@@ -17,13 +20,13 @@ class ArticleDetail extends Component {
   // 界面渲染之前请求获取文章
   componentDidMount() {
     //请求获取文章
-    this.props.asyncGetArticle()
+    // this.props.asyncGetArticle()
   }
   homrDetailBack = () => {
     this.props.history.goBack('/')
   }
   render() {
-    const item = this.props.location.state.item || ''
+    const { item } = this.props.location.state || ''
     return (
       <Card
         bodyStyle={{
@@ -56,7 +59,7 @@ class ArticleDetail extends Component {
             </div>
 
             <div className="bottom1 clearfix">
-              <time className="time">2016-10-21 16:19</time>
+              <time className="time">{formateDate(+item.createTime)}</time>
               <Button plain={true} type="success" size="small">
                 关注我
               </Button>

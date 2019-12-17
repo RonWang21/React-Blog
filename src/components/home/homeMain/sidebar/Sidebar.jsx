@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import RecomArticle from './recomArticle/RecomArticle'
 import Login from './login/Login'
-
+import { Sticky } from 'react-sticky'
 import './sidebar.less'
 
 class Sidebar extends Component {
@@ -11,7 +11,13 @@ class Sidebar extends Component {
       <aside>
         <div className="home-sidebar-contanier">
           <Login />
-          <RecomArticle />
+          <Sticky topOffset={150} relative={false} disableHardwareAcceleration>
+            {({ style = { top: '103px' } }) => (
+              <div style={{ ...style, top: '103px' }}>
+                <RecomArticle />
+              </div>
+            )}
+          </Sticky>
         </div>
       </aside>
     )

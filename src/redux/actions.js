@@ -27,6 +27,17 @@ const handleTag = {
   getTags: data => ({
     type: GET_TAGS,
     data
+  }),
+  addTag: data => ({
+    type: ADD_TAG,
+    data
+  }),
+  updateTag: data => ({
+    type: UPDATE_TAG,
+    data
+  }),
+  delTag: data => ({
+    type: REMOVE_TAG
   })
 }
 
@@ -38,6 +49,10 @@ const handleUser = {
   }),
   saveUser: data => ({
     type: SAVE_USER,
+    data
+  }),
+  removeUser : data => ({
+    type: REMOVE_USER,
     data
   })
 }

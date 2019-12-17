@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
+
 // 使用layout布局、Tabs标签页方法
 import { Card, Button } from 'element-react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { asyncArticle } from '../../../../redux/asyncActions'
+
 import './articleList.less'
+
+// 请求文章action
+import { asyncArticle } from '../../../../redux/asyncActions'
+
+// 格式化时间
+import formatTime from '../../../../utils/setTime'
+const { getTimeAgo } = formatTime
+
 const { asyncGetArticle } = asyncArticle
 @connect(
   state => ({
@@ -13,12 +21,11 @@ const { asyncGetArticle } = asyncArticle
   { asyncGetArticle }
 )
 class ArticleList extends Component {
-  componentDidMount() {
-    //请求userList
-    this.props.asyncGetArticle()
-  }
+  // 点击阅读全文
   homeDetail = item => {
-    this.props.history.push('/articledetail', { item })
+    this.props.history.push(`/welcome/${item.category}/${item._id}`, {
+      item
+    })
   }
   render() {
     const { articles } = this.props
@@ -48,7 +55,7 @@ class ArticleList extends Component {
                 </div>
 
                 <div className="bottom clearfix">
-                  <time className="time">2016-10-21 16:19</time>
+            <time className="time">更新时间 :{getTimeAgo(item.lastModifiedTime)}</time>
                   <div className="bottomRight">
                     <i className="el-icon-star-off"></i>
                     <i className="el-icon-share"></i>

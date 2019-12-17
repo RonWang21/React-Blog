@@ -26,7 +26,6 @@ router.get(`${API_BASEPATH}/getArticles`, async (req, res) => {
       searchCondition[condition] = req.query[condition]
     }
   }
-
   // 如果没有搜索条件就指向null
   if (JSON.stringify(searchCondition) === '{}') {
     searchCondition = null
@@ -35,7 +34,6 @@ router.get(`${API_BASEPATH}/getArticles`, async (req, res) => {
   let skip =
     req.query.pageNum - 1 < 0 ? 0 : (req.query.pageNum - 1) * req.query.pageSize
   let limit = +req.query.pageSize
-
   try {
     // 获取文章总数
     const total = await Articles.countDocuments()
@@ -47,7 +45,6 @@ router.get(`${API_BASEPATH}/getArticles`, async (req, res) => {
         limit
       }
     )
-
     res.json({
       status: 0,
       data: {

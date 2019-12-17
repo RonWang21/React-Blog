@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './homeMain.less'
 import Sidebar from './sidebar/Sidebar'
 import CategoryNav from './categoryNav/CategoryNav'
+import { StickyContainer } from 'react-sticky'
 class HomeMain extends Component {
   render() {
     return (
@@ -14,14 +15,18 @@ class HomeMain extends Component {
           <div className="main-tagnav">
             {/* 标签导航栏 */}
             {/* 标签导航栏 */}
-            <div className="main-content">
-              {/* 文章列表和文章详情 */}
-              <div className="main-articlebox">{this.props.children}</div>
-              {/* 文章列表和文字详情 */}
-              {/* main--sidebar--start */}
-              <Sidebar />
-              {/* main--sidebar--end */}
-            </div>
+            <StickyContainer>
+              <div className="main-content">
+                {/* 文章列表和文章详情 */}
+                <div className="main-articlebox">{this.props.children}</div>
+                {/* <StickyContainer> */}
+                {/* 文章列表和文字详情 */}
+                {/* main--sidebar--start */}
+                <Sidebar />
+                {/* main--sidebar--end */}
+                {/* </StickyContainer> */}
+              </div>
+            </StickyContainer>
           </div>
         </main>
       </div>

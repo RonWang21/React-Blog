@@ -40,33 +40,36 @@ export const reqGetTags = () =>
   })
 
 // 添加标签
-export const reqAddTag = ({ tagname }) =>
+export const reqAddTag = ({ id, tagname }) =>
   ajax({
     method: 'POST',
     url: `${BASE_URL}/addTag`,
     data: {
-      tagname
+      tagname,
+      id
     }
   })
 
 // 删除标签
-export const reqDelTag = ({ tagname }) =>
+export const reqDelTag = ({ targetTag, id }) =>
   ajax({
     method: 'POST',
     url: `${BASE_URL}/delTag`,
     data: {
-      tagname
+      targetTag,
+      id
     }
   })
 
 // 更新标签
-export const reqUpdateTag = ({ tagname, newname }) =>
+export const reqUpdateTag = ({ targetTag, tagName, id }) =>
   ajax({
     method: 'POST',
-    url: `${BASE_URL}/updateTag`,
+    url: `${BASE_URL}/updateTags`,
     data: {
-      tagname,
-      newname
+      targetTag,
+      tagName,
+      id
     }
   })
 // 获取分类
@@ -76,7 +79,7 @@ export const reqGetCategories = () =>
     url: `${BASE_URL}/getCategories`
   })
 // 添加分类
-export const reqAddCategory = ({ categoryname, tags = [1, 2, 3, 4, 5] }) =>
+export const reqAddCategory = ({ categoryname, tags }) =>
   ajax({
     method: 'post',
     url: `${BASE_URL}/addCategory`,
@@ -105,24 +108,41 @@ export const reqDelCategory = id =>
     }
   })
 // 获取文章
-export const reqGetArticle = () =>
-  ajax({
+export const reqGetArticle = conditions => {
+  // _id,
+  // title,
+  // author,
+  // tag,
+  // category,
+  // isPublish,
+  // isDeleted,
+  // pageNum,
+  // pageSize
+  // 默认值空对象
+  let data = {}
+  for (const condition in conditions) {
+    // 把传入的搜索条件放入data
+    data[condition] = conditions[condition]
+  }
+  return ajax({
     method: 'get',
-    url: BASE_URL + '/getArticles'
+    url: BASE_URL + '/getArticles',
+    params:data
   })
+}
+
 // 获取文章
 export const reqAddArticle = ({
   title,
   content,
   author,
   category,
-  isPublish = false,
-  tag
+  isPublish = true
 }) =>
   ajax({
     method: 'post',
     url: BASE_URL + '/addArticle',
-    data: { title, content, author, category, isPublish, tag }
+    data: { title, content, author, category, isPublish }
   })
 // 获取文章
 export const reqDelArticle = id =>
@@ -134,7 +154,6 @@ export const reqDelArticle = id =>
 // 获取文章
 export const reqUpdateArticle = ({
   category,
-  id,
   title,
   content,
   author,
@@ -143,5 +162,5 @@ export const reqUpdateArticle = ({
   ajax({
     method: 'post',
     url: BASE_URL + '/updateAricle',
-    data: { category, id, title, content, author, isPublish }
+    data: { category, title, content, author, isPublish }
   })
