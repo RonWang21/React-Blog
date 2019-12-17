@@ -40,33 +40,36 @@ export const reqGetTags = () =>
   })
 
 // 添加标签
-export const reqAddTag = ({ tagname }) =>
+export const reqAddTag = ({ id, tagname }) =>
   ajax({
     method: 'POST',
     url: `${BASE_URL}/addTag`,
     data: {
-      tagname
+      tagname,
+      id
     }
   })
 
 // 删除标签
-export const reqDelTag = ({ tagname }) =>
+export const reqDelTag = ({ targetTag, id }) =>
   ajax({
     method: 'POST',
     url: `${BASE_URL}/delTag`,
     data: {
-      tagname
+      targetTag,
+      id
     }
   })
 
 // 更新标签
-export const reqUpdateTag = ({ tagname, newname }) =>
+export const reqUpdateTag = ({ targetTag, tagName, id }) =>
   ajax({
     method: 'POST',
-    url: `${BASE_URL}/updateTag`,
+    url: `${BASE_URL}/updateTags`,
     data: {
-      tagname,
-      newname
+      targetTag,
+      tagName,
+      id
     }
   })
 // 获取分类
@@ -76,7 +79,7 @@ export const reqGetCategories = () =>
     url: `${BASE_URL}/getCategories`
   })
 // 添加分类
-export const reqAddCategory = ({ categoryname, tags = [1, 2, 3, 4, 5] }) =>
+export const reqAddCategory = ({ categoryname, tags }) =>
   ajax({
     method: 'post',
     url: `${BASE_URL}/addCategory`,
@@ -134,7 +137,7 @@ export const reqAddArticle = ({
   content,
   author,
   category,
-  isPublish = false,
+  isPublish,
   tag
 }) =>
   ajax({

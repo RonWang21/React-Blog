@@ -67,8 +67,6 @@ export default {
   formateDate(time) {
     if (!time) return ''
     let date = new Date(time - 0)
-    console.log(date)
-
     return (
       date.getFullYear() +
       '-' +

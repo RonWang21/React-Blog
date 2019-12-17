@@ -58,10 +58,14 @@ function user(preveState = initState, action) {
 // 操作tags数据
 function tags(preveState = [], action) {
   switch (action.type) {
-    case ADD_TAG:
-      return preveState
     case GET_TAGS:
-      return preveState
+      return action.data
+    case ADD_TAG:
+      return action.data
+    case UPDATE_TAG:
+      return action.data
+    case REMOVE_TAG:
+      return action.data
     default:
       return preveState
   }

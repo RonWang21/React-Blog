@@ -29,7 +29,7 @@ class CategoryNav extends Component {
 
     this.state = {
       // 匹配当前分类名来显示高亮
-      currentCategory: ''
+      currentCategory: this.props.location.pathname.split('/')[2]
     }
   }
 
@@ -39,7 +39,7 @@ class CategoryNav extends Component {
     await this.props.asyncGetCategories()
     // 默认将路径对应的分类设为高亮
     this.setState({
-      currentCategory: this.props.location.pathname.slice(9) || '推荐'
+      currentCategory: this.props.location.pathname.split('/')[2] || '推荐'
     })
     // 从当前state中拿到当前分类
     const category = this.state.currentCategory
@@ -63,13 +63,11 @@ class CategoryNav extends Component {
     this.setState({
       currentCategory
     })
+    // 获取相应分类文章
     const category = currentCategory
     this.getArticles(category)
     // 跳转
-    setTimeout(() => {
-      this.props.history.push(`/welcome/${currentCategory}`)
-      // 从当前state中拿到当前分类
-    }, 1000)
+    this.props.history.push(`/welcome/${currentCategory}`)
   }
 
   render() {

@@ -5,12 +5,12 @@ import ArticleDetail from '../components/home/homeMain/articleDetail/ArticleDeta
 export default [
   {
     exact: true,
-    path: '/welcome/:condition',
+    path: '/welcome/:category',
     component: ArticleList
   },
   {
     exact: true,
-    path: '/article/:articleinfo',
+    path: '/welcome/:category/:articledetail',
     component: ArticleDetail
   }
 ]

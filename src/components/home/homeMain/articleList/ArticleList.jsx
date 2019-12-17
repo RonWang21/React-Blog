@@ -8,8 +8,12 @@ import './articleList.less'
 
 // 请求文章action
 import { asyncArticle } from '../../../../redux/asyncActions'
-const { asyncGetArticle } = asyncArticle
 
+// 格式化时间
+import formatTime from '../../../../utils/setTime'
+const { getTimeAgo } = formatTime
+
+const { asyncGetArticle } = asyncArticle
 @connect(
   state => ({
     articles: state.article
@@ -19,9 +23,8 @@ const { asyncGetArticle } = asyncArticle
 class ArticleList extends Component {
   // 点击阅读全文
   homeDetail = item => {
-    console.log(item)
-    this.props.history.push(`/article/${item._id}`, {
-      article: item._id
+    this.props.history.push(`/welcome/${item.category}/${item._id}`, {
+      item
     })
   }
   render() {
@@ -51,7 +54,7 @@ class ArticleList extends Component {
                 </div>
 
                 <div className="bottom clearfix">
-                  <time className="time">2016-10-21 16:19</time>
+            <time className="time">更新时间 :{getTimeAgo(item.lastModifiedTime)}</time>
                   <div className="bottomRight">
                     <i className="el-icon-star-off"></i>
                     <i className="el-icon-share"></i>
