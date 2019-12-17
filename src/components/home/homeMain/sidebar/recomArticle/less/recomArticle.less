@@ -1,0 +1,191 @@
+.recomWrapper {
+  border-bottom: 1px solid #e8e8e8;
+  width        : 100%;
+
+  .recomContainer {
+    background-color: #fff;
+
+    .recomTile {
+      height       : 40px;
+      line-height  : 40px;
+      text-align   : center;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .recomContentWrapper {
+      padding      : 0 16px;
+      border-bottom: 1px solid #e8e8e8;
+
+      .recomContent {
+        display: flex;
+        width  : 100%;
+        height : 80px;
+
+        .recomContentImg {
+          flex           : 1;
+          display        : flex;
+          flex-direction : column;
+          align-items    : center;
+          justify-content: center;
+
+          #schoolIcon {
+            width        : 46px;
+            height       : 46px;
+            border-radius: 50%;
+          }
+        }
+
+        .recomContentDetail {
+          flex           : 2;
+          display        : flex;
+          flex-direction : column;
+          justify-content: center;
+          justify-content: space-around;
+
+          span {
+            text-align        : left;
+            color             : rgba(0, 0, 0, 0.65);
+            font-size         : 12px;
+            display           : -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow          : hidden;
+          }
+
+          a {
+            text-align        : left;
+            color             : rgba(0, 0, 0, 0.65);
+            font-size         : 12px;
+            display           : -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow          : hidden;
+            text-decoration   : none;
+
+            &:hover {
+              color: #007fff
+            }
+
+          }
+
+
+        }
+      }
+    }
+
+    .recomMore {
+      padding   : 20px;
+      text-align: center;
+
+    }
+
+    .recomBorder {
+      border       : 1px solid #6666;
+      border-radius: 20px 20px 20px 20px;
+    }
+  }
+
+  .download {
+    padding         : 10px 16px;
+    border          : 1px solid #6666;
+    background-color: #e8e8e8;
+    display         : flex;
+    align-items     : center;
+    margin-top      : 20px;
+    background-color: #fff;
+
+
+    .downloadQr {
+      flex           : 1 1;
+      display        : flex;
+      flex-direction : column;
+      justify-content: center;
+      justify-content: space-around;
+
+      img {
+        width : 50px;
+        height: 50px;
+      }
+    }
+
+    .downloadResource {
+      flex           : 2;
+      display        : flex;
+      flex-direction : column;
+      justify-content: center;
+      justify-content: space-around;
+
+      span {
+        text-align        : left;
+        color             : rgba(0, 0, 0, 0.65);
+        font-size         : 13px;
+        display           : -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow          : hidden;
+        font-weight       : 1000;
+      }
+
+      a {
+        margin-top        : .5rem;
+        font-size         : 10px;
+        color             : #909090;
+        text-decoration   : none;
+        display           : -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow          : hidden;
+        text-decoration   : none;
+
+        &:hover {
+          color: #007fff
+        }
+      }
+    }
+  }
+
+  .recomResource {
+    background-color: #fff;
+    padding         : 10px 16px;
+    border-bottom   : 1px solid #e8e8e8;
+    display         : flex;
+    align-items     : center;
+
+    .recomBook {
+      flex           : 1 1;
+      display        : flex;
+      flex-direction : column;
+      justify-content: center;
+      justify-content: space-around;
+
+      img {
+        width : 38px;
+        height: 38px;
+      }
+    }
+
+    .recomIcon {
+      flex           : 2;
+      display        : flex;
+      flex-direction : column;
+      justify-content: center;
+      justify-content: space-around;
+    }
+  }
+
+  .recomAboutUs {
+    background-color: #fff;
+    padding   : 10px 0;
+    text-align: center;
+  }
+
+  img {
+    width : 38px;
+    height: 38px;
+    margin: 0 5px;
+  }
+}
+
+section {
+  margin: 10px;
+}

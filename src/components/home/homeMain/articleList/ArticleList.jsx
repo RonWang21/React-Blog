@@ -3,19 +3,19 @@ import React, { Component } from 'react'
 import { Card, Button } from 'element-react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { asyncEssay } from '../../../../redux/asyncActions'
+import { asyncArticle } from '../../../../redux/asyncActions'
 import './articleList.less'
-const { asyncGetEssay } = asyncEssay
+const { asyncGetArticle } = asyncArticle
 @connect(
   state => ({
-    articles: state.essay
+    articles: state.article
   }),
-  { asyncGetEssay }
+  { asyncGetArticle }
 )
 class ArticleList extends Component {
   componentDidMount() {
     //请求userList
-    this.props.asyncGetEssay()
+    this.props.asyncGetArticle()
   }
   homeDetail = item => {
     this.props.history.push('/articledetail', { item })
@@ -41,7 +41,7 @@ class ArticleList extends Component {
               <img
                 src={`https://api.ixiaowai.cn/api/api.php?time=${Date.now()}`}
                 className="image"
-                style={{ width: '200px', height: '150px' }}
+                style={{ minWidth: '180px', height: '150px' }}
               />
               <div style={{ padding: 14 }}>
                 <div className="detailContent">

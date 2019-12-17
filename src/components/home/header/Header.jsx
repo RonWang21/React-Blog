@@ -1,38 +1,64 @@
 import React, { Component } from 'react'
-// 引入react-router-dom路由,解构Link方法
-// import { Link } from 'react-router-dom'
-// 引入elementUI组件库
-import { Menu } from 'element-react'
-// 引入菜单数据
-import menus from '../../../config/menus'
 
 // 引入头部样式
 import './hedaer.less'
 
 class Header extends Component {
-  // 创建一级菜单的
-  createMenus = () => {
-    return menus.map(menu => (
-      <Menu.Item key={menu.key} index={menu.key}>
-        {menu.title}
-      </Menu.Item>
-    ))
-  }
-  onSelect() {}
-  render() {
-    const menus = this.createMenus()
+  constructor(props) {
+    super(props)
 
+    this.state = {
+      itemList: [
+        {
+          itemName: '首页',
+          id: 'home'
+        },
+        {
+          itemName: '关于',
+          id: 'about'
+        }
+      ],
+      currentTab: 'home'
+    }
+  }
+
+  // tab切换
+  onTabChange(currentTab) {
+    this.setState({
+      currentTab
+    })
+  }
+
+  render() {
     return (
       <div className="main-header-container">
         <header className="main-header">
-          <Menu
-            defaultActive="1"
-            className="el-menu-demo"
-            mode="horizontal"
-            onSelect={this.onSelect.bind(this)}
-          >
-            {menus}
-          </Menu>
+          <div className="main-header-content">
+            <a href="/" className="log">
+              <img
+                src={require('../../../assets/images/logo.png')}
+                className="logo-img"
+                alt="log"
+              />
+            </a>
+            <ul className="main-nav-list">
+              {this.state.itemList.map((li, index) => {
+                const liClass =
+                  li.id === this.state.currentTab
+                    ? 'main-nav-item active'
+                    : 'main-nav-item'
+                return (
+                  <li
+                    key={index}
+                    className={liClass}
+                    onClick={this.onTabChange.bind(this, li.id)}
+                  >
+                    <a>{li.itemName}</a>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </header>
       </div>
     )

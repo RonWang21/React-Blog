@@ -5,11 +5,10 @@ import HomeMain from '../../components/home/homeMain/HomeMain'
 import Header from '../../components/home/header/Header'
 import { Layout } from 'element-react'
 
-import { BrowserRouter as Router } from 'react-router-dom'
+// import { BrowserRouter as Router } from 'react-router-dom'
 class Home extends Component {
   render() {
     return (
-      // <Router>路由器只需要一个就可以了
       <Layout.Row className="view-container" justify="center">
         {/* header--start */}
         <Header />
@@ -19,7 +18,6 @@ class Home extends Component {
         <HomeMain children={this.props.children} />
         {/* main--end */}
       </Layout.Row>
-      // </Router>
     )
   }
 }

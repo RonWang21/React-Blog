@@ -68,14 +68,17 @@ function categories(preveState = [], action) {
     case ADD_CATEGORY:
       return action.data.data.categories
     case UPDATE_CATEGORY:
-      return action.data.data.categories
+      preveState = preveState.filter(
+        item => item._id !== action.data.data.category._id
+      )
+      return [...preveState, action.data.data.category]
     case DEL_CATEGORY:
       return action.data.data.categories
     default:
       return preveState
   }
 }
-function essay(preveState = [], action) {
+function article(preveState = [], action) {
   switch (action.type) {
     case GET_ARTICLES:
       preveState = action.data.data.articles
@@ -96,5 +99,5 @@ export default combineReducers({
   tags,
   categories,
   user,
-  essay
+  article
 })
