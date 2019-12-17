@@ -12,7 +12,7 @@ const { asyncGetEssay } = asyncEssay
   }),
   { asyncGetEssay }
 )
-class HomeDetail extends Component {
+class ArticleDetail extends Component {
   componentDidMount() {
     //请求userList
 
@@ -20,7 +20,7 @@ class HomeDetail extends Component {
   }
   render() {
     console.log(this.props.location.state)
-    const { item } = this.props.location.state
+    const { item } = this.props.location.state || ''
     return (
       <div>
         <Card
@@ -59,4 +59,4 @@ class HomeDetail extends Component {
   }
 }
 
-export default HomeDetail
+export default ArticleDetail
