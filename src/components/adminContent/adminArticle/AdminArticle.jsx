@@ -68,16 +68,32 @@ class AdminArticle extends Component {
   submitArticle = () => {
     let { value, title, tag, isPublish } = this.state
     if (this.props.location.state) {
-      this.props.asyncUpdateArticle({
-        title,
-        content: value,
-        category: (tag = tag
-          ? tag
-          : this.props.location.state.article.category),
-        id: this.props.location.state.article._id,
-        isPublish: isPublish
+      MessageBox.confirm('将要修改文章, 是否继续?', '提示', {
+        type: 'warning'
       })
-      this.props.history.push('/admin/articlelist')
+        .then(() => {
+          this.props.asyncUpdateArticle({
+            title,
+            content: value,
+            category: (tag = tag
+              ? tag
+              : this.props.location.state.article.category),
+            id: this.props.location.state.article._id,
+            isPublish: isPublish
+          })
+          this.props.history.push('/admin/articlelist')
+          //添加请求
+          Message({
+            type: 'success',
+            message: '添加成功!'
+          })
+        })
+        .catch(() => {
+          Message({
+            type: 'info',
+            message: '已取消'
+          })
+        })
     } else {
       if (value && title && tag) {
         MessageBox.confirm('将要提交文章, 是否继续?', '提示', {
