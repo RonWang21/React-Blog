@@ -22,11 +22,14 @@ import {
   reqDelArticle,
   reqUpdateArticle,
   reqUpdateCategory,
-  reqDelCategory
+  reqDelCategory,
+  reqAddTag,
+  reqUpdateTag,
+  reqDelTag
 } from '../api'
 
 // 异步操作tag
-const asyncHandleTag = {
+const asyncHandleUser = {
   asyncGetTags: () => {
     return async dispatch => {
       const result = await reqGetTags()
@@ -37,12 +40,36 @@ const asyncHandleTag = {
   }
 }
 // 异步操作tag
-const asyncHandleUser = {
+const asyncHandleTag = {
   asyncGetUsers: () => {
     return async dispatch => {
       const result = await reqGetTags()
       if (result) {
-        dispatch(handleTag.getTags(result))
+        dispatch(handleTag.getTags(result.data))
+      }
+    }
+  },
+  asyncAddTag: tagname => {
+    return async dispatch => {
+      const result = await reqAddTag({ tagname })
+      if (result.status === 0) {
+        dispatch(handleTag.addTag(result.data))
+      }
+    }
+  },
+  asyncUpdateTag: ({ targetTag, tagName, id }) => {
+    return async dispatch => {
+      const result = await reqUpdateTag({ targetTag, tagName, id })
+      if (result.status === 0) {
+        dispatch(handleTag.updateTag(result.data))
+      }
+    }
+  },
+  asyncDelTag: ({ id, targetTag }) => {
+    return async dispatch => {
+      const result = await reqDelTag({ id, targetTag })
+      if (result.status === 0) {
+        dispatch(handleTag.delTag(result.datas))
       }
     }
   }
