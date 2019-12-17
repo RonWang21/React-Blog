@@ -126,7 +126,7 @@ class AdminArticleList extends Component {
       type: 'warning'
     })
       .then(() => {
-        this.props.asyncDelEssay(v._id)
+        this.props.asyncDelArticle(v._id)
         Message({
           type: 'success',
           message: '删除成功!'
