@@ -5,5 +5,5 @@ const mongoose = require('mongoose')
 
 module.exports = new mongoose.Schema({
   name: String, // 分类名
-  tags: Array // 标签数组
+  tags: Array, // 标签数组
 })

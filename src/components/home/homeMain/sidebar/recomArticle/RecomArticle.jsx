@@ -8,7 +8,8 @@ class RecomArticle extends Component {
     super(props)
 
     this.state = {
-      dialogVisible: false
+      dialogVisible: false,
+      topOffset: 0
     }
   }
 

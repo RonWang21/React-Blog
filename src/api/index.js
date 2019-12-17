@@ -108,11 +108,29 @@ export const reqDelCategory = id =>
     }
   })
 // 获取文章
-export const reqGetArticle = () =>
-  ajax({
+export const reqGetArticle = conditions => {
+  // _id,
+  // title,
+  // author,
+  // tag,
+  // category,
+  // isPublish,
+  // isDeleted,
+  // pageNum,
+  // pageSize
+  // 默认值空对象
+  let data = {}
+  for (const condition in conditions) {
+    // 把传入的搜索条件放入data
+    data[condition] = conditions[condition]
+  }
+  return ajax({
     method: 'get',
-    url: BASE_URL + '/getArticles'
+    url: BASE_URL + '/getArticles',
+    params:data
   })
+}
+
 // 获取文章
 export const reqAddArticle = ({
   title,
