@@ -1,20 +1,33 @@
 .detailTags {
+  display: flex;
   margin: 5px 0px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .detailSpan {
-  font-size  : 18px;
+  font-size: 18px;
   font-weight: 700;
 }
 
 .bottom1 {
-  width          : 100%;
-  margin         : 10px 0px;
-  padding-top    : 5px;
-  font-size      : 14px;
-  color          : #c9c9cc;
-  display        : flex;
-  align-items    : center;
+  width: 100%;
+  margin: 10px 0px;
+  padding-top: 5px;
+  font-size: 14px;
+  color: #c9c9cc;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  border-top     : dashed thin #ddd;
+  border-top: dashed thin #ddd;
+}
+
+.detailContent {
+  padding: 5px;
+
+  .detailContentp {
+    word-break: normal;
+    white-space: pre-warp;
+    word-wrap: break-word;
+  }
 }

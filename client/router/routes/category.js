@@ -60,7 +60,7 @@ router.post(`${API_BASEPATH}/addCategory`, async (req, res) => {
     } catch (error) {
       res.json({
         status: 1,
-        msg: error
+        msg: `error: ${error.message}`
       })
     }
   } else {

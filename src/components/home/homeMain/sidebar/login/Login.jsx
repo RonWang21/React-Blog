@@ -2,16 +2,22 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './less/Login.less'
 
-import { Tabs } from 'element-react'
+import { Tabs, MessageBox, Message } from 'element-react'
 
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import LoginSuccess from './loginSuccess/LoginSuccess'
+
+// 删除用户action
+import { handleUser } from '../../../../../redux/actions'
+const { removeUser } = handleUser
 @connect(
   state => ({
     user: state.user
   }),
-  null
+  {
+    removeUser
+  }
 )
 class Login extends Component {
   constructor(props) {
@@ -20,8 +26,7 @@ class Login extends Component {
     // 用来存储登录/注册表单数据的状态数据
     this.state = {
       // 当前tab切换状态
-      status: 'login',
-      userInfo: {}
+      status: 'login'
     }
   }
 
@@ -38,11 +43,32 @@ class Login extends Component {
     }
   }
 
+  // 退出
+  handleLoginout = () => {
+    MessageBox.confirm('确定离开吗?', '提示', {
+      type: 'warning'
+    }).then(() => {
+      // 删除用户信息
+      this.props.removeUser()
+      Message({
+        type: 'success',
+        message: '退出成功!',
+        showClose: false
+      })
+    })
+  }
+
   render() {
     return (
-      <div>
+      <div className="main-user">
         {this.props.user.token ? (
-          <LoginSuccess />
+          <div className="logined">
+            <LoginSuccess />
+            {/* 退出登录 */}
+            <a onClick={this.handleLoginout} className="loginOut">
+              退出
+            </a>
+          </div>
         ) : (
           <div className="logiWrapper">
             <div className="introduce">

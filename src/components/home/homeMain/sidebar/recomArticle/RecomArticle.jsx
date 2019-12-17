@@ -8,9 +8,11 @@ class RecomArticle extends Component {
     super(props)
 
     this.state = {
-      dialogVisible: false
+      dialogVisible: false,
+      topOffset: 0
     }
   }
+
   render() {
     const arr = ['1', '2', '3']
     return (

@@ -6,27 +6,18 @@ import './adminHeader.styl'
 @withRouter
 class AdminMain extends Component {
   componentDidMount() {
-    console.log()
   }
   //退出操作
   loginOut = () => {
-    MessageBox.confirm('将要退出, 是否继续?', '提示', {
+    MessageBox.confirm('将要跳转到文章展示页面, 是否继续?', '提示', {
       type: 'warning'
+    }).then(() => {
+      this.props.history.push('/', {})
+      Message({
+        type: 'success',
+        message: '跳转成功!'
+      })
     })
-      .then(() => {
-        window.localStorage.removeItem('user')
-        this.props.history.push('/', {})
-        Message({
-          type: 'success',
-          message: '退出成功!'
-        })
-      })
-      .catch(() => {
-        Message({
-          type: 'info',
-          message: '已取消退出'
-        })
-      })
   }
   render() {
     const { pathname } = this.props.location

@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 // 引入头部样式
 import './hedaer.less'
 
+import { withRouter } from 'react-router-dom'
+
+import { Message } from 'element-react'
+
+@withRouter
 class Header extends Component {
   constructor(props) {
     super(props)
@@ -10,22 +15,32 @@ class Header extends Component {
       itemList: [
         {
           itemName: '首页',
-          id: 'home'
+          id: 'welcome'
         },
         {
           itemName: '关于',
           id: 'about'
         }
       ],
-      currentTab: 'home'
+      currentTab: 'welcome'
     }
   }
 
   // tab切换
-  onTabChange(currentTab) {
-    this.setState({
-      currentTab
-    })
+  onTabChange = currentTab => {
+    if ((currentTab !== 'welcome') & (currentTab !== this.state.currentTab)) {
+      Message({
+        type: 'info',
+        message: '该功能暂未开放，尽情期待！'
+      })
+    } else {
+      this.setState({
+        currentTab
+      })
+      this.props.history.push(
+        `/welcome/${this.props.location.pathname.split('/')[2]}`
+      )
+    }
   }
 
   render() {
