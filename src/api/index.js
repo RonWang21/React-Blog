@@ -137,13 +137,12 @@ export const reqAddArticle = ({
   content,
   author,
   category,
-  isPublish,
-  tag
+  isPublish = true
 }) =>
   ajax({
     method: 'post',
     url: BASE_URL + '/addArticle',
-    data: { title, content, author, category, isPublish, tag }
+    data: { title, content, author, category, isPublish }
   })
 // 获取文章
 export const reqDelArticle = id =>
@@ -155,7 +154,6 @@ export const reqDelArticle = id =>
 // 获取文章
 export const reqUpdateArticle = ({
   category,
-  id,
   title,
   content,
   author,
@@ -164,5 +162,5 @@ export const reqUpdateArticle = ({
   ajax({
     method: 'post',
     url: BASE_URL + '/updateAricle',
-    data: { category, id, title, content, author, isPublish }
+    data: { category, title, content, author, isPublish }
   })

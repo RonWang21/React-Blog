@@ -119,15 +119,14 @@ const asyncArticle = {
       }
     }
   },
-  asyncAddArticle: ({ title, content, category, isPulish, author, tag }) => {
+  asyncAddArticle: ({ title, content, category, isPublish, author }) => {
     return async dispatch => {
       const result = await reqAddArticle({
         title,
         content,
         category,
-        isPulish,
-        author,
-        tag
+        isPublish,
+        author
       })
       if (result.status === 0) {
         dispatch(handArticle.addArticle(result))

@@ -14,12 +14,19 @@ import {
 import { connect } from 'react-redux'
 import { asyncArticle, asyncCategory } from '../../../redux/asyncActions'
 import './adminArticle.less'
-const { asyncAddArticle, asyncUpdateArticle } = asyncArticle
+const {
+  asyncAddArticle,
+  asyncGetArticle,
+  asyncUpdateArticle,
+  asyncDelArticle
+} = asyncArticle
 const { asyncGetCategories } = asyncCategory
 @connect(state => ({ categories: state.categories }), {
   asyncAddArticle,
   asyncGetCategories,
-  asyncUpdateArticle
+  asyncUpdateArticle,
+  asyncDelArticle,
+  asyncGetArticle
 })
 class AdminArticle extends Component {
   constructor(props) {
@@ -82,7 +89,7 @@ class AdminArticle extends Component {
               content: value,
               author: JSON.parse(window.localStorage.user).username,
               category: tag,
-              isPublish: `${isPublish}`
+              isPublish: isPublish
             })
             this.props.history.push('/admin/articlelist')
             //添加请求
