@@ -2,18 +2,28 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./less/index.less";
 import { Button, Dialog } from "element-react";
+import { StickyContainer, Sticky } from 'react-sticky'
 class RecomArticle extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      dialogVisible: false
+      dialogVisible: false,
     };
   }
+
   render() {
     const arr = ["1", "2", "3"];
+    const {needFixed} = this.state
+    const styles= {
+      aFixed:'a-fixed',
+      a:''
+    }
     return (
-      <div className="recomWrapper">
+      <div>
+        <Sticky topOffset={280} relative={false}>
+        {({ style = {} }) => (
+        <div className="recomWrapper" style={style}>
         <div className="recomTile">
           <span>博客-原帖-大白归来</span>
         </div>
@@ -296,7 +306,10 @@ class RecomArticle extends Component {
           <img alt="js" id="schoolIcon" src={require("./images/js.png")} />
         </div>
       </div>
-    );
+      )}
+      </Sticky>
+      </div>
+   );
   }
 }
 

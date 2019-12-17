@@ -15,7 +15,7 @@ import Home from './containers/home/Home'
 import ArticleList from './components/home/homeMain/articleList/ArticleList'
 //引入Admin 组件
 import Admin from './containers/adminContainers/admin/Admin'
-
+import { StickyContainer, Sticky } from 'react-sticky'
 class App extends Component {
   render() {
     return (
@@ -23,6 +23,7 @@ class App extends Component {
         <Switch>
           {/* Admin和Home是同一级 */}
           <Route path="/admin" component={Admin} />
+          <StickyContainer>
           <Home>
             <Switch>
               {router.map((route, index) => (
@@ -31,6 +32,7 @@ class App extends Component {
               <Route key="_id" path="*" component={ArticleList} />
             </Switch>
           </Home>
+          </StickyContainer>
         </Switch>
       </Router>
     )
