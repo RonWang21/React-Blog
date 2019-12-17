@@ -18,7 +18,7 @@ class ArticleDetail extends Component {
     this.props.asyncGetArticle()
   }
   render() {
-    const item = this.props.location.state || ''
+    const item = this.props.location.state.item || ''
     return (
       <Card
         bodyStyle={{

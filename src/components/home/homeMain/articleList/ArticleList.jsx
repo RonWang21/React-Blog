@@ -22,6 +22,9 @@ class ArticleList extends Component {
   }
   render() {
     const { articles } = this.props
+    console.log('====================================')
+    console.log(this.props)
+    console.log('====================================')
     return (
       <div>
         {articles.map((item, index) => {
