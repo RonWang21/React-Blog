@@ -5,6 +5,7 @@ import { Card, Button, Tag } from 'element-react'
 import { connect } from 'react-redux'
 import { asyncArticle } from '../../../../redux/asyncActions'
 import './articleDetail.less'
+import detailImg from './images/Vue.js 2.0 快速上手精华梳理 - 掘金.webp'
 const { asyncGetArticle } = asyncArticle
 @connect(
   state => ({
@@ -13,9 +14,13 @@ const { asyncGetArticle } = asyncArticle
   { asyncGetArticle }
 )
 class ArticleDetail extends Component {
+  // 界面渲染之前请求获取文章
   componentDidMount() {
     //请求获取文章
     this.props.asyncGetArticle()
+  }
+  homrDetailBack = () => {
+    this.props.history.goBack('/')
   }
   render() {
     const item = this.props.location.state.item || ''
@@ -32,13 +37,22 @@ class ArticleDetail extends Component {
           <div className="detailContent">
             <span className="detailSpan">{item.title}</span>
             <div className="detailTags">
-              <Tag>{item.author}</Tag>
-              <Tag type="gray" style={{ margin: '0px 10px' }}>
-                {item.category}
-              </Tag>
-              <Tag type="primary" style={{ margin: '0px 10px' }}>
-                {item.tag}
-              </Tag>
+              <div>
+                <Tag>{item.author || 'admin'}</Tag>
+                {item.category ? (
+                  <Tag type="gray" style={{ margin: '0px 10px' }}>
+                    {item.category}
+                  </Tag>
+                ) : null}
+                {item.tag ? (
+                  <Tag type="primary" style={{ margin: '0px 10px' }}>
+                    {item.tag}
+                  </Tag>
+                ) : null}
+              </div>
+              <Button type="text" onClick={this.homrDetailBack}>
+                戳我回到上一层
+              </Button>
             </div>
 
             <div className="bottom1 clearfix">
@@ -47,7 +61,17 @@ class ArticleDetail extends Component {
                 关注我
               </Button>
             </div>
-            <p className="detailContentp">{item.content}</p>
+            <div className="detailContent">
+              <Tag
+                type="success"
+                style={{ fontSize: '12px', marginBottom: '10px' }}
+              >
+                本文为博主原创文章，遵循 CC 4.0 BY-SA
+                版权协议，转载请附上原文出处链接和本声明。
+              </Tag>
+              <img src={detailImg} alt="" />
+              <p className="detailContentp">{item.content}</p>
+            </div>
           </div>
         </div>
       </Card>
