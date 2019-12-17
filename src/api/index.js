@@ -139,10 +139,11 @@ export const reqUpdateArticle = ({
   title,
   content,
   author,
-  isPublish
+  isPublish,
+  id
 }) =>
   ajax({
     method: 'post',
     url: BASE_URL + '/updateAricle',
-    data: { category, title, content, author, isPublish }
+    data: { category, title, content, author, isPublish, id }
   })
