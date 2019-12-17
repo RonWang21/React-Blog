@@ -21,20 +21,41 @@ const { asyncGetArticle } = asyncArticle
   { asyncGetArticle }
 )
 class ArticleList extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   let myState = {}
-  //   this.props.articles.map(item => {
-  //     const { _id } = item
-  //     myState[`loading${_id}`] = true
-  //     console.log(`loading${_id}`)
-  //   })
-  //   this.state = myState
-  //   console.log(this.state, myState)
-  // }
+  constructor(props) {
+    super(props)
+
+    // 初始化一个对象
+    let myState = {}
+    // 遍历所有redux中的文章
+    this.props.articles.map(item => {
+      // 结构出来文章的id作为不同imgLoadingState的唯一标识
+      const { _id } = item
+      // 初始化loading状态为true(loading)
+      myState[`loading${_id}`] = true
+    })
+    // 设置state
+    this.state = myState
+  }
+
+  // 图片加载完成
+  changeLoadStatu = (needChange, error) => {
+    this.setState({
+      // 设置加载完成图片的loading状态为false
+      [needChange]: false
+    })
+    // 图片加载失败
+    if (error === 'error') {
+      this.refs[
+        needChange
+        // 直接给路径是不行的，和vue一样需要require
+      ].src = require('../../../../assets/images/logo.png')
+    }
+  }
+
   // 点击阅读全文
   homeDetail = item => {
     this.props.history.push(`/welcome/${item.category}/${item._id}`, {
+      // 传入当前文章
       item
     })
   }
@@ -54,14 +75,21 @@ class ArticleList extends Component {
               key={index}
               className="detailCard"
             >
-              {/* <Loading loading={this.state[`loading${item._id}`]}> */}
-              <img
-                // onLoad={() => console.log(this.state)}
-                src={`https://api.ixiaowai.cn/api/api.php?time=${Date.now()}`}
-                className="image"
-                style={{ minWidth: '180px', height: '150px' }}
-              />
-              {/* </Loading> */}
+              <Loading loading={this.state[`loading${item._id}`]}>
+                <img
+                  onError={this.changeLoadStatu.bind(
+                    this,
+                    `loading${item._id}`,
+                    'error'
+                  )}
+                  ref={`loading${item._id}`}
+                  onLoad={this.changeLoadStatu.bind(this, `loading${item._id}`)}
+                  src={`https://api.ixiaowai.cn/api/api.php?time=${index}`}
+                  className="image"
+                  // alt="加载失败哦"
+                  style={{ minWidth: '180px', height: '150px' }}
+                />
+              </Loading>
               <div style={{ padding: 14 }}>
                 <div className="detailContent">
                   <span className="detailSpan">{item.title}</span>
