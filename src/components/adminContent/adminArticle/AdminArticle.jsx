@@ -64,7 +64,9 @@ class AdminArticle extends Component {
       this.props.asyncUpdateArticle({
         title,
         content: value,
-        category: (tag = tag ? tag : this.props.location.state.article.category),
+        category: (tag = tag
+          ? tag
+          : this.props.location.state.article.category),
         id: this.props.location.state.article._id,
         isPublish: isPublish
       })
@@ -80,7 +82,7 @@ class AdminArticle extends Component {
               content: value,
               author: JSON.parse(window.localStorage.user).username,
               category: tag,
-              isPublish
+              isPublish: `${isPublish}`
             })
             this.props.history.push('/admin/articlelist')
             //添加请求
