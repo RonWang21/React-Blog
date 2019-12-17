@@ -179,23 +179,10 @@ class AdminTags extends Component {
       inputErrorMessage: '分类名称与原来的一致'
     })
       .then(({ value }) => {
-        const tagsAll = [
-          { key: 1, name: '标签一', type: '' },
-          { key: 2, name: '标签二', type: 'gray' },
-          { key: 5, name: '标签三', type: 'primary' },
-          { key: 3, name: '标签四', type: 'success' },
-          { key: 4, name: '标签五', type: 'warning' },
-          { key: 6, name: '标签六', type: 'danger' }
-        ]
-        const tags = tagsAll.splice(Math.random() * 6, Math.random() * 5 + 1)
-        console.log('====================================')
-        console.log(tags)
-        console.log('====================================')
         // 修改分类请求
         this.props.asyncUpdateCategory({
           id: val._id,
-          categoryname: value,
-          tags
+          categoryname: value
         })
         Message({
           type: 'success',
@@ -216,8 +203,16 @@ class AdminTags extends Component {
       inputErrorMessage: '分类名称格式不正确'
     })
       .then(({ value }) => {
+        const tagsAll = [
+          { key: 1, name: '标签一', type: '' },
+          { key: 2, name: '标签二', type: 'gray' },
+          { key: 5, name: '标签三', type: 'primary' },
+          { key: 3, name: '标签四', type: 'success' },
+          { key: 4, name: '标签五', type: 'warning' },
+          { key: 6, name: '标签六', type: 'danger' }
+        ]
         //添加分类请求
-        this.props.asyncAddCategory({ categoryname: value })
+        this.props.asyncAddCategory({ categoryname: value, tags: tagsAll })
         Message({
           type: 'success',
           message: '已添加“' + value + '”分类'
