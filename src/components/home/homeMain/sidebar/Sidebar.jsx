@@ -14,6 +14,17 @@ class Sidebar extends Component {
           <Sticky topOffset={150} relative={false} disableHardwareAcceleration>
             {({ style = { top: '103px' } }) => (
               <div style={{ ...style, top: '103px' }}>
+                <div>
+                  <img
+                    src="http://www.atguigu.com/images/speech-banner.jpg"
+                    alt=""
+                    style={{
+                      width: '100%',
+                      marginBottom: '10px',
+                      marginTop: '10px'
+                    }}
+                  />
+                </div>
                 <RecomArticle />
               </div>
             )}
