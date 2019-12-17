@@ -75,7 +75,7 @@ class ArticleList extends Component {
               key={index}
               className="detailCard"
             >
-              <Loading loading={this.state[`loading${item._id}`]}>
+              <Loading text="拼命加载中···" loading={this.state[`loading${item._id}`]}>
                 <img
                   onError={this.changeLoadStatu.bind(
                     this,
