@@ -1,19 +1,24 @@
 import React, { Component } from 'react'
 
 // 使用layout布局、Card卡片、Button按钮方法
-import { Card, Button } from 'element-react'
+import { Card, Button, Tag } from 'element-react'
 import { connect } from 'react-redux'
+import { asyncArticle } from '../../../../redux/asyncActions'
 import './articleDetail.less'
+const { asyncGetArticle } = asyncArticle
 @connect(
   state => ({
-    articles: state.articles
+    articles: state.article
   }),
-  null
+  { asyncGetArticle }
 )
-class HomeDetail extends Component {
+class ArticleDetail extends Component {
+  componentDidMount() {
+    //请求获取文章
+    this.props.asyncGetArticle()
+  }
   render() {
-    console.log(this.props)
-
+    const item = this.props.location.state || ''
     return (
       <Card
         bodyStyle={{
@@ -23,18 +28,26 @@ class HomeDetail extends Component {
         }}
       >
         {/* <img src="holder.js/200x150" className="image" /> */}
-        <div style={{ padding: 14 }}>
+        <div style={{ padding: 14, width: '100%' }}>
           <div className="detailContent">
-            <span className="detailSpan">今天天气很好</span>
-            <div className="bottom clearfix">
+            <span className="detailSpan">{item.title}</span>
+            <div className="detailTags">
+              <Tag>{item.author}</Tag>
+              <Tag type="gray" style={{ margin: '0px 10px' }}>
+                {item.category}
+              </Tag>
+              <Tag type="primary" style={{ margin: '0px 10px' }}>
+                {item.tag}
+              </Tag>
+            </div>
+
+            <div className="bottom1 clearfix">
               <time className="time">2016-10-21 16:19</time>
               <Button plain={true} type="success" size="small">
                 关注我
               </Button>
             </div>
-            <p className="detailContentp">
-              这是学习源码整体架构系列第六篇。整体架构这词语好像有点大，姑且就算是源码整体结构吧，主要就是学习是代码整体结构，不深究其他不是主线的具体函数的实现。本篇文章学习的是实际仓库的代码。
-            </p>
+            <p className="detailContentp">{item.content}</p>
           </div>
         </div>
       </Card>
@@ -42,4 +55,4 @@ class HomeDetail extends Component {
   }
 }
 
-export default HomeDetail
+export default ArticleDetail

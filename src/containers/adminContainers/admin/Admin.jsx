@@ -7,18 +7,16 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
 } from 'react-router-dom'
 // import Home from '../../home/Home'
 import routes from '../../../config/admin-routes'
 import Header from '../../../components/adminComponent/adminMain/AdminHeader'
-import NotMath from '../../../components/notMath/NotMath'
 // 引入样式
 import './admin.css'
 class Admin extends Component {
   render() {
     return (
-      <Router>
+      <div>
         <Header></Header>
         <div className="adminContent">
           <Switch>
@@ -27,7 +25,7 @@ class Admin extends Component {
             ))}
           </Switch>
         </div>
-      </Router>
+      </div>
     )
   }
 }

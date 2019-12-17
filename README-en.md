@@ -140,8 +140,8 @@
   │ │ │ └─adminMain 
   │ │ │   └─AdminHeader.jsx 
   │ │ ├─adminContent 
-  │ │ │ ├─adminEssay 
-  │ │ │ │ ├─AdminEssay.jsx 
+  │ │ │ ├─adminArticle 
+  │ │ │ │ ├─AdminArticle.jsx 
   │ │ │ │ └─NewText.jsx 
   │ │ │ ├─adminMain 
   │ │ │ │ └─AdminMain.jsx 

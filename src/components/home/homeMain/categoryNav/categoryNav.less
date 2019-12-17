@@ -1,0 +1,43 @@
+.home-category-nav {
+  width           : 100%;
+  background-color: #fff;
+  position        : fixed;
+  box-shadow      : 0 1px 2px 0 rgba(0, 0, 0, .05);
+  height          : 45px;
+  left            : 0;
+  top             : 61px;
+
+  .category-nav-list {
+    max-width       : 960px;
+    background-color: #fff;
+    display         : flex;
+    align-items     : center;
+    height          : 100%;
+    margin          : 0 auto;
+
+    .category-nav-item {
+      height     : 100%;
+      align-items: center;
+      display    : flex;
+      flex-shrink: 0;
+      font-size  : 14px;
+      color      : #71777c;
+      padding    : 0 10px;
+
+      // active类
+      &.active {
+        a {
+          font-weight: 600;
+          color      : #333;
+        }
+      }
+
+      // 鼠标悬浮
+      &:hover {
+        font-weight: 600;
+        color      : #333;
+      }
+    }
+
+  }
+}
