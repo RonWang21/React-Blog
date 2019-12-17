@@ -85,7 +85,7 @@ class AdminArticle extends Component {
           //添加请求
           Message({
             type: 'success',
-            message: '添加成功!'
+            message: '修改成功!'
           })
         })
         .catch(() => {
