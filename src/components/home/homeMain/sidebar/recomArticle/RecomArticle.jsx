@@ -11,6 +11,7 @@ class RecomArticle extends Component {
       dialogVisible: false
     }
   }
+
   render() {
     const arr = ['1', '2', '3']
     return (
