@@ -73,9 +73,10 @@ class ArticleDetail extends Component {
                 版权协议，转载请附上原文出处链接和本声明。
               </Tag>
               {/* <img src={detailImg} alt="" /> */}
-              <p className="detailContentp" dangerouslySetInnerHTML>
-                {{ __html: item.content }}
-              </p>
+              <p
+                className="detailContentp"
+                dangerouslySetInnerHTML={{ __html: item.content }}
+              ></p>
             </div>
           </div>
         </div>

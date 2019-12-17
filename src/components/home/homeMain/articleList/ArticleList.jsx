@@ -65,9 +65,10 @@ class ArticleList extends Component {
               <div style={{ padding: 14 }}>
                 <div className="detailContent">
                   <span className="detailSpan">{item.title}</span>
-                  <p className="detailp" dangerouslySetInnerHTML>
-                    {{ __html: item.content }}
-                  </p>
+                  <p
+                    className="detailp"
+                    dangerouslySetInnerHTML={{ __html: item.content }}
+                  ></p>
                 </div>
 
                 <div className="bottom clearfix">
