@@ -157,8 +157,8 @@ export const reqUpdateArticle = ({
   title,
   content,
   author,
-  id,
-  isPublish
+  isPublish,
+  id
 }) =>
   ajax({
     method: 'post',
