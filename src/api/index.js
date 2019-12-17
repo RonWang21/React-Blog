@@ -127,7 +127,7 @@ export const reqGetArticle = conditions => {
   return ajax({
     method: 'get',
     url: BASE_URL + '/getArticles',
-    params:data
+    params: data
   })
 }
 
@@ -157,10 +157,11 @@ export const reqUpdateArticle = ({
   title,
   content,
   author,
+  id,
   isPublish
 }) =>
   ajax({
     method: 'post',
     url: BASE_URL + '/updateAricle',
-    data: { category, title, content, author, isPublish }
+    data: { category, title, content, author, isPublish, id }
   })
