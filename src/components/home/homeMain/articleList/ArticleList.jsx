@@ -30,7 +30,7 @@ class ArticleList extends Component {
   render() {
     const { articles } = this.props
     return (
-      <div>
+      <div className="articleOuter">
         {articles.map((item, index) => {
           return (
             // 对map 循环出来的每个属性插入标签元素
@@ -41,6 +41,7 @@ class ArticleList extends Component {
                 marginTop: '10px'
               }}
               key={index}
+              className="detailCard"
             >
               <img
                 src={`https://api.ixiaowai.cn/api/api.php?time=${Date.now()}`}
