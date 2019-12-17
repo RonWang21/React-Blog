@@ -42,23 +42,23 @@ class AdminMain extends Component {
   render() {
     return (
       <div className="demo-2 medium adminMain">
-        <Loading loading={this.state.isLoading.falg}>
-          <Carousel interval="4000" type="card" height="500px">
-            {this.state.img.map((item, index) => {
-              return (
-                <Carousel.Item key={index}>
-                  <h3>
+        <Carousel interval="4000" type="card" height="500px">
+          {this.state.img.map((item, index) => {
+            return (
+              <Carousel.Item key={index}>
+                <h3>
+                  <Loading loading={this.state.isLoading.falg}>
                     <img
                       src={item}
                       alt=""
                       onLoad={val => this.loadingImg(val)}
                     />
-                  </h3>
-                </Carousel.Item>
-              )
-            })}
-          </Carousel>
-        </Loading>
+                  </Loading>
+                </h3>
+              </Carousel.Item>
+            )
+          })}
+        </Carousel>
       </div>
     )
   }

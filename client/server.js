@@ -45,6 +45,7 @@ Users.findOne({ username: 'admin' }).then(async user => {
         password: md5('admin'),
         usertype: 'admin',
         email: 'admin@gmail.com',
+        signature: '你全心全意做到的最好，可能还不如别人的随便搞搞~',
         createTime: Date.now()
       })
       console.log(

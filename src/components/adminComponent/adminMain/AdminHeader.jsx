@@ -6,7 +6,6 @@ import './adminHeader.styl'
 @withRouter
 class AdminMain extends Component {
   componentDidMount() {
-    console.log()
   }
   //退出操作
   loginOut = () => {

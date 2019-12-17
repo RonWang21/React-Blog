@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 // 使用layout布局、Tabs标签页方法
-import { Card, Button } from 'element-react'
+import { Card, Button, Loading } from 'element-react'
 import { connect } from 'react-redux'
 
 import './articleList.less'
@@ -21,6 +21,17 @@ const { asyncGetArticle } = asyncArticle
   { asyncGetArticle }
 )
 class ArticleList extends Component {
+  // constructor(props) {
+  //   super(props)
+  //   let myState = {}
+  //   this.props.articles.map(item => {
+  //     const { _id } = item
+  //     myState[`loading${_id}`] = true
+  //     console.log(`loading${_id}`)
+  //   })
+  //   this.state = myState
+  //   console.log(this.state, myState)
+  // }
   // 点击阅读全文
   homeDetail = item => {
     this.props.history.push(`/welcome/${item.category}/${item._id}`, {
@@ -43,19 +54,26 @@ class ArticleList extends Component {
               key={index}
               className="detailCard"
             >
+              {/* <Loading loading={this.state[`loading${item._id}`]}> */}
               <img
+                // onLoad={() => console.log(this.state)}
                 src={`https://api.ixiaowai.cn/api/api.php?time=${Date.now()}`}
                 className="image"
                 style={{ minWidth: '180px', height: '150px' }}
               />
+              {/* </Loading> */}
               <div style={{ padding: 14 }}>
                 <div className="detailContent">
                   <span className="detailSpan">{item.title}</span>
-                  <p className="detailp">{item.content}</p>
+                  <p className="detailp" dangerouslySetInnerHTML>
+                    {{ __html: item.content }}
+                  </p>
                 </div>
 
                 <div className="bottom clearfix">
-            <time className="time">更新时间 :{getTimeAgo(item.lastModifiedTime)}</time>
+                  <time className="time">
+                    更新时间 :{getTimeAgo(item.lastModifiedTime)}
+                  </time>
                   <div className="bottomRight">
                     <i className="el-icon-star-off"></i>
                     <i className="el-icon-share"></i>
