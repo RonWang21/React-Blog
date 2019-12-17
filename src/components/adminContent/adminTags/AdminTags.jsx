@@ -75,11 +75,11 @@ class AdminTags extends Component {
                       <Tag
                         key={tag}
                         closable={true}
-                        type={'success'}
+                        type={tag.type}
                         closeTransition={true}
                         onClose={this.handleClose.bind(this, tag)}
                       >
-                        &nbsp;{tag}&nbsp;
+                        &nbsp;{tag.name}&nbsp;
                       </Tag>
                     </span>
                   )
@@ -179,8 +179,24 @@ class AdminTags extends Component {
       inputErrorMessage: '分类名称与原来的一致'
     })
       .then(({ value }) => {
+        const tagsAll = [
+          { key: 1, name: '标签一', type: '' },
+          { key: 2, name: '标签二', type: 'gray' },
+          { key: 5, name: '标签三', type: 'primary' },
+          { key: 3, name: '标签四', type: 'success' },
+          { key: 4, name: '标签五', type: 'warning' },
+          { key: 6, name: '标签六', type: 'danger' }
+        ]
+        const tags = tagsAll.splice(Math.random() * 6, Math.random() * 5 + 1)
+        console.log('====================================')
+        console.log(tags)
+        console.log('====================================')
         // 修改分类请求
-        this.props.asyncUpdateCategory({ id: val._id, categoryname: value })
+        this.props.asyncUpdateCategory({
+          id: val._id,
+          categoryname: value,
+          tags
+        })
         Message({
           type: 'success',
           message: val.name + '分类名称已修改为' + value
