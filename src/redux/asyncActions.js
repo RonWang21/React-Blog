@@ -84,9 +84,9 @@ const asyncCategory = {
 }
 // 异步的article
 const asyncArticle = {
-  asyncGetArticle: () => {
+  asyncGetArticle: conditions => {
     return async dispatch => {
-      const result = await reqGetArticle()
+      const result = await reqGetArticle(conditions)
       if (result) {
         dispatch(handArticle.getArticle(result))
       }

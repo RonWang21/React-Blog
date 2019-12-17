@@ -8,14 +8,24 @@ class RecomArticle extends Component {
     super(props)
 
     this.state = {
-      dialogVisible: false
+      dialogVisible: false,
+      topOffset: 0
     }
+  }
+  componentDidMount() {
+    const topOffset = this.refs.stickyWrapper.getBoundingClientRect().y - 106
+    this.setState({
+      topOffset
+    })
+  }
+  handleClick = () => {
+    console.log(this.refs.stickyWrapper.getBoundingClientRect())
   }
   render() {
     const arr = ['1', '2', '3']
     return (
-      <div>
-        <Sticky topOffset={280} relative={false}>
+      <div className="stickyWrapper" ref="stickyWrapper">
+        <Sticky topOffset={417} relative={false}>
           {({ style = {} }) => (
             <div className="recomWrapper" style={style}>
               <div className="recomTile">

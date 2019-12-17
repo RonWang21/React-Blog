@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 
 import router from './config/routes'
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 // 引入组件默认主题
 import 'element-theme-default'
 
@@ -28,6 +25,7 @@ class App extends Component {
                 {router.map((route, index) => (
                   <Route key={index} {...route}></Route>
                 ))}
+                {/* 如果没有匹配 跳转到ArticleList */}
                 <Route key="_id" path="*" component={ArticleList} />
               </Switch>
             </Home>

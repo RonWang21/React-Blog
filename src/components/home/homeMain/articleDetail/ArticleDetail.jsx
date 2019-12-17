@@ -18,6 +18,7 @@ class ArticleDetail extends Component {
     this.props.asyncGetArticle()
   }
   render() {
+    console.log(this.props.location)
     const item = this.props.location.state || ''
     return (
       <Card

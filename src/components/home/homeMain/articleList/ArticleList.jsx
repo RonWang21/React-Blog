@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
+
 // 使用layout布局、Tabs标签页方法
 import { Card, Button } from 'element-react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { asyncArticle } from '../../../../redux/asyncActions'
+
 import './articleList.less'
+
+// 请求文章action
+import { asyncArticle } from '../../../../redux/asyncActions'
 const { asyncGetArticle } = asyncArticle
+
 @connect(
   state => ({
     articles: state.article
@@ -13,12 +17,12 @@ const { asyncGetArticle } = asyncArticle
   { asyncGetArticle }
 )
 class ArticleList extends Component {
-  componentDidMount() {
-    //请求userList
-    this.props.asyncGetArticle()
-  }
+  // 点击阅读全文
   homeDetail = item => {
-    this.props.history.push('/articledetail', { item })
+    console.log(item)
+    this.props.history.push(`/article/${item._id}`, {
+      article: item._id
+    })
   }
   render() {
     const { articles } = this.props

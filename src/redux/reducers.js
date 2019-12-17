@@ -66,27 +66,32 @@ function tags(preveState = [], action) {
       return preveState
   }
 }
+
+// 操作分类数据
 function categories(preveState = [], action) {
   switch (action.type) {
     case GET_CATEGORIES:
-      return action.data.data.categories
+      return [{ name: '推荐', tags: ['推荐'] }, ...action.data.data.categories]
     case ADD_CATEGORY:
-      return action.data.data.categories
+      return [{ name: '推荐', tags: ['推荐'] }, ...action.data.data.categories]
     case UPDATE_CATEGORY:
       preveState = preveState.filter(
         item => item._id !== action.data.data.category._id
       )
-      return [...preveState, action.data.data.category]
+      return [{ name: '推荐', tags: ['推荐'] }, ...action.data.data.categories]
     case DEL_CATEGORY:
-      return action.data.data.categories
+      return [{ name: '推荐', tags: ['推荐'] }, ...action.data.data.categories]
     default:
       return preveState
   }
 }
+
+// 操作文章数据
 function article(preveState = [], action) {
   switch (action.type) {
     case GET_ARTICLES:
       preveState = action.data.data.articles
+      console.log(action.data.data.articles)
       return action.data.data.articles
     case ADD_ARTICLES:
       preveState = action.data.data.articles
