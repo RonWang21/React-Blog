@@ -70,8 +70,11 @@ class ArticleList extends Component {
    * 阅读文章详情时的位置
    *  */
   componentDidMount() {
-    const { scrollY } = this.props.location.state
-    window.scrollTo(0, scrollY)
+    console.log("我渲染了")
+    if (this.props.location.state) {
+      const { scrollY } = this.props.location.state
+      window.scrollTo(0, scrollY)
+    }
   }
 
   // 点击分类重新获取数据是页面还是会停留在当前位置，需要重新回到顶部
