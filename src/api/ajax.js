@@ -9,10 +9,6 @@ axios.interceptors.request.use(config => {
   //获取参数
   let data = config.data
   if (data && data instanceof Object) {
-    // qs.stringify()将对象 序列化成URL的形式，以&进行拼接
-    // var a = {name:'hehe',age:10};
-    // qs.stringify(a)
-    // // 'name=hehe&age=10'
     config.data = qs.stringify(data)
   }
   return config
@@ -21,14 +17,15 @@ axios.interceptors.request.use(config => {
 //响应拦截器
 axios.interceptors.response.use(
   response => {
-    console.log('xxx', response)
     return response.data
   },
   error => {
-    Message({
-      message: `错误： ${error}`,
-      type: error
-    })
+    if(error.message.indexOf('500')){
+      Message({
+        message: "服务器出错啦~",
+        type: 'error'
+      })
+    }
     // 中断错误消息
     return new Promise(() => {})
   }
