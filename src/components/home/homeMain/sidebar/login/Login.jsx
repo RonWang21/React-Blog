@@ -65,9 +65,9 @@ class Login extends Component {
           <div className="logined">
             <LoginSuccess />
             {/* 退出登录 */}
-            <a onClick={this.handleLoginout} className="loginOut">
+            <span onClick={this.handleLoginout} className="loginOut">
               退出
-            </a>
+            </span>
           </div>
         ) : (
           <div className="logiWrapper">

@@ -54,11 +54,34 @@ class ArticleList extends Component {
 
   // 点击阅读全文
   homeDetail = item => {
+    const { scrollY } = window
     this.props.history.push(`/welcome/${item.category}/${item._id}`, {
-      // 传入当前文章
-      item
+      // 传入当前文章和当前scrollTop
+      item,
+      scrollY
     })
   }
+
+  /**
+   * 在articledetail使用goBack返回不生效，所以改用push
+   * 但是push会让当前页面回到顶部，而我们需要保存阅读文章详情时当前页
+   * 面的位置，所以在点击阅读全文跳转时获取到当前页面的scrollTop交给
+   * articledetail保存起来，返回时再将scrollTop交给当前页面用来回到
+   * 阅读文章详情时的位置
+   *  */
+  componentDidMount() {
+    console.log("我渲染了")
+    if (this.props.location.state) {
+      const { scrollY } = this.props.location.state
+      window.scrollTo(0, scrollY)
+    }
+  }
+
+  // 点击分类重新获取数据是页面还是会停留在当前位置，需要重新回到顶部
+  componentWillReceiveProps() {
+    window.scrollTo(0, 0)
+  }
+
   render() {
     const { articles } = this.props
     return (

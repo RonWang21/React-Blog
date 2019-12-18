@@ -17,13 +17,21 @@ const { asyncGetArticle } = asyncArticle
   { asyncGetArticle }
 )
 class ArticleDetail extends Component {
-  // 界面渲染之前请求获取文章
-  componentDidMount() {
-    //请求获取文章
-    // this.props.asyncGetArticle()
+  constructor(props) {
+    super(props)
+    this.homrDetailBack = this.homrDetailBack.bind(this)
   }
+  // 回到上一层
   homrDetailBack = () => {
-    this.props.history.goBack('/')
+    const { scrollY } = this.props.location.state
+    this.props.history.push('/', {
+      scrollY
+    })
+  }
+
+  // 跳转到当前页面时当前页面到页面顶部
+  componentDidMount() {
+    window.scrollTo(0, 0)
   }
   render() {
     const { item } = this.props.location.state || ''

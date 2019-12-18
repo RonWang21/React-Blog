@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import 'element-theme-default'
 //路由
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom'

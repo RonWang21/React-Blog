@@ -48,7 +48,7 @@ class Header extends Component {
       <div className="main-header-container">
         <header className="main-header">
           <div className="main-header-content">
-            <a href="/" className="log">
+            <a href="/welcome" className="log">
               <img
                 src={require('../../../assets/images/logo.png')}
                 className="logo-img"
@@ -67,7 +67,7 @@ class Header extends Component {
                     className={liClass}
                     onClick={this.onTabChange.bind(this, li.id)}
                   >
-                    <a>{li.itemName}</a>
+                    <span>{li.itemName}</span>
                   </li>
                 )
               })}
