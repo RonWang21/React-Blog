@@ -91,7 +91,7 @@ class CategoryNav extends Component {
                 onClick={this.onTagChange.bind(this, item.name)}
                 className={itemStyle}
               >
-                <a key={index}>{item.name}</a>
+                <span key={index}>{item.name}</span>
               </li>
             )
           })}

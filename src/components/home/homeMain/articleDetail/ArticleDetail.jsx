@@ -19,10 +19,14 @@ const { asyncGetArticle } = asyncArticle
 class ArticleDetail extends Component {
   constructor(props) {
     super(props)
+    this.homrDetailBack = this.homrDetailBack.bind(this)
   }
   // 回到上一层
   homrDetailBack = () => {
-    this.props.history.goBack('/')
+    const { scrollY } = this.props.location.state
+    this.props.history.push('/', {
+      scrollY
+    })
   }
 
   // 跳转到当前页面时当前页面到页面顶部

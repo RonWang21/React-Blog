@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Tag, Button, Switch, MessageBox, Message } from 'element-react'
+import { Table, Button, MessageBox, Message } from 'element-react'
 // 引入connect
 import { connect } from 'react-redux'
 // 引入action-creatar

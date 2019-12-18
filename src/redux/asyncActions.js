@@ -5,8 +5,8 @@
 // 引入同步action
 import {
   handleTag,
-  handleUser,
-  handleArticle,
+  // handleUser,
+  // handleArticle,
   handCategories,
   handArticle
 } from './actions'
@@ -14,7 +14,7 @@ import {
 // 引入接口请求方法
 import {
   reqGetTags,
-  reqUserLogin,
+  // reqUserLogin,
   reqGetCategories,
   reqAddCategory,
   reqGetArticle,

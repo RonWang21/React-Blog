@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './less/index.less'
-import { Button, Dialog } from 'element-react'
 
 class RecomArticle extends Component {
   constructor(props) {

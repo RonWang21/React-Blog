@@ -4617,7 +4617,7 @@ dom-converter@^0.2:
   dependencies:
     utila "~0.4"
 
-dom-helpers@^3.4.0:
+dom-helpers@^3.2.1, dom-helpers@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
   integrity sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==
@@ -10749,6 +10749,11 @@ react-redux@^7.1.3:
     prop-types "^15.7.2"
     react-is "^16.9.0"
 
+react-router-apply-middleware@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npm.taobao.org/react-router-apply-middleware/download/react-router-apply-middleware-0.0.2.tgz#15c617eeef1f7fc22e35e4ffe2b34408d6849e3f"
+  integrity sha1-FcYX7u8ff8IuNeT/4rNECNaEnj8=
+
 react-router-dom@^5.1.2:
   version "5.1.2"
   resolved "https://registry.npm.taobao.org/react-router-dom/download/react-router-dom-5.1.2.tgz#06701b834352f44d37fbb6311f870f84c76b9c18"
@@ -10761,6 +10766,15 @@ react-router-dom@^5.1.2:
     react-router "5.1.2"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
+
+react-router-scroll@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.npm.taobao.org/react-router-scroll/download/react-router-scroll-0.4.4.tgz#4d7b71c75b45ff296e4adca1e029a86e898a155d"
+  integrity sha1-TXtxx1tF/yluStyh4CmobomKFV0=
+  dependencies:
+    prop-types "^15.6.0"
+    scroll-behavior "^0.9.5"
+    warning "^3.0.0"
 
 react-router@5.1.2, react-router@^5.1.2:
   version "5.1.2"
@@ -11440,6 +11454,14 @@ schema-utils@^2.0.0, schema-utils@^2.0.1, schema-utils@^2.1.0, schema-utils@^2.2
   dependencies:
     ajv "^6.10.2"
     ajv-keywords "^3.4.1"
+
+scroll-behavior@^0.9.5:
+  version "0.9.10"
+  resolved "https://registry.npm.taobao.org/scroll-behavior/download/scroll-behavior-0.9.10.tgz#c8953adeeb3586060b903328d860aa8346d62861"
+  integrity sha1-yJU63us1hgYLkDMo2GCqg0bWKGE=
+  dependencies:
+    dom-helpers "^3.2.1"
+    invariant "^2.2.2"
 
 select-hose@^2.0.0:
   version "2.0.0"
@@ -12803,6 +12825,13 @@ warning@4.x, warning@^4.0.1, warning@^4.0.2, warning@^4.0.3, warning@~4.0.3:
   version "4.0.3"
   resolved "https://registry.npm.taobao.org/warning/download/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
   integrity sha1-Fungd+uKhtavfWSqHgX9hbRnjKM=
+  dependencies:
+    loose-envify "^1.0.0"
+
+warning@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/warning/download/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
+  integrity sha1-MuU3fLVy3kqwR1O9+IIcAe1gW3w=
   dependencies:
     loose-envify "^1.0.0"
 

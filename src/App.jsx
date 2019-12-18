@@ -13,7 +13,7 @@ import Admin from './containers/adminContainers/admin/Admin'
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router history={Router}>
         <Switch>
           {/* Admin和Home是同一级 */}
           <Route path="/admin" component={Admin} />
