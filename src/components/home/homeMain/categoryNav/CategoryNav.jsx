@@ -59,6 +59,10 @@ class CategoryNav extends Component {
 
   // tagNav切换事件
   onTagChange = currentCategory => {
+    // 切换的分类和当前路径对应的分类不同才进行跳转
+    if (currentCategory === this.state.currentCategory) {
+      return
+    }
     // 改变高亮分类
     this.setState({
       currentCategory

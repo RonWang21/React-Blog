@@ -17,27 +17,25 @@ class AdminMain extends Component {
       imgNum: 0
     }
   }
-
-  componentDidMount() {
-    this.setState({
-      isLoading: false
-    })
-  }
   loadingImg = v => {
     let { imgNum } = this.state
     imgNum++
     // console.log('loading', imgNum)
     if (imgNum >= 5) {
       this.setState({
-        isLoading: {
-          falg: false
-        }
+        isLoading: false
       })
     } else {
       this.setState({
         imgNum
       })
     }
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      loading: null
+    })
   }
   render() {
     return (
@@ -47,7 +45,7 @@ class AdminMain extends Component {
             return (
               <Carousel.Item key={index}>
                 <h3>
-                  <Loading loading={this.state.isLoading.falg}>
+                  <Loading loading={this.state.isLoading}>
                     <img
                       src={item}
                       alt=""

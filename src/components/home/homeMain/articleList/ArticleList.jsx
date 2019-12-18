@@ -59,6 +59,12 @@ class ArticleList extends Component {
       item
     })
   }
+
+  // 点击分类重新获取数据是页面还是会停留在当前位置，需要重新回到顶部
+  componentWillReceiveProps() {
+    window.scrollTo(0, 0)
+  }
+
   render() {
     const { articles } = this.props
     return (
