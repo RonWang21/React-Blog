@@ -12,9 +12,6 @@ import { Provider } from 'react-redux'
 // 引入根组件
 import App from './App.jsx'
 
-// 引入服务器
-// import './client/server'
-
 ReactDOM.render(
   <Provider store={store}>
     {' '}

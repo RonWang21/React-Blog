@@ -2,9 +2,11 @@
   "name": "react-demo",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@babel/core": "7.7.4",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/runtime": "^7.7.6",
     "@google-cloud/translate": "^5.1.2",
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "^4.2.4",
@@ -42,6 +44,7 @@
     "file-loader": "4.3.0",
     "fs-extra": "^8.1.0",
     "html-webpack-plugin": "4.0.0-beta.5",
+    "http-proxy-middleware": "^0.20.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "24.9.0",
     "jest-environment-jsdom-fourteen": "0.1.0",
@@ -93,10 +96,9 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "poststart": "yarn server",
+    "poststart" : "node client/server.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
-    "server": "node client/server.js"
+    "test": "node scripts/test.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -163,6 +165,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.6",
     "antd": "^3.26.2",
     "babel-core": "^6.26.3",
