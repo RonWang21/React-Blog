@@ -95,7 +95,6 @@ function article(preveState = [], action) {
   switch (action.type) {
     case GET_ARTICLES:
       preveState = action.data.data.articles
-      console.log(action.data.data.articles)
       return action.data.data.articles
     case ADD_ARTICLES:
       preveState = action.data.data.articles

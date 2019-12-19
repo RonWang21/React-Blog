@@ -17,6 +17,8 @@
       }
     ],
     // 解决箭头函数报错的问题
-    ["@babel/plugin-proposal-class-properties"]
+    ["@babel/plugin-proposal-class-properties"],
+    // 转换async/await等ES7语法
+    ["@babel/plugin-transform-runtime"]
   ]
 }

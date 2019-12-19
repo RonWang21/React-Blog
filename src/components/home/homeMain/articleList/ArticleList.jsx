@@ -27,7 +27,7 @@ class ArticleList extends Component {
     // 初始化一个对象
     let myState = {}
     // 遍历所有redux中的文章
-    this.props.articles.map(item => {
+    this.props.articles.forEach(item => {
       // 结构出来文章的id作为不同imgLoadingState的唯一标识
       const { _id } = item
       // 初始化loading状态为true(loading)
@@ -70,7 +70,6 @@ class ArticleList extends Component {
    * 阅读文章详情时的位置
    *  */
   componentDidMount() {
-    console.log("我渲染了")
     if (this.props.location.state) {
       const { scrollY } = this.props.location.state
       window.scrollTo(0, scrollY)
@@ -108,6 +107,7 @@ class ArticleList extends Component {
                     `loading${item._id}`,
                     'error'
                   )}
+                  alt="文章图片"
                   ref={`loading${item._id}`}
                   onLoad={this.changeLoadStatu.bind(this, `loading${item._id}`)}
                   src={`https://api.ixiaowai.cn/api/api.php?time=${index}`}
