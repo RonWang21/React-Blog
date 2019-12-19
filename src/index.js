@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom'
 import './assets/css/reset.styl'
 // 引入组件默认主题
 import 'element-theme-default'
-// 引入iconfont样式
-import './assets/css/iconfont/iconfont.css'
 //引入store
 import store from './redux/store'
 import { Provider } from 'react-redux'
