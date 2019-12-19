@@ -6,6 +6,7 @@
   "dependencies": {
     "@babel/core": "7.7.4",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-decorators": "^7.7.4",
     "@babel/runtime": "^7.7.6",
     "@google-cloud/translate": "^5.1.2",
     "@svgr/webpack": "4.3.3",
@@ -96,7 +97,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "poststart" : "node client/server.js",
+    "poststart": "node client/server.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
