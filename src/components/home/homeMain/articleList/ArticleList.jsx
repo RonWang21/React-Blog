@@ -48,7 +48,7 @@ class ArticleList extends Component {
       this.refs[
         needChange
         // 直接给路径是不行的，和vue一样需要require
-      ].src = require('../../../../assets/images/logo.png')
+      ].src = require('../../../../assets/images/errorLoad.png')
     }
   }
 
@@ -110,7 +110,7 @@ class ArticleList extends Component {
                   alt="文章图片"
                   ref={`loading${item._id}`}
                   onLoad={this.changeLoadStatu.bind(this, `loading${item._id}`)}
-                  src={`https://api.ixiaowai.cn/api/api.php?time=${index}`}
+                  src={require('../../../../assets/images/articleImg.png')}
                   className="image"
                   // alt="加载失败哦"
                   style={{ minWidth: '180px', height: '150px' }}

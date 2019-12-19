@@ -50,7 +50,7 @@ class Header extends Component {
           <div className="main-header-content">
             <a href="/welcome" className="log">
               <img
-                src={require('../../../assets/images/logo.png')}
+                src={require('../../../assets/images/logo2.png')}
                 className="logo-img"
                 alt="log"
               />
