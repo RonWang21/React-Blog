@@ -45,7 +45,7 @@ class LoginSuccess extends Component {
               this.props.history.push('/admin')
             }}
           >
-            进入管理员页面
+            进入管理后台
           </Button>
         ) : null}
       </div>

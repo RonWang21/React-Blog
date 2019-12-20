@@ -72,9 +72,9 @@ class Login extends Component {
         ) : (
           <div className="logiWrapper">
             <div className="introduce">
-              <span>银河护卫队</span>
+              <span>北京时间:</span>
               <span style={{ fontSize: '14px', fontWeight: '400' }}>
-                保卫星球，拯救梦想
+                123123
               </span>
             </div>
             <div>
@@ -82,7 +82,7 @@ class Login extends Component {
                 activeName="login"
                 onTabClick={tab => this.onTabChange(tab.props.name)}
               >
-                <Tabs.Pane label="登录" name="login">
+                <Tabs.Pane label="管理员登录" name="login">
                   <LoginForm
                     // 当跳转到login时将loginForm给this.loginForm
                     setLoginForm={loginForm => {
@@ -90,21 +90,21 @@ class Login extends Component {
                     }}
                   />
                 </Tabs.Pane>
-                <Tabs.Pane label="注册" name="register">
+                {/* <Tabs.Pane label="注册" name="register">
                   <RegisterForm
                     setRegisterForm={registerForm => {
                       this.registerForm = registerForm
                     }}
                   />
-                </Tabs.Pane>
+                </Tabs.Pane> */}
               </Tabs>
-              <div className="agreementTipsBox">
+              {/* <div className="agreementTipsBox">
                 注册登录即表示
                 <br />
                 <span>
                   同意<a href="###">用户协议</a>、<a href="###">隐私政策</a>
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
         )}

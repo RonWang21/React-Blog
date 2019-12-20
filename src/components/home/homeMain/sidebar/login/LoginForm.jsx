@@ -57,11 +57,24 @@ class LoginForm extends Component {
 
   // 表单按钮点击事件
   handleSubmit = async e => {
+    const { username, password } = this.state.loginForm
     // 阻止默认事件
     e.preventDefault()
 
+    // 表单校验
+    if (!username) {
+      return Message({
+        message: '账号不能为空',
+        type: 'error'
+      })
+    }
+    if (!password) {
+      return Message({
+        message: '请输入密码',
+        type: 'error'
+      })
+    }
     // 发送登录请求
-    const { username, password } = this.state.loginForm
     const result = await reqUserLogin({ username, password })
     console.log(result)
     if (result.status === 0) {
