@@ -4,6 +4,9 @@ import './less/Login.less'
 
 import { Tabs, MessageBox, Message } from 'element-react'
 
+// 时间插件
+import dayjs from 'dayjs'
+
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import LoginSuccess from './loginSuccess/LoginSuccess'
@@ -26,8 +29,19 @@ class Login extends Component {
     // 用来存储登录/注册表单数据的状态数据
     this.state = {
       // 当前tab切换状态
-      status: 'login'
+      status: 'login',
+      // 初始化时间格式
+      time: dayjs().format('YYYY-MM-DD HH:mm:ss')
     }
+  }
+
+  componentDidMount = () => {
+    // 设置定时器
+    this._timer = setInterval(() => {
+      this.setState({
+        time: dayjs().format('YYYY-MM-DD HH:mm:ss')
+      })
+    })
   }
 
   // tab栏切换事件
@@ -58,6 +72,11 @@ class Login extends Component {
     })
   }
 
+  componentWillUnmount() {
+    // 清空定时器
+    this._timer = null
+  }
+
   render() {
     return (
       <div className="main-user">
@@ -74,7 +93,7 @@ class Login extends Component {
             <div className="introduce">
               <span>北京时间:</span>
               <span style={{ fontSize: '14px', fontWeight: '400' }}>
-                123123
+                {this.state.time}
               </span>
             </div>
             <div>

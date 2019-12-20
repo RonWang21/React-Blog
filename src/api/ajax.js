@@ -3,7 +3,7 @@ import qs from 'qs'
 import { Message } from 'element-react'
 
 //基本路径
-axios.defaults.baseURL = `http://localhost:3001/`
+axios.defaults.baseURL = `https://www.wangpeiya.top/`
 //请求拦截器
 axios.interceptors.request.use(config => {
   //获取参数
