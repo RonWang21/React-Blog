@@ -14,7 +14,7 @@ class Header extends Component {
     this.state = {
       itemList: [
         {
-          itemName: '首页',
+          itemName: '小王小王，不慌不忙的博客',
           id: 'welcome'
         },
         // {
