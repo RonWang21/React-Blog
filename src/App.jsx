@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 
 import router from './config/routes'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom'
 // 引入组件默认主题
 import 'element-theme-default'
 
 // 引入Home组件
 import Home from './containers/home/Home'
 import ArticleList from './components/home/homeMain/articleList/ArticleList'
+import NotMath from './components/notMath/NotMath'
 //引入Admin 组件
 import Admin from './containers/adminContainers/admin/Admin'
 class App extends Component {

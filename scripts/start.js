@@ -141,6 +141,3 @@ checkBrowsers(paths.appPath, isInteractive)
     }
     process.exit(1)
   })
-
-// server
-require('../client/server')
