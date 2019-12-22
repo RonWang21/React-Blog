@@ -20,7 +20,6 @@ class AdminMain extends Component {
   loadingImg = v => {
     let { imgNum } = this.state
     imgNum++
-    // console.log('loading', imgNum)
     if (imgNum >= 5) {
       this.setState({
         isLoading: false

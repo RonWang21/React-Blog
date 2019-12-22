@@ -49,7 +49,6 @@ export class RegisterForm extends Component {
       password,
       rePassword
     })
-    console.log(result)
   }
   render() {
     // 传给父级当前form标签

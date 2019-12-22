@@ -81,27 +81,39 @@ class ArticleList extends Component {
     window.scrollTo(0, 0)
   }
 
+  // 把HTML转成纯文本
+  toText(html) {
+    let input = html
+    return input
+      .replace(/<(style|script|iframe)[^>]*?>[\s\S]+?<\/\1\s*>/gi, '')
+      .replace(/<[^>]+?>/g, '')
+      .replace(/\s+/g, ' ')
+      .replace(/ /g, ' ')
+      .replace(/>/g, ' ')
+  }
+
   render() {
     const { articles } = this.props
     return (
       <div className="articleOuter">
-        {articles.map((item, index) => {
-          return (
-            // 对map 循环出来的每个属性插入标签元素
-            <Card
-              bodyStyle={{
-                padding: '10px',
-                display: 'flex ',
-                marginTop: '10px'
-              }}
-              key={index}
-              className="detailCard"
-            >
-              <Loading
+        {articles.length ? (
+          articles.map((item, index) => {
+            return (
+              // 对map 循环出来的每个属性插入标签元素
+              <Card
+                bodyStyle={{
+                  padding: '10px',
+                  display: 'flex ',
+                  marginTop: '10px'
+                }}
+                key={index}
+                className="detailCard"
+              >
+                {/* <Loading
                 text="玩命加载中..."
                 loading={this.state[`loading${item._id}`]}
-              >
-                <img
+              > */}
+                {/* <img
                   onError={this.changeLoadStatu.bind(
                     this,
                     `loading${item._id}`,
@@ -114,37 +126,54 @@ class ArticleList extends Component {
                   className="image"
                   // alt="加载失败哦"
                   style={{ minWidth: '180px', height: '150px' }}
-                />
-              </Loading>
-              <div style={{ padding: 14 }}>
-                <div className="detailContent">
-                  <span className="detailSpan">{item.title}</span>
-                  <p
-                    className="detailp"
-                    dangerouslySetInnerHTML={{ __html: item.content }}
-                  ></p>
-                </div>
-
-                <div className="bottom clearfix">
-                  <time className="time">
-                    更新时间 :{getTimeAgo(item.lastModifiedTime)}
-                  </time>
-                  <div className="bottomRight">
-                    <i className="el-icon-star-off"></i>
-                    <i className="el-icon-share"></i>
-                    <Button
-                      type="text"
-                      className="button"
-                      onClick={() => this.homeDetail(item)}
+                /> */}
+                {/* </Loading> */}
+                <div style={{ padding: 14, width: '100%' }}>
+                  <div className="detailContent">
+                    <span className="detailSpan">
+                      {this.toText(item.title)}
+                    </span>
+                    <p
+                      className="detailp"
+                      // dangerouslySetInnerHTML={{ __html: item.content }}
                     >
-                      全文阅读
-                    </Button>
+                      {this.toText(item.content)}
+                    </p>
+                  </div>
+
+                  <div className="bottom clearfix">
+                    <time className="time">
+                      更新时间 :{getTimeAgo(item.lastModifiedTime)}
+                    </time>
+                    <div className="bottomRight">
+                      <i className="el-icon-star-off"></i>
+                      <i className="el-icon-share"></i>
+                      <Button
+                        type="text"
+                        className="button"
+                        onClick={() => this.homeDetail(item)}
+                      >
+                        全文阅读
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Card>
-          )
-        })}
+              </Card>
+            )
+          })
+        ) : (
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              height: '100%',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <span>该分类当前还没有文章哦！</span>
+          </div>
+        )}
       </div>
     )
   }

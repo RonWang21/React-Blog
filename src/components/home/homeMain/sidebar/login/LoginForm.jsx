@@ -76,7 +76,6 @@ class LoginForm extends Component {
     }
     // 发送登录请求
     const result = await reqUserLogin({ username, password })
-    console.log(result)
     if (result.status === 0) {
       this.props.saveUser(result.data)
       this.loginSuccess()

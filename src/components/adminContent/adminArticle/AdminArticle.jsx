@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NewText from './NewText'
+import MarkdownEditor from './MarkdownEditor'
 // 引入element-ui
 import {
   Input,
@@ -14,6 +14,7 @@ import {
 import { connect } from 'react-redux'
 import { asyncArticle, asyncCategory } from '../../../redux/asyncActions'
 import './adminArticle.less'
+
 const {
   asyncAddArticle,
   asyncGetArticle,
@@ -42,8 +43,10 @@ class AdminArticle extends Component {
       this.props.asyncGetCategories()
     }
     if (this.props.location.state) {
+      const { isPublish, title } = this.props.location.state.article
       this.setState({
-        isPublish: this.props.location.state.article.isPublish
+        isPublish,
+        title
       })
     }
   }
@@ -121,7 +124,10 @@ class AdminArticle extends Component {
             })
           })
       } else {
-        console.log('文章内容不完整')
+        Message({
+          type: 'error',
+          message: '文章内容不完整'
+        })
       }
     }
   }
@@ -132,7 +138,7 @@ class AdminArticle extends Component {
   }
   render() {
     const { categories, location } = this.props
-    let article = null
+    let article = {}
     if (location.state) {
       article = location.state.article
     }
@@ -143,16 +149,14 @@ class AdminArticle extends Component {
           <Layout.Row gutter="20">
             <Layout.Col span="8">
               <Input
-                // placeholder="请输入标题"
-                placeholder={article ? article.title : '请输入标题'}
+                placeholder="请输入标题"
+                value={this.state.title}
                 onChange={title => this.setTitle(title)}
               />
             </Layout.Col>
             <Layout.Col span="8">
               <Select
-                value={categories}
-                // placeholder={article ? article.categories : '请选择分类'}
-                placeholder="请选择分类"
+                value={article.category}
                 onChange={tag => this.setTag(tag)}
               >
                 {categories.map(el => {
@@ -182,9 +186,9 @@ class AdminArticle extends Component {
             </Layout.Col>
           </Layout.Row>
         </div>
-        <NewText
-          onChange={this.textContent}
-          value={article ? article.content : ''}
+        <MarkdownEditor
+          content={article.content}
+          textContent={this.textContent}
         />
       </div>
     )

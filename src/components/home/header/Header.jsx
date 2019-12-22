@@ -17,10 +17,10 @@ class Header extends Component {
           itemName: '首页',
           id: 'welcome'
         },
-        {
-          itemName: '关于',
-          id: 'about'
-        }
+        // {
+        //   itemName: '关于',
+        //   id: 'about'
+        // }
       ],
       currentTab: 'welcome'
     }

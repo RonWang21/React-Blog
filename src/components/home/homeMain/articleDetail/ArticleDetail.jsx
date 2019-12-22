@@ -8,6 +8,9 @@ import './articleDetail.less'
 // 格式化时间
 import formatTime from '../../../../utils/setTime'
 
+import 'highlight.js/styles/atom-one-light.css'
+import 'highlight.js/styles/github.css'
+
 const { formateDate } = formatTime
 const { asyncGetArticle } = asyncArticle
 @connect(

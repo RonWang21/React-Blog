@@ -75,6 +75,10 @@ class Login extends Component {
   componentWillUnmount() {
     // 清空定时器
     this._timer = null
+    this.setState({
+      status: null,
+      time: null
+    })
   }
 
   render() {

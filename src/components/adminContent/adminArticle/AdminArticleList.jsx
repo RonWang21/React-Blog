@@ -121,7 +121,6 @@ class AdminArticleList extends Component {
   }
   //查看
   delArticle = v => {
-    console.log('删除', v)
     MessageBox.confirm('此操作将永久删除该文件, 是否继续?', '提示', {
       type: 'warning'
     })
@@ -141,7 +140,6 @@ class AdminArticleList extends Component {
   }
   // 编辑
   compile = v => {
-    console.log('编辑', this.props)
     this.props.history.push('/admin/article', { article: v })
   }
 
